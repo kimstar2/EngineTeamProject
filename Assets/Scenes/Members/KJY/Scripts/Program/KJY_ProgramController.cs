@@ -36,7 +36,6 @@ namespace Scenes.Members.KJY.Scripts.Program
         {
             base.OnEndDrag(eventData);
             _lastPointPos = GetGUIPoint(eventData.position);
-            Debug.Log("[ProgramController] OnEndDrag()");
         }
 
         #region Helper
