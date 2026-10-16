@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Scenes.Members.KJY.Scripts.Utils
+namespace Members.KJY.Scripts.Utils
 {
     public class CameraUtils : MonoBehaviour
     {

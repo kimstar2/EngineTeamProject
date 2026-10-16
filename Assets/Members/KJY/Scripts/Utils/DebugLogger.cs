@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scenes.Members.KJY.Scripts.Utils
+namespace Members.KJY.Scripts.Utils
 {
     public static class DebugLogger
     {

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3be0c3d5f4b458b1619de804e5e06, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
+  <ProgramName>k__BackingField: Start
+  <ProgramSprite>k__BackingField: {fileID: 5567166992536738613, guid: b286ea8b75f3c57489f062d4afe37221, type: 3}
+  <StartPosition>k__BackingField: {x: 0, y: 0}
+  <StartSize>k__BackingField: {x: 300, y: 200}
