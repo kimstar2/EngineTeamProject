@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4233486679176554134}
   - component: {fileID: -5231333341083150379}
   m_Layer: 5
-  m_Name: Program_Noting
+  m_Name: Program_Enable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

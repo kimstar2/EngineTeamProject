@@ -6,17 +6,17 @@ namespace Members.KJY.Scripts.Program
 {
     public class ProgramData
     {
-        public GameObject GameObject {get; private set;}
+        public MonoRect ParentRect {get; private set;}
         public MonoRect ProgramRect {get; private set;}
-        public ProgramInfo ProgramInfo {get; private set;}
-        public ProgramBar ProgramBar {get; private set;}
+        public GameObject GameObject {get; private set;}
+        public ProgramInfoSO ProgramInfo {get; private set;}
         
-        public ProgramData(MonoRect programRect , GameObject gameObject, ProgramInfo programInfo , ProgramBar programBar)
+        public ProgramData(MonoRect parentRect, MonoRect programRect, GameObject gameObject, ProgramInfoSO programInfo)
         {
             ProgramRect = programRect;
             GameObject = gameObject;
             ProgramInfo = programInfo;
-            ProgramBar = programBar;
+            ParentRect = parentRect;
         }
     }
 }

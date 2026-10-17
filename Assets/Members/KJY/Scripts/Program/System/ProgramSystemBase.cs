@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Members.KJY.Scripts.Program.TaskBar;
 using Members.KJY.Scripts.Utils;
 using Members.KJY.Scripts.Utils.Mono;
@@ -6,16 +7,26 @@ using UnityEngine;
 
 namespace Members.KJY.Scripts.Program.System
 {
-    public abstract class ProgramSystemBase : MonoProgramInit
+    public abstract class ProgramSystemBase : MonoBehaviour
     {
+        [field: SerializeField] protected float ChangeTime { get; private set; } = 0.2f;
         [field:SerializeField] protected AnchorUtilStruct AnchorUtil {get; private set;}
-        public ProgramBar Bar => ProgramData.ProgramBar;
+        public ProgramData ProgramData {get; private set;}
         public MonoRect Rect => ProgramData.ProgramRect;
-        public ProgramInfo Info => ProgramData.ProgramInfo;
+        public ProgramController ProgramCon {get; private set;}
         
-        public virtual void ExecuteSystem() // base 안쓰면 그전 시스템 앵커, 피봇 따라감
+        public event Action<ProgramSystemBase> OnExecute;
+        public event Action<ProgramSystemBase> OnExit;
+        
+        public virtual void Initialize(ProgramController programCon, ProgramData programData)
         {
-            Bar.SystemInvoked();
+            ProgramData = programData;
+            ProgramCon = programCon;
+        }
+        
+        public virtual void ExecuteSystem()
+        {
+            OnExecute?.Invoke(this);
         }
 
         protected void SetAnchorAndPivot()
@@ -24,10 +35,10 @@ namespace Members.KJY.Scripts.Program.System
                 AnchorUtil.MaxAnchor,
                 AnchorUtil.Pivot);
         }
-        
-        protected virtual void EndSystem()
+
+        public virtual void ExitSystem()
         {
-            Bar.NowCanClick();
+            OnExit?.Invoke(this);
         }
     }
 }

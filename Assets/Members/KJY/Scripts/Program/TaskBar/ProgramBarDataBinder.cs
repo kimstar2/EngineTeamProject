@@ -1,5 +1,4 @@
-﻿using System;
-using _TevLib.ModuleSystem;
+﻿using _TevLib.ModuleSystem;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
@@ -8,19 +7,21 @@ namespace Members.KJY.Scripts.Program.TaskBar
 {
     public class ProgramBarDataBinder : MonoModule
     {
-        [HorizontalLine(color:EColor.Gray)]
         [Header("Bind Setting")]
+        [HorizontalLine(color:EColor.Gray)]
         [SerializeField] private MonoImage iconImage;
         [SerializeField] private MonoTMP_UGUI nameTMP;
-        public ProgramInfo CurrentProgramData {get; private set;}
+        public ProgramInfoSO CurrentProgramData {get; private set;}
         
 
-        public void SetData(ProgramInfo data)
+        public void SetData(ProgramInfoSO data)
         {
             CurrentProgramData = data;
             
-            iconImage.SetImage(data.ProgramSprite);
-            nameTMP.TMP.SetText(data.ProgramName);
+            iconImage.SetImage(data.ProgramIcon);
+            iconImage.SetColor(data.IconColor);
+            nameTMP.SetText(data.ProgramName);
+            nameTMP.SetColor(data.ProgramBarNameColor);
         }
     }
 }

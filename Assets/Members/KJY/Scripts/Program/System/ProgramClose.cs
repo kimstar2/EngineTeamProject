@@ -1,4 +1,7 @@
-﻿using DG.Tweening;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using Members.KJY.Scripts.Utils;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -11,30 +14,37 @@ namespace Members.KJY.Scripts.Program.System
         [SerializeField] private Ease tweenEase = Ease.Linear;
         [SerializeField] private float tweenDuration;
         
-        private Tween _minimizeTween;
-
-        public override void ExecuteSystem()
+        public override async void ExecuteSystem()
         {
-            if (!ProgramData.ProgramBar.CanClick) return;
-            base.ExecuteSystem();
-            ProgramData.ProgramBar.Close();
-            Close();
-            SetAnchorAndPivot();
+            try
+            {
+                if (ProgramCon.IsStateChanging) return;
+                SetAnchorAndPivot();
+                ProgramCon.OnClosing();
+                await Close();
+                base.ExecuteSystem();
+                EndSystem();
+            }
+            catch (OperationCanceledException) { }
+            catch (Exception e)
+            {
+                DebugLogger.LogException(e);
+            }
         }
 
-        private void Close()
+        private async UniTask Close()
         {
-            _minimizeTween?.Kill();
-            _minimizeTween = ProgramData.ProgramRect.Rect.DOSizeDelta(Vector2.zero, tweenDuration).
-                SetEase(tweenEase).
-                SetLink(gameObject).
-                OnComplete(EndSystem);
+            ProgramCon.ProgramTween?.Kill();
+            ProgramCon.ProgramTween = DOTween.Sequence().SetLink(gameObject);
+            await ProgramCon.ProgramTween.Append(Rect.Rect.DOSizeDelta(Vector2.zero, tweenDuration).
+                SetEase(tweenEase)).
+                ToUniTask(cancellationToken:destroyCancellationToken);
         }
 
-        protected override void EndSystem()
+        private void EndSystem()
         {
-            base.EndSystem();
-            Destroy(Bar.gameObject);
+            ProgramCon.ProgramTween?.Kill();
+            Destroy(ProgramCon.ProgramBar.GameObject);
             Destroy(ProgramData.GameObject);
         }
     }

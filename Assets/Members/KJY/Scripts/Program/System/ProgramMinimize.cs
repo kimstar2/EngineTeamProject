@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Members.KJY.Scripts.Utils;
 using NaughtyAttributes;
 using UnityEngine;
@@ -13,28 +15,38 @@ namespace Members.KJY.Scripts.Program.System
         [SerializeField] private Ease tweenEase = Ease.Linear;
         [SerializeField] private float tweenDuration;
         
-        private Sequence _minimizeSeq;
-
-        public override void ExecuteSystem()
+        public override async void ExecuteSystem()
         {
-            if (!ProgramData.ProgramBar.CanClick) return;
-            
-            base.ExecuteSystem();
-            ProgramData.ProgramBar.Minimize(SystemInvoker.ProgramController,Rect.Rect.anchoredPosition);
-            Minimize();
-            SetAnchorAndPivot();
+            try
+            {
+                if (!ProgramCon.IsStateChanging)
+                {
+                    ProgramCon.SetLastPosition(ProgramCon.ProgramRect.Rect.anchoredPosition);
+                    SetAnchorAndPivot();
+                }
+                ProgramCon.ProgramBar.OnExit?.Invoke();
+                await Minimize(ProgramCon);
+                base.ExecuteSystem();
+            }
+            catch (OperationCanceledException) { }
+            catch (Exception e)
+            {
+                DebugLogger.LogException(e);
+            }
         }
 
-        private void Minimize()
+        private async UniTask Minimize(ProgramController controller)
         {
-            _minimizeSeq?.Kill();
-            _minimizeSeq = DOTween.Sequence().
+            ProgramCon.ProgramTween?.Kill();
+            ProgramCon.ProgramTween = DOTween.
+                Sequence().
                 SetEase(tweenEase).
                 SetLink(gameObject).
-                OnComplete(EndSystem);
-            
-            _minimizeSeq.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(Vector2.zero, tweenDuration));
-            _minimizeSeq.Join(ProgramData.ProgramRect.Rect.DOMove(Bar.ClosePos.Rect.position, tweenDuration));
+                SetAutoKill(true);
+
+            ProgramCon.ProgramTween.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(Vector2.zero, tweenDuration));
+            ProgramCon.ProgramTween.Join(ProgramData.ProgramRect.Rect.DOMove(controller.ProgramBar.ClosePos.Rect.position, tweenDuration));
+            await UniTask.Delay(TimeSpan.FromSeconds(ChangeTime),cancellationToken:destroyCancellationToken);
         }
     }
 }

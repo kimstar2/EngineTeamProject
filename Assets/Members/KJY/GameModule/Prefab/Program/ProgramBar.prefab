@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBar
   <ClosePos>k__BackingField: {fileID: 2541372625461261347}
-  onEnter:
+  <OnEnter>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1709373084346746594}
@@ -643,7 +643,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onExit:
+  <OnExit>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1709373084346746594}
@@ -949,6 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311155635d9e470dbd6106bc22003557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoRect
+  <Rect>k__BackingField: {fileID: 7209800152519784349}
 --- !u!1 &9038219165980950303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2566851894706868889}
   - component: {fileID: 6430484295994389526}
-  - component: {fileID: 9182784170785337021}
+  - component: {fileID: 4955838393581264123}
   m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
@@ -1123,7 +1124,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &9182784170785337021
+--- !u!114 &4955838393581264123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1132,7 +1133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9056001750142739833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7060c0d50484254931d0142286cd1d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 84dae828eae34e2d9d4e41542e8b7c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataBinder
   iconImage: {fileID: 2361956296082248559}

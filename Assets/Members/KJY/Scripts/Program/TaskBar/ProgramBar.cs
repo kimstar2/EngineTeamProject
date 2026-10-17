@@ -1,30 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 using _TevLib.ModuleSystem;
 using Members.KJY.Scripts.Check;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Members.KJY.Scripts.Program.TaskBar
 {
-    public class ProgramBar : ModuleOwner , IRequiredPooling
+    public class ProgramBar : ModuleOwner , IRequiredPooling , IProgramBar
     {
         [field:SerializeField] public MonoRect ClosePos {get; private set;}
-        [ShowNonSerializedField] private ProgramState _currentProgramState;
-        public Vector3 LastPos { get; private set; }
         
-        public event Action<ProgramBar,SystemInvoker> OnOpen;
-        public event Action<ProgramBar,SystemInvoker> OnMinimize;
-        public event Action<ProgramBar> OnSystemInvoked;
-        public event Action<ProgramBar> OnClose;
+        [field:Header("Event Setting")]
+        [field:HorizontalLine(color:EColor.Gray)]
+        [field:SerializeField] public UnityEvent OnEnter {get; private set;}
+        [field:SerializeField] public UnityEvent OnExit {get; private set;}
 
-        public UnityEvent onEnter;
-        public UnityEvent onExit;
-        
         public ProgramBarDataBinder ProgramBarDataBinder { get; private set; }
+        public ProgramController ProgramController { get; private set; }
+        public GameObject GameObject => gameObject;
+        
+        public Vector3 LastPos { get; private set; }
         public bool CanClick { get; private set; } = true;
+
+        public event Action<ProgramController,ProgramState> OnClick;
+        
 
         protected override void InitializeModules()
         {
@@ -32,8 +36,9 @@ namespace Members.KJY.Scripts.Program.TaskBar
             ProgramBarDataBinder = GetModule<ProgramBarDataBinder>();
         }
         
-        public void Init(ProgramInfo programData)
+        public void Init(ProgramInfoSO programData , ProgramController controller)
         {
+            ProgramController = controller;
             ProgramBarDataBinder.SetData(programData);
             LastPos = programData.StartPosition;
         }
@@ -41,47 +46,31 @@ namespace Members.KJY.Scripts.Program.TaskBar
         public void ClickToggle()
         {
             if (!CanClick) return;
-            switch (_currentProgramState)
+            
+            ProgramState afterState = ProgramController.SystemStateMachine.CurrentProgramState switch
             {
-                case ProgramState.Opened:
-                    Minimize(SystemInvoker.ProgramBar,LastPos);
-                    break;
-                case ProgramState.Minimized:
-                    Open(SystemInvoker.ProgramBar);
-                    break;
-            }
+                ProgramState.Disabled => ProgramState.Enabled,
+                ProgramState.Minimized => ProgramState.Opened,
+                ProgramState.Enabled => ProgramState.Minimized,
+                ProgramState.Opened => ProgramState.Minimized,
+                _ => ProgramState.None
+            };
+            
+            OnClick?.Invoke(ProgramController,afterState);
+            
+            if (afterState != ProgramState.None)
+                ProgramController.ChangeState(SystemInvoker.ProgramBar, afterState);
         }
+    }
 
-        public void NowCanClick() => CanClick = true;
+    public interface IProgramBar
+    {
+        UnityEvent OnEnter {get;}
+        UnityEvent OnExit {get;}
         
-        #region Events
+        GameObject GameObject { get; }
+        MonoRect ClosePos { get; }
         
-        public void SystemInvoked()
-        {
-            OnSystemInvoked?.Invoke(this);
-            CanClick = false;
-        }
-
-        public void Open(SystemInvoker invoker)
-        {
-            OnOpen?.Invoke(this,invoker);
-            _currentProgramState = ProgramState.Opened;
-        }
-        
-        public void Minimize(SystemInvoker invoker, Vector2 lastPos)
-        {
-            LastPos = lastPos;
-            OnMinimize?.Invoke(this,invoker);
-            _currentProgramState = ProgramState.Minimized;
-        }
-        
-        public void Close()
-        {
-            OnClose?.Invoke(this);
-            _currentProgramState = ProgramState.Closed;
-        }
-        
-        #endregion
         
     }
 }

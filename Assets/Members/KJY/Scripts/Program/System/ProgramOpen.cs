@@ -11,28 +11,28 @@ namespace Members.KJY.Scripts.Program.System
         [SerializeField] private Ease tweenEase = Ease.Linear;
         [SerializeField] private float tweenDuration;
         
-        private Sequence _minimizeSeq;
-
         public override void ExecuteSystem()
         {
-            if (!ProgramData.ProgramBar.CanClick) return;
             base.ExecuteSystem();
-            ProgramData.ProgramBar.Open(SystemInvoker.ProgramController);
-            Open();
             SetAnchorAndPivot();
+            Open();
         }
 
         private void Open()
         {
-            
-            _minimizeSeq?.Kill();
-            _minimizeSeq = DOTween.Sequence().
+            ProgramCon.ProgramTween?.Kill();
+            ProgramCon.ProgramTween = DOTween.
+                Sequence().
                 SetEase(tweenEase).
                 SetLink(gameObject).
-                OnComplete(EndSystem);
+                SetAutoKill(true);;
             
-            _minimizeSeq.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(ProgramData.ProgramInfo.StartSize, tweenDuration));
-            _minimizeSeq.Join(ProgramData.ProgramRect.Rect.DOAnchorPos(Bar.LastPos, tweenDuration));
+            ProgramCon.ProgramTween.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(ProgramData.ProgramInfo.StartSize, tweenDuration));
+            ProgramCon.ProgramTween.Join(ProgramData.ProgramRect.Rect.DOAnchorPos(ProgramCon.LastPosition, tweenDuration));
+            
+            ProgramCon.ProgramRect.transform.SetAsLastSibling();
+            ProgramCon.ProgramBar.OnEnter?.Invoke();
+            ProgramCon.OnEnter?.Invoke();
         }
     }
 }

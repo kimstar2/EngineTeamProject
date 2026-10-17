@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using _TevLib.CoreLib;
 using _TevLib.CoreLib.EventSystem;
 using JetBrains.Annotations;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
+using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,136 +21,136 @@ namespace Members.KJY.Scripts.Program
         [field:HorizontalLine(color:EColor.Gray)]
         [field:SerializeField] public ProgramController ProgramControllerPrefab {get; private set;}
         [field:SerializeField] public ProgramBar ProgramBarPrefab {get; private set;}
-        [SerializeField] private Transform programControllerParent;
+        [SerializeField] private MonoRect programControllerParent;
         [SerializeField] private Transform programBarParent;
-        [SerializeField] private ProgramInfo testProgramData;
+        [SerializeField] private ProgramInfoSO testProgramData;
         
-        private readonly Dictionary<ProgramBar, ProgramController> _programChain = new();
-        private readonly NotifyValue<ProgramBar> _currentBar = new();
+        private readonly NotifyValue<ProgramController> _crtPCon = new();
+        private readonly Dictionary<ProgramController, ProgramBar> _programChain = new();
+        private bool _dontSetNext;
 
-        private void Awake()
-        {
-            _currentBar.OnValueChanged += HandleCurrentBarChanged;
-        }
+        private void Awake() => _crtPCon.OnValueChanged += HandlePConChanged;
+        private void OnDestroy() => _crtPCon.OnValueChanged -= HandlePConChanged;
+        [SerializeField] private List<ProgramController> _enterList = new();
 
-        private void OnDestroy()
-        {
-            _currentBar.OnValueChanged -= HandleCurrentBarChanged;
-        }
-
+        
         private void Update()
         {
             if (Keyboard.current.tKey.wasPressedThisFrame)
-                Test();
+                MakeChain(testProgramData);
         }
-
-        public void Test() => MakeChain(testProgramData);
         
-        public void MakeChain(ProgramInfo programData)
+                
+        public void MakeChain(ProgramInfoSO programData)
         {
-            ProgramController program = Instantiate(ProgramControllerPrefab,programControllerParent);
+            ProgramController program = Instantiate(ProgramControllerPrefab,programControllerParent.transform);
             ProgramBar programBar = Instantiate(ProgramBarPrefab,programBarParent);
             
-            _programChain.Add(programBar, program);
-            Subscribe(programBar, program);
+            _programChain.Add(program, programBar);
             
-            program.Init(programData,programBar);
-            programBar.Init(programData);
+            program.Init(programControllerParent,programData,programBar);
+            programBar.Init(programData,program);
+
+            programBar.OnClick += HandleClicked;
+            GetSystem(program, ProgramState.Enabled).OnExecute += HandleProgramEnable;
+            GetSystem(program, ProgramState.Minimized).OnExecute += HandleProgramMinimized;
+            GetSystem(program, ProgramState.Closed).OnExecute += HandleProgramClose;
+            program.ChangeState(SystemInvoker.ProgramManager, ProgramState.Opened);
+            ChangePCon(program);
         }
 
         #region Handle
         
-        private void HandleCurrentBarChanged(ProgramBar prev, ProgramBar next)
+        private void HandleClicked(ProgramController obj, ProgramState state)
         {
-            ExitProgram(prev);
-            EnterProgram(next);
-        }
-
-        private void HandleProgramOpen(ProgramBar bar,SystemInvoker invoker)
-        {
-            EnterProgram(bar);
-            if (SetAndCheck(bar, invoker)) return;
-            if (_programChain.TryGetValue(bar, out var program))
+            _dontSetNext = true;
+            if (state == ProgramState.Opened)
             {
-                program.OpenSystem.ExecuteSystem();
+                _enterList.Remove(obj);
+                _enterList.Add(obj);
             }
+                
+            ChangePCon(obj);
+            _dontSetNext = false;
         }
 
-        private void HandleChangedBar(ProgramBar programBar)
+        private void HandlePConChanged(ProgramController prev, ProgramController next)
         {
-            _currentBar.Value = programBar;
+            if (prev is not null)
+                PrevStateSet(prev);
+            if (!_dontSetNext)
+                NextStateSet(next);
         }
+        private void HandleProgramEnable(ProgramSystemBase obj) => _crtPCon.Value = obj.ProgramCon;
         
-        private void HandleProgramMinimize(ProgramBar bar,SystemInvoker invoker)
+        private void HandleProgramClose(ProgramSystemBase obj)
         {
-            ExitProgram(bar);
-            if (SetAndCheck(bar, invoker)) return;
-            if (_programChain.TryGetValue(bar, out var program))
-            {
-                program.MinimizeSystem.ExecuteSystem();
-            }
+            if (_programChain.TryGetValue(obj.ProgramCon, out ProgramBar programBar))
+                programBar.OnClick -= HandleClicked;
+            
+            GetSystem(obj.ProgramCon, ProgramState.Enabled).OnExecute -= HandleProgramEnable;
+            GetSystem(obj.ProgramCon, ProgramState.Minimized).OnExecute -= HandleProgramMinimized;
+            GetSystem(obj.ProgramCon, ProgramState.Closed).OnExecute -= HandleProgramClose;
+            
+            _programChain.Remove(obj.ProgramCon);
+            
+            _enterList.Remove(obj.ProgramCon);
+            if (_enterList.Count == 0) return;
+            var nextPCon = _enterList[^1];
+            ChangePCon(nextPCon);
         }
 
-        private void HandleProgramClose(ProgramBar bar)
+        private void HandleProgramMinimized(ProgramSystemBase obj)
         {
-            if (!_programChain.TryGetValue(bar, out var program)) return;
-            UnSubscribe(bar, program);
-            _programChain.Remove(bar);
+            _enterList.Remove(obj.ProgramCon);
+            if (_enterList.Count == 0) return;
+            var nextPCon = _enterList[^1];
+            ChangePCon(nextPCon);
         }
 
         #endregion
-        
-        
+
         #region Helper
 
-        private void Subscribe(ProgramBar programBar , ProgramController program)
+        private ProgramSystemBase GetSystem(ProgramController program ,ProgramState state)
         {
-            programBar.OnClose += HandleProgramClose;
-            programBar.OnMinimize += HandleProgramMinimize;
-            programBar.OnOpen += HandleProgramOpen;
-            
-            programBar.OnSystemInvoked += HandleChangedBar;
-            program.ProgramDragger.OnBeginDragging += HandleChangedBar;
+            program.ProgramReadonlyDict.TryGetValue(state, out var system);
+            return system;
         }
         
-        private void UnSubscribe(ProgramBar bar, ProgramController program)
+        private void PrevStateSet(ProgramController prev) // Exit
         {
-            bar.OnClose -= HandleProgramClose;
-            bar.OnMinimize -= HandleProgramMinimize;
-            bar.OnOpen -= HandleProgramOpen;
-            
-            bar.OnSystemInvoked -= HandleChangedBar;
-            program.ProgramDragger.OnBeginDragging -= HandleChangedBar;
-        }
-        
-        private bool SetAndCheck(ProgramBar bar, SystemInvoker invoker)
-        {
-            _currentBar.Value = bar;
-            if (invoker != SystemInvoker.ProgramBar) return true;
-            return false;
-        }
-        
-        private void ExitProgram(ProgramBar prev)
-        {
-            if (prev is null) return;
-            if (_programChain.TryGetValue(prev, out var program))
+            ProgramState getState = prev.SystemStateMachine.CurrentProgramState switch
             {
-                program.OnExit?.Invoke();
-            }
-            prev.onExit?.Invoke();
+                ProgramState.Enabled or ProgramState.Opened => ProgramState.Disabled,
+                _ => ProgramState.None
+            };
+            if (getState == ProgramState.None) return;
+            
+            prev.ChangeState(SystemInvoker.ProgramManager, getState);
         }
-
-        private void EnterProgram([NotNull] ProgramBar next)
+        
+        private void NextStateSet(ProgramController next) // Enter
         {
-            if (_programChain.TryGetValue(next, out var program))
+            ProgramState getState = next.SystemStateMachine.CurrentProgramState switch
             {
-                program.transform.SetAsLastSibling();
-                program.OnEnter?.Invoke();
-            }
-
-            next.onEnter?.Invoke();
+                ProgramState.Disabled => ProgramState.Enabled,
+                ProgramState.Minimized => ProgramState.Opened,
+                _ => ProgramState.None
+            };
+            _enterList.Remove(next);
+            _enterList.Add(next);
+            if (getState == ProgramState.None) return;
+                
+            next.ChangeState(SystemInvoker.ProgramManager, getState);
         }
-
+        
+        private void ChangePCon(ProgramController obj)
+        {
+            _crtPCon.Value = obj;
+        }
+        
         #endregion
+        
     }
 }

@@ -3,6 +3,7 @@
     public enum SystemInvoker
     {
         ProgramBar,
-        ProgramController
+        ProgramController,
+        ProgramManager
     }
 }

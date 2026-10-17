@@ -2,8 +2,11 @@
 {
     public enum ProgramState
     {
-        Opened,
+        Enabled,
+        Disabled,
         Closed,
         Minimized,
+        Opened,
+        None
     }
 }

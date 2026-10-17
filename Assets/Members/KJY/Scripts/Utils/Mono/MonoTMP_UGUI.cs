@@ -13,9 +13,9 @@ namespace Members.KJY.Scripts.Utils.Mono
             TMP = GetComponent<TextMeshProUGUI>();
         }
 
-        public void SetText(TextMeshProUGUI text)
+        public void SetText(string text)
         {
-            TMP = text;
+            TMP.SetText(text);
         }
         
         public void SetColor(Color color)
