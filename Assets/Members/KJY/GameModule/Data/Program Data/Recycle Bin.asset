@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee3be0c3d5f4b458b1619de804e5e06, type: 3}
+  m_Name: Recycle Bin
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
+  <ProgramIcon>k__BackingField: {fileID: 3122716238708913564, guid: 17ff566a48779da4d818857f97b6a6ea, type: 3}
+  <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  <ProgramConBarColor>k__BackingField: {r: 0.2471698, g: 0.5668611, b: 1, a: 1}
+  <ProgramConBarBg>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  <BarBgColor>k__BackingField: {r: 0.72156864, g: 0.70980394, b: 0.72156864, a: 1}
+  <ProgramName>k__BackingField: Recycle Bin
+  <ProgramConBarNameColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <ProgramBarNameColor>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
+  <ProgramConBg>k__BackingField: {fileID: -7626986117174613569, guid: c072bb1eec5f6a6499e1092dffcb617a, type: 3}
+  <ProgramConBgColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <StartPosition>k__BackingField: {x: 0, y: 0}
+  <StartSize>k__BackingField: {x: 500, y: 300}
+  <ProgramSystems>k__BackingField:
+  - <ProgramState>k__BackingField: 0
+    <System>k__BackingField: {fileID: 11400000, guid: 2460307c6cee2c648b8d47deeef6de5d, type: 2}
+  - <ProgramState>k__BackingField: 1
+    <System>k__BackingField: {fileID: 11400000, guid: e51925a5e5fe96945b59c8b235db0f14, type: 2}
+  - <ProgramState>k__BackingField: 2
+    <System>k__BackingField: {fileID: 11400000, guid: c389928f72a20f74b96ed545eff395c4, type: 2}
+  - <ProgramState>k__BackingField: 3
+    <System>k__BackingField: {fileID: 11400000, guid: 71a3792aafb23744585b95b7db412a56, type: 2}
+  - <ProgramState>k__BackingField: 4
+    <System>k__BackingField: {fileID: 11400000, guid: 8ab3441a4ceba9e418d872415888242d, type: 2}

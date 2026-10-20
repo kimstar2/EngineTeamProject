@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace _TevLib.CoreLib
@@ -25,7 +24,7 @@ namespace _TevLib.CoreLib
 
         protected virtual void Awake()
         {
-            T[] manager = FindObjectsByType<T>(FindObjectsSortMode.None);
+            T[] manager = FindObjectsByType<T>();
             if (manager.Length > 1)
                 Destroy(gameObject);
         }
