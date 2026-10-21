@@ -15,7 +15,7 @@ using UnityEngine.InputSystem;
 
 namespace Members.KJY.Scripts.Program
 {
-    public class ProgramManager : MonoBehaviour , IRequiredPooling
+    public class ProgramManager : MonoBehaviour , IProgramManager , IRequiredPooling
     {
         [field:Header("Game Setting")]
         [field:HorizontalLine(color:EColor.Gray)]
@@ -41,7 +41,7 @@ namespace Members.KJY.Scripts.Program
         }
         
                 
-        public void MakeChain(ProgramInfoSO programData)
+        public void MakeChain(ProgramInfoSO programData) // 프로그램 키는거
         {
             ProgramController program = Instantiate(ProgramControllerPrefab,programControllerParent.transform);
             ProgramBar programBar = Instantiate(ProgramBarPrefab,programBarParent);

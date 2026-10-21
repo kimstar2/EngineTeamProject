@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,13 @@ namespace Members.KJY.Scripts.Utils.Mono
         public void SetEnable(bool enable)
         {
             Image.enabled = enable;
+        }
+
+        public void SetFade(float fade)
+        {
+            Color temp = Image.color;
+            temp.a = fade;
+            Image.color = temp;
         }
     }
 }
