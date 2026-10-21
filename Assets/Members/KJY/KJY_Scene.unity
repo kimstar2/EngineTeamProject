@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1583415eb114b4d9251caf4444245bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.ProgramConnector
-  <ProgramControllerPrefab>k__BackingField: {fileID: 7616028829886333550, guid: c5b4e5f411b7a034f815be04d3720dde, type: 3}
+  <ProgramControllerPrefab>k__BackingField: {fileID: 7616028829886333550, guid: dbfe85f257e9876438c3a9cc0f372e5c, type: 3}
   <ProgramBarPrefab>k__BackingField: {fileID: 1561226184655720589, guid: 9eb09aed4fbad97489800e5a4199b226, type: 3}
   programControllerParent: {fileID: 1250922979}
   programBarParent: {fileID: 2119131838}

@@ -1151,10 +1151,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2228043533671669966, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2233948666369676290, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
       propertyPath: m_Name
       value: ProgramJJW
       objectReference: {fileID: 0}
+    - target: {fileID: 3420036217908995768, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4120604321251875266, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1179,6 +1187,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4223479567103876790, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642265718682843199, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680309635558377322, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7007410477715570709, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1202,6 +1222,18 @@ PrefabInstance:
     - target: {fileID: 7007410477715570709, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678849405937529595, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304024725837550709, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153221355734795944, guid: 87bc9bfbad43c494f819a99bc04205cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
