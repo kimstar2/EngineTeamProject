@@ -42,7 +42,7 @@ namespace Members.KJY.Scripts.Program
                 AdjustmentUI();
         }
 
-        private void AdjustmentUI()
+        public void AdjustmentUI()
         {
             float xMin = ProgramData.ParentRect.Rect.rect.xMin + Rect.rect.width * Rect.pivot.x;
             float xMax = ProgramData.ParentRect.Rect.rect.xMax - Rect.rect.width * (1.0f - Rect.pivot.x);
