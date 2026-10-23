@@ -35,10 +35,16 @@ namespace Members.KJY.Scripts.Core.Services
         private void Update()
         {
             if (Keyboard.current.tKey.wasPressedThisFrame)
-                MakeChain(testProgramData);
+                Test();
         }
-        
-                
+
+        [ContextMenu("Test")]
+        public void Test()
+        {
+            MakeChain(testProgramData);
+        }
+
+
         public void MakeChain(ProgramInfoSO programData) // 프로그램 키는거
         {
             ProgramController program = Instantiate(ProgramControllerPrefab,programControllerParent.transform);

@@ -39,24 +39,14 @@ namespace Members.KJY.Scripts.Program
             Rect.anchoredPosition = GetGUIPoint(eventData.position) - _clickedPointPos + _startPointPos;
             
             if (!rangeAdjustmentOnEndDrag)
-                AdjustmentUI();
-        }
-
-        public void AdjustmentUI()
-        {
-            float xMin = ProgramData.ParentRect.Rect.rect.xMin + Rect.rect.width * Rect.pivot.x;
-            float xMax = ProgramData.ParentRect.Rect.rect.xMax - Rect.rect.width * (1.0f - Rect.pivot.x);
-            float yMin = ProgramData.ParentRect.Rect.rect.yMin + Rect.rect.height * Rect.pivot.y;
-            float yMax = ProgramData.ParentRect.Rect.rect.yMax - Rect.rect.height * (1.0f - Rect.pivot.y);
-            
-            Rect.anchoredPosition = new Vector2(Mathf.Clamp(Rect.anchoredPosition.x, xMin, xMax), Mathf.Clamp(Rect.anchoredPosition.y, yMin, yMax));
+                UIUtils.AdjustmentUI(ProgramData.ParentRect.Rect,Rect);
         }
 
         public override void OnEndDrag(PointerEventData eventData)
         {
             base.OnEndDrag(eventData);
             if (rangeAdjustmentOnEndDrag)
-                AdjustmentUI();
+                UIUtils.AdjustmentUI(ProgramData.ParentRect.Rect,Rect);
         }
 
         #region Helper
