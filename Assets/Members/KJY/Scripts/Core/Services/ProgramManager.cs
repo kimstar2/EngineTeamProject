@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using _TevLib.CoreLib;
-using _TevLib.CoreLib.EventSystem;
-using JetBrains.Annotations;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Members.KJY.Scripts.Program
+namespace Members.KJY.Scripts.Core.Services
 {
     public class ProgramManager : MonoBehaviour , IProgramManager , IRequiredPooling
     {
@@ -27,11 +23,13 @@ namespace Members.KJY.Scripts.Program
         
         private readonly NotifyValue<ProgramController> _crtPCon = new();
         private readonly Dictionary<ProgramController, ProgramBar> _programChain = new();
+        
+        private readonly List<ProgramController> _enterList = new();
+        
         private bool _dontSetNext;
 
         private void Awake() => _crtPCon.OnValueChanged += HandlePConChanged;
         private void OnDestroy() => _crtPCon.OnValueChanged -= HandlePConChanged;
-        [SerializeField] private List<ProgramController> _enterList = new();
 
         
         private void Update()
