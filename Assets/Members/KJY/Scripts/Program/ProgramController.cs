@@ -4,6 +4,8 @@ using System.Linq;
 using _TevLib.Editor.PropertyAttribute;
 using _TevLib.ModuleSystem;
 using DG.Tweening;
+using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program.Func;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
 using Members.KJY.Scripts.Utils.Mono;
@@ -18,11 +20,12 @@ namespace Members.KJY.Scripts.Program
         [field:SerializeField] public ProgramState ProgramState { get; private set; }
         [field:SerializeField] public SystemStateSO System { get; private set; }
     }
-    public class ProgramController : ModuleOwner
+    public class ProgramController : ModuleOwner , IRequiredPooling
     {
         [field: Header("System Setting")] [field: HorizontalLine(color: EColor.Gray)]
         [field: SerializeField] public SystemStateMachine SystemStateMachine { get; private set; } = new();
-        [field:SerializeField] public Transform ProgramParents;
+        [field:SerializeField] public Transform ProgramParent { get; private set; }
+        [field:SerializeField] public Transform FuncParent { get; private set; }
         [field:SerializeField] public MonoRect ProgramRect { get; private set; }
         
         [field:Header("Event Setting")]
@@ -45,6 +48,8 @@ namespace Members.KJY.Scripts.Program
         public bool IsClosing {get; private set;}
 
         public Vector2 LastPosition {get; private set;}
+        public Vector2 LastSize { get; private set; }
+        
 
         protected override void InitializeModules()
         {
@@ -55,7 +60,6 @@ namespace Members.KJY.Scripts.Program
             ProgramControllerBarDataBinder = GetModule<ProgramControllerBarDataBinder>();
             ProgramDataBinder = GetModule<ProgramDataBinder>();
             _programInits = GetComponentsInChildren<IProgramInit>();
-            LastPosition = Vector2.zero;
         }
 
         private void OnEnable()
@@ -71,6 +75,11 @@ namespace Members.KJY.Scripts.Program
         public void Init(MonoRect parentRect,ProgramInfoSO programInfo,ProgramBar programBar)
         {
             ProgramData programData = new ProgramData(parentRect,ProgramRect, gameObject, programInfo);
+            foreach (ProgramFunc func in programInfo.FuncPrefabs)
+            {
+                ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
+                f.Init();
+            }
             ProgramControllerBarDataBinder.SetData(programInfo);
             ProgramDataBinder.SetData(programInfo);
             
@@ -81,7 +90,7 @@ namespace Members.KJY.Scripts.Program
             
             foreach (ProgramSystems system in programInfo.ProgramSystems)
             {
-                var programSystemBase = Instantiate(system.System.Program, ProgramParents);
+                var programSystemBase = Instantiate(system.System.Program, ProgramParent);
                 programSystemBase.Initialize(this, programData);
                 SystemStateMachine.AddState(system.ProgramState, programSystemBase);
                 _programDict.Add(system.ProgramState,programSystemBase); 
@@ -102,6 +111,8 @@ namespace Members.KJY.Scripts.Program
         
         public void ChangeState(SystemInvoker invoker, ProgramState state) => SystemStateMachine.ChangeState(invoker, state);
         public void SetLastPosition(Vector2 position) => LastPosition = position;
+        public void SetLastSize(Vector2 size) => LastSize = size;
+
         public void OnClosing() => IsClosing = true;
         
         #endregion

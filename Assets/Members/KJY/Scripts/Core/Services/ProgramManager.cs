@@ -13,6 +13,7 @@ namespace Members.KJY.Scripts.Core.Services
 {
     public class ProgramManager : MonoBehaviour , IProgramManager , IRequiredPooling
     {
+        [SerializeField] private Key testKey;
         [field:Header("Game Setting")]
         [field:HorizontalLine(color:EColor.Gray)]
         [field:SerializeField] public ProgramController ProgramControllerPrefab {get; private set;}
@@ -34,7 +35,7 @@ namespace Members.KJY.Scripts.Core.Services
         
         private void Update()
         {
-            if (Keyboard.current.tKey.wasPressedThisFrame)
+            if (Keyboard.current[testKey].wasPressedThisFrame)
                 Test();
         }
 
@@ -59,6 +60,7 @@ namespace Members.KJY.Scripts.Core.Services
             GetSystem(program, ProgramState.Enabled).OnExecute += HandleProgramEnable;
             GetSystem(program, ProgramState.Minimized).OnExecute += HandleProgramMinimized;
             GetSystem(program, ProgramState.Closed).OnExecute += HandleProgramClose;
+            
             program.ChangeState(SystemInvoker.ProgramManager, ProgramState.Opened);
             ChangePCon(program);
         }

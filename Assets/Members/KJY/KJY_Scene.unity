@@ -275,8 +275,9 @@ MonoBehaviour:
   parentTransform: {fileID: 1533444598}
   applicationPrefab: {fileID: 6813303613256051615, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
   defaultApplications:
-  - {fileID: 11400000, guid: 1498e64a538221c438c2d04b0499d368, type: 2}
   - {fileID: 11400000, guid: ff27f40bb46c8f745b289b7526a1ab88, type: 2}
+  - {fileID: 11400000, guid: caa3b775725b823408ec205a184f5b53, type: 2}
+  - {fileID: 11400000, guid: 1498e64a538221c438c2d04b0499d368, type: 2}
 --- !u!1 &508849319
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +875,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 1
   m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 25, y: 25}
+  m_Spacing: {x: 30, y: 30}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1533444603
@@ -1020,7 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1583415eb114b4d9251caf4444245bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.ProgramConnector
-  <ProgramControllerPrefab>k__BackingField: {fileID: 7616028829886333550, guid: dbfe85f257e9876438c3a9cc0f372e5c, type: 3}
+  testKey: 5
+  <ProgramControllerPrefab>k__BackingField: {fileID: 7616028829886333550, guid: b2f73947c903d81458659efc27cc54b6, type: 3}
   <ProgramBarPrefab>k__BackingField: {fileID: 1561226184655720589, guid: 9eb09aed4fbad97489800e5a4199b226, type: 3}
   programControllerParent: {fileID: 1250922979}
   programBarParent: {fileID: 2119131838}
