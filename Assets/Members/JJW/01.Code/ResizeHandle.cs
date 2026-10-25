@@ -21,6 +21,7 @@ namespace Members.JJW._01.Code
         [SerializeField] private RectTransform panel;
         [SerializeField] private ResizeDirection direction;
         [SerializeField] private Vector2 minSize = new Vector2(80f, 60f);
+        [SerializeField] private Camera _mainCamera;
 
         private bool isResizing = false;
         private RectTransform parentRect;
