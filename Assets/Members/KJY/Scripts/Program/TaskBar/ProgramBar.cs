@@ -24,7 +24,6 @@ namespace Members.KJY.Scripts.Program.TaskBar
         public ProgramController ProgramController { get; private set; }
         public GameObject GameObject => gameObject;
         
-        public Vector3 LastPos { get; private set; }
         public bool CanClick { get; private set; } = true;
 
         public event Action<ProgramController,ProgramState> OnClick;
@@ -40,7 +39,8 @@ namespace Members.KJY.Scripts.Program.TaskBar
         {
             ProgramController = controller;
             ProgramBarDataBinder.SetData(programData);
-            LastPos = programData.StartPosition;
+            ProgramController.SetLastPosition(programData.StartPosition);
+            ProgramController.SetLastSize(programData.StartSize);
         }
 
         public void ClickToggle()

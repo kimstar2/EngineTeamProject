@@ -21,7 +21,8 @@ namespace Members.KJY.Scripts.Program.System
             {
                 if (!ProgramCon.IsStateChanging)
                 {
-                    ProgramCon.SetLastPosition(ProgramCon.ProgramRect.Rect.anchoredPosition);
+                    ProgramCon.SetLastPosition(Rect.Rect.anchoredPosition);
+                    ProgramCon.SetLastSize(Rect.Rect.rect.size);
                     SetAnchorAndPivot();
                 }
                 ProgramCon.ProgramBar.OnExit?.Invoke();

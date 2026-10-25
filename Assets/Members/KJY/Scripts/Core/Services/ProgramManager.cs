@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using _TevLib.CoreLib;
-using _TevLib.CoreLib.EventSystem;
-using JetBrains.Annotations;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Members.KJY.Scripts.Program
+namespace Members.KJY.Scripts.Core.Services
 {
     public class ProgramManager : MonoBehaviour , IProgramManager , IRequiredPooling
     {
+        [SerializeField] private Key testKey;
         [field:Header("Game Setting")]
         [field:HorizontalLine(color:EColor.Gray)]
         [field:SerializeField] public ProgramController ProgramControllerPrefab {get; private set;}
@@ -27,20 +24,28 @@ namespace Members.KJY.Scripts.Program
         
         private readonly NotifyValue<ProgramController> _crtPCon = new();
         private readonly Dictionary<ProgramController, ProgramBar> _programChain = new();
+        
+        private readonly List<ProgramController> _enterList = new();
+        
         private bool _dontSetNext;
 
         private void Awake() => _crtPCon.OnValueChanged += HandlePConChanged;
         private void OnDestroy() => _crtPCon.OnValueChanged -= HandlePConChanged;
-        [SerializeField] private List<ProgramController> _enterList = new();
 
         
         private void Update()
         {
-            if (Keyboard.current.tKey.wasPressedThisFrame)
-                MakeChain(testProgramData);
+            if (Keyboard.current[testKey].wasPressedThisFrame)
+                Test();
         }
-        
-                
+
+        [ContextMenu("Test")]
+        public void Test()
+        {
+            MakeChain(testProgramData);
+        }
+
+
         public void MakeChain(ProgramInfoSO programData) // 프로그램 키는거
         {
             ProgramController program = Instantiate(ProgramControllerPrefab,programControllerParent.transform);
@@ -55,6 +60,7 @@ namespace Members.KJY.Scripts.Program
             GetSystem(program, ProgramState.Enabled).OnExecute += HandleProgramEnable;
             GetSystem(program, ProgramState.Minimized).OnExecute += HandleProgramMinimized;
             GetSystem(program, ProgramState.Closed).OnExecute += HandleProgramClose;
+            
             program.ChangeState(SystemInvoker.ProgramManager, ProgramState.Opened);
             ChangePCon(program);
         }

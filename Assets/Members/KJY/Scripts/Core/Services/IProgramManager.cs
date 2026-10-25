@@ -1,4 +1,6 @@
-﻿namespace Members.KJY.Scripts.Program
+﻿using Members.KJY.Scripts.Program;
+
+namespace Members.KJY.Scripts.Core.Services
 {
     public interface IProgramManager
     {
