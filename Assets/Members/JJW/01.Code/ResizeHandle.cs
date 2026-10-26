@@ -17,23 +17,34 @@ namespace Members.JJW._01.Code
         BottomRight
     }
 
-    public class ResizeHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class ResizeHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IProgramInit
     {
         [SerializeField] private RectTransform panel;
         [SerializeField] private ResizeDirection direction;
-        [SerializeField] private Vector2 minSize = new Vector2(80f, 60f);
         [SerializeField] private Camera _mainCamera;
-
+        
         private bool isResizing = false;
         private RectTransform parentRect;
         private Vector2 dragStartPointer;
         private Vector2 dragStartSize;
         private Vector2 dragStartPosition;
+        private Vector2 minSize;
+        private Vector2 maxSize;
+        
+        public ProgramData ProgramData { get; private set; }
+        public void ProgramInit(ProgramData programData)
+        {
+            ProgramData =  programData;
+            minSize = ProgramData.ProgramInfo.MinSize;
+            maxSize = ProgramData.ProgramInfo.MaxSize;
+        }
 
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (panel == null)
+            isResizing = false;
+
+            if (ProgramData == null || panel == null)
             {
                 return;
             }
@@ -98,25 +109,25 @@ namespace Members.JJW._01.Code
             
             if (direction == ResizeDirection.Left || direction == ResizeDirection.TopLeft || direction == ResizeDirection.BottomLeft)
             {
-                left = Mathf.Min(movement.x, right - minSize.x);
+                left = Mathf.Clamp(movement.x, right - maxSize.x, right - minSize.x);
             }
 
             
             if (direction == ResizeDirection.Right || direction == ResizeDirection.TopRight || direction == ResizeDirection.BottomRight)
             {
-                right = Mathf.Max(right + movement.x, left + minSize.x);
+                right = Mathf.Clamp(right + movement.x, left+ minSize.x, left + maxSize.x);
             }
 
             
             if (direction == ResizeDirection.Bottom || direction == ResizeDirection.BottomLeft || direction == ResizeDirection.BottomRight)
             {
-                bottom = Mathf.Min(movement.y, top - minSize.y);
+                bottom = Mathf.Clamp(movement.y, top-maxSize.y, top-minSize.y);
             }
 
             
             if (direction == ResizeDirection.Top || direction == ResizeDirection.TopLeft || direction == ResizeDirection.TopRight)
             {
-                top = Mathf.Max(top + movement.y, bottom + minSize.y);
+                top = Mathf.Clamp(top + movement.y, bottom + minSize.y, bottom + maxSize.y);
             }
 
             Vector2 newSize = new Vector2(right - left, top - bottom);
