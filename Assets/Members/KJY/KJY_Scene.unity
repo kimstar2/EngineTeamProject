@@ -1026,7 +1026,7 @@ MonoBehaviour:
   <ProgramBarPrefab>k__BackingField: {fileID: 1561226184655720589, guid: 9eb09aed4fbad97489800e5a4199b226, type: 3}
   programControllerParent: {fileID: 1250922979}
   programBarParent: {fileID: 2119131838}
-  testProgramData: {fileID: 11400000, guid: 1498e64a538221c438c2d04b0499d368, type: 2}
+  testProgramData: {fileID: 11400000, guid: caa3b775725b823408ec205a184f5b53, type: 2}
 --- !u!1 &1608721121
 GameObject:
   m_ObjectHideFlags: 0
