@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Recycle Bin
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
   <FuncPrefabs>k__BackingField:
-  - {fileID: 99539472537222207, guid: 3a6a2676c3e13f040ac386ec5cd4949e, type: 3}
+  - {fileID: 8665669167541731893, guid: f776e30d1fe1e92448b31bcabee48074, type: 3}
   <ProgramIcon>k__BackingField: {fileID: 3122716238708913564, guid: 17ff566a48779da4d818857f97b6a6ea, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}

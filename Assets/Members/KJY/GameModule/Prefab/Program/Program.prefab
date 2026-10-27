@@ -91,6 +91,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 1
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &561553249365164644
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +372,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 3
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &2645078693849723385
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +464,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 5
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &3039105508923558956
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +556,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 0
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &3301848844816526786
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +757,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 4
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &4286609777661840544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,6 +1054,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 2
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &5493279468540320424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,8 +1633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7060c0d50484254931d0142286cd1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataBinder
-  ProgramBar: {fileID: 8757084075156742774}
-  ProgramBarBackground: {fileID: 1550022446712627959}
+  programBar: {fileID: 8757084075156742774}
+  programBarBackground: {fileID: 1550022446712627959}
   iconImage: {fileID: 233529701800732306}
   nameTMP: {fileID: 4977133182524940876}
 --- !u!1 &7013030293975242473
@@ -1814,6 +1820,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 6
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &8337573008448217475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +1976,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 7
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &9105426302641908828
 GameObject:
   m_ObjectHideFlags: 0

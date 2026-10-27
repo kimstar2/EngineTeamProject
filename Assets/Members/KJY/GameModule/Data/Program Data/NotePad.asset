@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NotePad
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
   <FuncPrefabs>k__BackingField:
-  - {fileID: 99539472537222207, guid: 3a6a2676c3e13f040ac386ec5cd4949e, type: 3}
+  - {fileID: 5727277536521215911, guid: 97cb5a7c070300c45906183558ca89c5, type: 3}
   <ProgramIcon>k__BackingField: {fileID: -4301102788151880908, guid: 5fc211738f73397418e9ece3e437d1fb, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}

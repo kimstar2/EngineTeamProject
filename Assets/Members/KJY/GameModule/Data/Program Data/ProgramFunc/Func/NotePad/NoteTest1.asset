@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8831185f9a43849517595c763f891e, type: 3}
   m_Name: NoteTest1
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.NotePadDataSO
-  <TextWrapMode>k__BackingField: 0
+  <TextWrapMode>k__BackingField: 1
   <DefaultContent>k__BackingField: "\uC548\uB155????????\n\t\t\t\t\t\t\t\t\t\t\t\t\uBE44\uBC00\uBC88\uD638
     : wfbv!23##"

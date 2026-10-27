@@ -34,12 +34,16 @@ namespace Members.KJY.Scripts.Core.Services
         private void Make()
         {
             foreach (var info in defaultApplications)
-            { 
-                Application application = Instantiate(applicationPrefab, parentTransform);
-                application.Init(info);
-                application.Opener.OnClicked += HandleClick;
-                _applicationList.Add(application.Opener);
-            }
+                Make(info);
+        }
+
+
+        public void Make(ProgramInfoSO info)
+        {
+            Application application = Instantiate(applicationPrefab, parentTransform);
+            application.Init(info);
+            application.Opener.OnClicked += HandleClick;
+            _applicationList.Add(application.Opener);
         }
 
         #region Handle

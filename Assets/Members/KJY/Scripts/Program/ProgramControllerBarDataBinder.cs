@@ -9,8 +9,8 @@ namespace Members.KJY.Scripts.Program
     {
         [Header("Bind Setting")]
         [HorizontalLine(color:EColor.Gray)]
-        [SerializeField] private MonoImage ProgramBar;
-        [SerializeField] private MonoImage ProgramBarBackground;
+        [SerializeField] private MonoImage programBar;
+        [SerializeField] private MonoImage programBarBackground;
         [SerializeField] private MonoImage iconImage;
         [SerializeField] private MonoTMP_UGUI nameTMP;
         public ProgramInfoSO CurrentProgramData {get; private set;}
@@ -24,11 +24,11 @@ namespace Members.KJY.Scripts.Program
             iconImage.SetColor(data.IconColor);
             nameTMP.SetText(data.ProgramName);
             nameTMP.SetColor(data.ProgramConBarNameColor);
-            ProgramBar.SetImage(data.ProgramConBar);
-            ProgramBar.SetColor(data.ProgramConBarColor);
+            programBar.SetImage(data.ProgramConBar);
+            programBar.SetColor(data.ProgramConBarColor);
             
-            ProgramBarBackground.SetImage(data.ProgramConBarBg);
-            ProgramBarBackground.SetColor(data.BarBgColor);
+            programBarBackground.SetImage(data.ProgramConBarBg);
+            programBarBackground.SetColor(data.BarBgColor);
         }
     }
 }
