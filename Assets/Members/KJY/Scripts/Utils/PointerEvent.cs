@@ -16,7 +16,6 @@ namespace Members.KJY.Scripts.Utils
         [SerializeField] private bool useDown;
         [ShowIf("useDown")] public UnityEvent onPointerDown;
         
-        
         [SerializeField] private bool useUp; 
         [ShowIf("useUp")] public UnityEvent onPointerUp;
         
