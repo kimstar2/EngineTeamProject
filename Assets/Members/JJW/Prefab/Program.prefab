@@ -91,6 +91,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 1
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &561553249365164644
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +149,8 @@ MonoBehaviour:
   <SystemStateMachine>k__BackingField:
     <CurrentProgramState>k__BackingField: 0
     <CurrentSystemState>k__BackingField: {fileID: 0}
-  ProgramParents: {fileID: 0}
+  <ProgramParent>k__BackingField: {fileID: 0}
+  <FuncParent>k__BackingField: {fileID: 0}
   <ProgramRect>k__BackingField: {fileID: 8177805663229606877}
   <OnEnter>k__BackingField:
     m_PersistentCalls:
@@ -349,6 +351,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 3
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &2645078693849723385
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +443,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 5
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &3039105508923558956
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +535,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 0
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &3301848844816526786
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +736,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 4
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &5319522576025496929
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +828,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 2
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &5493279468540320424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +1670,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 6
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &8337573008448217475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,6 +1826,7 @@ MonoBehaviour:
   panel: {fileID: 1250189497258592247}
   direction: 7
   minSize: {x: 80, y: 60}
+  _mainCamera: {fileID: 0}
 --- !u!1 &9105426302641908828
 GameObject:
   m_ObjectHideFlags: 0
