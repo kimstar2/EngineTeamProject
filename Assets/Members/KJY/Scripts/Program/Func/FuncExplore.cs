@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Members.KJY.Scripts.Program.Func;
+using UnityEngine;
 
 namespace Members.KJY.Scripts.Program.Func
 {

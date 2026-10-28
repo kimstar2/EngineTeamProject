@@ -662,6 +662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!1 &3339361747765341864
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!1 &5319522576025496929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,6 +1382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!114 &4049304383093753220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1520,6 +1526,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!1 &6545218915736703182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,6 +2066,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!114 &6628689002832389681
 MonoBehaviour:
   m_ObjectHideFlags: 0

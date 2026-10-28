@@ -1,18 +1,14 @@
 ﻿using System;
+using Assets.Members.KJY.Scripts.Utils.Mono;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Members.KJY.Scripts.Utils.Mono
 {
-    public class MonoImage : MonoBehaviour
+    public class MonoImage : MonoBase<Image>
     {
-        public Image Image {get; private set;}
-
-        private void Awake()
-        {
-            Image = GetComponent<Image>();
-        }
+        public Image Image => compo;
 
         public void SetImage(Sprite sprite)
         {

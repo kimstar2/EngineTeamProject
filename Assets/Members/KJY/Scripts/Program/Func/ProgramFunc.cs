@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Members.KJY.Scripts.Program.Func
+namespace Assets.Members.KJY.Scripts.Program.Func
 {
     public abstract class ProgramFunc : MonoBehaviour
     {

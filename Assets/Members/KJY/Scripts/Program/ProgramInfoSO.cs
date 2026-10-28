@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Members.KJY.Scripts.Program.Func;
+using Assets.Members.KJY.Scripts.Program.Func;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Splines.ExtrusionShapes;
