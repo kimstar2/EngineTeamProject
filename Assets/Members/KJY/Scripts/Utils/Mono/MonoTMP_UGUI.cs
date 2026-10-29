@@ -1,17 +1,13 @@
-﻿using System;
+﻿using Assets.Members.KJY.Scripts.Utils.Mono;
+using System;
 using TMPro;
 using UnityEngine;
 
 namespace Members.KJY.Scripts.Utils.Mono
 {
-    public class MonoTMP_UGUI : MonoBehaviour
+    public class MonoTMP_UGUI : MonoBase<TextMeshProUGUI> , ISetColorable
     {
-        public TextMeshProUGUI TMP { get; private set; }
-
-        private void Awake()
-        {
-            TMP = GetComponent<TextMeshProUGUI>();
-        }
+        public TextMeshProUGUI TMP => compo;
 
         public void SetText(string text)
         {

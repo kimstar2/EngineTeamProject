@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be458c5dc51e66a49a0f5566e7a1ec09, type: 3}
-  m_Name: Pink
+  m_Name: Viridian
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Members.KJY.Scripts.Program.Func.FuncInternet.ThemeSO
-  <TitleColor>k__BackingField: {r: 0.96470594, g: 0.6901961, b: 0.9176471, a: 1}
-  <BgColor>k__BackingField: {r: 0.28627452, g: 0.20784315, b: 0.27058825, a: 1}
-  <SearchBarOutlineColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0.5019608}
-  <SearchBarColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <MainColor>k__BackingField: {r: 0.21568629, g: 0.2392157, b: 0.20784315, a: 1}
+  <SubColor1>k__BackingField: {r: 0.74509805, g: 0.79215693, b: 0.72156864, a: 1}
+  <SubColor2>k__BackingField: {r: 0.24705884, g: 0.2901961, b: 0.23529413, a: 1}

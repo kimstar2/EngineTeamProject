@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be458c5dc51e66a49a0f5566e7a1ec09, type: 3}
-  m_Name: Default
+  m_Name: White
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Members.KJY.Scripts.Program.Func.FuncInternet.ThemeSO
-  <TitleColor>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
-  <BgColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <SearchBarOutlineColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0.5019608}
-  <SearchBarColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <MainColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <SubColor1>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
+  <SubColor2>k__BackingField: {r: 0.82745105, g: 0.89019614, b: 0.9921569, a: 1}

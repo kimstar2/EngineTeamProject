@@ -1226,6 +1226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e66b2895f34deb9b02fc5e5f2f7d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoTMP_UGUI
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!1 &6155115223683014014
 GameObject:
   m_ObjectHideFlags: 0

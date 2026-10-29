@@ -8,14 +8,8 @@ namespace Assets.Members.KJY.Scripts.Program.Func.FuncInternet
     {
         [field: Header("Screen Setting")]
         [field: HorizontalLine(color: EColor.Gray)]
-        [field: SerializeField] public Color TitleColor {get; private set;}
-        [field: SerializeField] public Color BgColor {get; private set;}
-
-
-        [field:Header("SearchBar Setting")]
-        [field:HorizontalLine(color:EColor.Gray)]
-        [field: SerializeField] public Color SearchBarOutlineColor{get; private set;}
-        [field: SerializeField] public Color SearchBarColor {get; private set;}
-        
+        [field: SerializeField] public Color MainColor { get; private set; } = Color.white;
+        [field: SerializeField] public Color SubColor1 {get; private set; } = Color.white;
+        [field: SerializeField] public Color SubColor2 {get; private set; } = Color.white;
     }
 }

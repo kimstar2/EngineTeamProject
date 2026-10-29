@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Assets.Members.KJY.Scripts.Utils.Mono
 {
-    public class MonoOutline : MonoBase<Outline>
+    public class MonoOutline : MonoBase<Outline> , ISetColorable
     {
         public Outline Outline => compo;
 

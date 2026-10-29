@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Members.KJY.Scripts.Utils.Mono
 {
-    public class MonoImage : MonoBase<Image>
+    public class MonoImage : MonoBase<Image>, ISetColorable
     {
         public Image Image => compo;
 

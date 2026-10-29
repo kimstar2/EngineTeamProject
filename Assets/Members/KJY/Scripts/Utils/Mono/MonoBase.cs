@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Members.KJY.Scripts.Utils.Mono
 {
-    public abstract class MonoBase<T> : MonoBehaviour
+    public abstract class MonoBase<T> : MonoC
     {
         [field: SerializeField] protected bool CacheInAwake { get; private set; } = true;
 

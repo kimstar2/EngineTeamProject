@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Internet
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
   <FuncPrefabs>k__BackingField:
-  - {fileID: 5484005169408352223, guid: 4022ad446d8c72c4e8ef91c5033b8154, type: 3}
+  - {fileID: 1568790224043179801, guid: 4022ad446d8c72c4e8ef91c5033b8154, type: 3}
   <ProgramIcon>k__BackingField: {fileID: -8713080112887911168, guid: fe296541efa406548a03d1ef43b98cf0, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
