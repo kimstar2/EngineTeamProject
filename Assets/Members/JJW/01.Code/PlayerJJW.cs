@@ -5,23 +5,19 @@ namespace Members.JJW._01.Code
 {
     public class PlayerJJW : MonoBehaviour
     {
-        private PlayerInputJJW _playerInputJjw;
-        private PlayerMoveJJW _playerMoveJjw;
+        public PlayerMoveJJW MoveCompo { get; private set; }
+        public PlayerInputJJW InputCompo { get; private set; }
 
         private void Awake()
         {
-            _playerInputJjw = GetComponent<PlayerInputJJW>();
-            _playerMoveJjw = GetComponent<PlayerMoveJJW>();
-
-            if (_playerInputJjw == null || _playerMoveJjw == null)
-            {
-                return;
-            }
+            InputCompo = GetComponent<PlayerInputJJW>();
+            MoveCompo = GetComponent<PlayerMoveJJW>();
         }
-        
-        
-        
-        
+
+        private void Update()
+        {
+            MoveCompo.SetMove(InputCompo.MoveDir);
+        }
     }
 
 }
