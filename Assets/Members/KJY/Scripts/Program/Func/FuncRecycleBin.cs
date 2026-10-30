@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Members.KJY.Scripts.Program.Func;
 using Members.KJY.Scripts.Check;
 using NaughtyAttributes;
 using UnityEngine;

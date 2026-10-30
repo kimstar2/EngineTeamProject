@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace Assets.Members.KJY.Scripts.Program.Func.FuncInternet
+namespace Members.KJY.Scripts.Program.Func.FuncInternet
 {
     [CreateAssetMenu(fileName = "Theme data", menuName = "KJY/Program/Func/Theme data", order = 0)]
     public class ThemeSO : ScriptableObject

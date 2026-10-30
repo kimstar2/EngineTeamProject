@@ -1,5 +1,4 @@
-﻿using Assets.Members.KJY.Scripts.Utils.Mono;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Members.KJY.Scripts.Utils.Mono

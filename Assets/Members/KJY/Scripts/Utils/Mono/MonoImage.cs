@@ -1,5 +1,4 @@
 ﻿using System;
-using Assets.Members.KJY.Scripts.Utils.Mono;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;

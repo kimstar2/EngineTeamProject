@@ -1,15 +1,10 @@
-﻿using Assets.Members.KJY.Scripts.Utils.Mono;
+﻿using System.Collections.Generic;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Members.KJY.Scripts.Program.Func.FuncInternet
+namespace Members.KJY.Scripts.Program.Func.FuncInternet
 {
     public class FuncInternetVisualizer : MonoBehaviour
     {

@@ -1,6 +1,5 @@
 ﻿using System;
 using _TevLib.CoreLib;
-using Assets.Members.KJY.Scripts.Program.Func;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;

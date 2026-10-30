@@ -1,5 +1,4 @@
-﻿using Assets.Members.KJY.Scripts.Utils.Mono;
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 

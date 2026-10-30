@@ -1,4 +1,4 @@
-﻿namespace Assets.Members.KJY.Scripts.Utils
+﻿namespace Members.KJY.Scripts.Utils
 {
     public interface IToggleable
     {
