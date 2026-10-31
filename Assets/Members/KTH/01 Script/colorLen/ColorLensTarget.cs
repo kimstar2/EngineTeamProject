@@ -30,12 +30,6 @@ public class ColorLensTarget : MonoBehaviour
             UpdateReveal();
         }
     }
-
-    private void OnDestroy()
-    {
-        if (_colorLens != null) _colorLens.OnLensChanged -= UpdateReveal;
-    }
-
     private void UpdateReveal()
     {
         Rect targetRect = GetWorldRect(_target, _targetCorners);

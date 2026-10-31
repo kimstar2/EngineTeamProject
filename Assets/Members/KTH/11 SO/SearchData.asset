@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91234494ae70704a97dff4ec945a26c, type: 3}
+  m_Name: SearchData
+  m_EditorClassIdentifier: Assembly-CSharp::SearchData
+  Keyword: "\uAC9C\uB9C8\uACE0"
+  Title: "\uACBD\uAE30\uAC8C\uC784\uB9C8\uC774\uC2A4\uD130"
+  Description: "\uD3EC\uD2B8\uD3F4\uB9AC\uC624\uC804\uC2DC\uAD00. \uAC9C\uB9C8\uACE0\uBE14\uB85C\uADF8
+    \xB7 \uC878\uC5C5\uC778\uC99D\uC81C. \uAC9C\uB9C8\uACE0\uC720\uD29C\uBE0C \xB7
+    \uD559\uBD80\uBAA8\uC11C\uBE44\uC2A4. \uD3EC\uD1A0\uD3F4\uB9AC\uC624\uC804\uC2DC\uAD00..."
