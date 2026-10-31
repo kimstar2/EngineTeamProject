@@ -1427,7 +1427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b44d1aa2104f06b1f7ed328c432ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoInputField
-  <InputField>k__BackingField: {fileID: 6516814545281650633}
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!114 &312359310329220263
 MonoBehaviour:
   m_ObjectHideFlags: 0

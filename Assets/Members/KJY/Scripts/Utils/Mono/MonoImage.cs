@@ -5,14 +5,9 @@ using UnityEngine.UI;
 
 namespace Members.KJY.Scripts.Utils.Mono
 {
-    public class MonoImage : MonoBehaviour
+    public class MonoImage : MonoBase<Image>, ISetColorable
     {
-        public Image Image {get; private set;}
-
-        private void Awake()
-        {
-            Image = GetComponent<Image>();
-        }
+        public Image Image => compo;
 
         public void SetImage(Sprite sprite)
         {
