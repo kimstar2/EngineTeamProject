@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Members.KJY.Scripts.Utils.Mono
 {
-    public class MonoInputField : MonoBehaviour
+    public class MonoInputField : MonoBase<TMP_InputField>
     {
-        [field:SerializeField] public TMP_InputField InputField { get; private set; }
+        public TMP_InputField InputField => compo;
 
         public void SetFontSize(float size) => SetPointSize(size);
         public void SetPointSize(float size) => InputField.pointSize = size;

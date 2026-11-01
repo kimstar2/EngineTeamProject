@@ -15,14 +15,17 @@ namespace Members.KJY.Scripts.Utils
         public static void LogError(object message)
             => Debug.LogError(message);
         // ReSharper disable Unity.PerformanceAnalysis
-        public static void Assert(bool condition) 
-            => Debug.Assert(condition);     
+        public static void Assert(bool condition)
+            => Debug.Assert(condition);
 
         // ReSharper disable Unity.PerformanceAnalysis
-        public static void Assert(bool condition, string message) 
-            => Debug.Assert(condition,message);
+        public static void Assert(bool condition, string message)
+            => Debug.Assert(condition, message);
+
+        public static void Assert(bool condition, string name, string message)
+            => Debug.Assert(condition,$"[{name}] " + message);
         
-        
+
         // ReSharper disable Unity.PerformanceAnalysis
         public static void Assert(bool condition, string message, UnityEngine.Object context)
             => Debug.Assert(condition,message,context);
@@ -30,7 +33,7 @@ namespace Members.KJY.Scripts.Utils
         // ReSharper disable Unity.PerformanceAnalysis
         public static void Assert(bool condition, UnityEngine.Object context)
             => Debug.Assert(condition,context);
-
+        
         // ReSharper disable Unity.PerformanceAnalysis
         public static void LogException(Exception exception)
             => Debug.LogException(exception);
