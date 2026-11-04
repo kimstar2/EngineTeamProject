@@ -9,9 +9,10 @@ namespace Members.KJY.Scripts.Program
     [CreateAssetMenu(fileName = "Program Bar data", menuName = "KJY/Program/Program Bar data", order = 0)]
     public class ProgramInfoSO : ScriptableObject
     {
-        [field:Header("Program Func Setting")] // 프로그램 기능
-        [field:HorizontalLine(color: EColor.Gray)]
-        [field:SerializeField] public ProgramFunc[] FuncPrefabs { get; private set; }
+        [field: Header("Program Func Setting")] // 프로그램 기능
+        [field: HorizontalLine(color: EColor.Gray)]
+        [field: SerializeField]
+        public List<ProgramFunc> FuncPrefabs { get; private set; } = new();
         
         // 여기는 디자인 세팅
         [field:Header("Program Bar Setting")]
@@ -45,5 +46,10 @@ namespace Members.KJY.Scripts.Program
         [field: HorizontalLine(color: EColor.Gray)]
         [field: SerializeField] public Vector2 MinSize { get; private set; } = new(400f, 300f);
         [field:SerializeField] public Vector2 MaxSize { get; private set; } = new(800f, 500f);
+
+        public void AddFunc(ProgramFunc func)
+        {
+            FuncPrefabs.Add(func);
+        }
     }
 }

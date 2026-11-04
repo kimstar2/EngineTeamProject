@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _TevLib.ServiceLocatorSystem;
 using Members.KJY.Scripts.Check;
 using Members.KJY.Scripts.Program;
-using Members.KJY.Scripts.Program.Application;
+using Members.KJY.Scripts.Program.ApplicationSystem;
 using UnityEngine;
-using Application = Members.KJY.Scripts.Program.Application.Application;
+using Application = Members.KJY.Scripts.Program.ApplicationSystem.Application;
 
 namespace Members.KJY.Scripts.Core.Services
 {
@@ -16,22 +17,13 @@ namespace Members.KJY.Scripts.Core.Services
         private readonly List<ApplicationOpener> _applicationList  = new();
         private ApplicationOpener _currentApplication;
 
-        private void Awake()
-        {
-            Make();
-            
-            ServiceLocator.RegisterService<IApplicationManager>(this);
-        }
-
         private void OnDestroy()
         {
             foreach (ApplicationOpener app in _applicationList)
                 app.OnClicked -= HandleClick;
-            
-            ServiceLocator.UnregisterService<IApplicationManager>();
         }
 
-        private void Make()
+        public void MakeDefaults()
         {
             foreach (var info in defaultApplications)
                 Make(info);
@@ -42,6 +34,7 @@ namespace Members.KJY.Scripts.Core.Services
         {
             Application application = Instantiate(applicationPrefab, parentTransform);
             application.Init(info);
+            application.Opener.OnClicked -= HandleClick;
             application.Opener.OnClicked += HandleClick;
             _applicationList.Add(application.Opener);
         }

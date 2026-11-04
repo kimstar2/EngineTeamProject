@@ -11,8 +11,8 @@ namespace _TevLib.ServiceLocatorSystem.TimeService
     {
         [field: SerializeField, Header("Time System"), ReadOnly] public float GameTime { get; private set; }
         [field: SerializeField , Header("Tick System")] public float SecondTick { get; private set; }
-        [field: SerializeField, ReadOnly] public float TimeTick { get; private set; }
-        [field: SerializeField, ReadOnly] public int TickCount { get; private set; }
+        [field: SerializeField] public float TimeTick { get; private set; }
+        [field: SerializeField] public int TickCount { get; private set; }
 
         private float _baseFixedDeltaTime;
         public UnityEvent<int> onHour;

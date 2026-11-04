@@ -1,9 +1,8 @@
-﻿using System;
-using _TevLib.ServiceLocatorSystem;
+﻿using _TevLib.ServiceLocatorSystem;
 using Members.KJY.Scripts.Core.Services;
 using UnityEngine;
 
-namespace Members.KJY.Scripts.Program.Application
+namespace Members.KJY.Scripts.Program.ApplicationSystem
 {
     public class ApplicationUnClicked : MonoBehaviour
     {

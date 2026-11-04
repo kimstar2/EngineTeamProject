@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Tracing;
-using _TevLib.CoreLib.EventSystem;
 using _TevLib.ModuleSystem;
 using _TevLib.ServiceLocatorSystem;
 using Cysharp.Threading.Tasks;
@@ -10,11 +8,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Members.KJY.Scripts.Program.Application
+namespace Members.KJY.Scripts.Program.ApplicationSystem
 {
     public class ApplicationOpener : MonoModule , IPointerClickHandler , IPointerEnterHandler , IPointerExitHandler
     {
-        [SerializeField] private EventChannelSO eventChannel;
         private const float DelayTime = 0.4f;
         
         private ProgramInfoSO _programInfo;
@@ -22,11 +19,11 @@ namespace Members.KJY.Scripts.Program.Application
         private bool _canOpen;
         private bool _isClicked;
 
-        [Header("Event Setting")] [HorizontalLine(color: EColor.Gray)]
+        [Header("Event Setting")]
+        [HorizontalLine(color: EColor.Gray)]
         public UnityEvent onEnter;
         public UnityEvent onExit;
         public UnityEvent onClickedExit;
-        public UnityEvent onCancel;
 
         public event Action<ApplicationOpener> OnClicked;
         

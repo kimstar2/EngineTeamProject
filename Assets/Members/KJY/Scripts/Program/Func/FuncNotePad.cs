@@ -34,7 +34,6 @@ namespace Members.KJY.Scripts.Program.Func
 
         public override void Init()
         {
-            base.Init();
             monoField.SetText(notePadData.DefaultContent);
             monoField.SetWarp(notePadData.TextWrapMode);
             FontSizeIndex = defaultFontSizeIndex;

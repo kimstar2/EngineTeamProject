@@ -1,9 +1,8 @@
 ﻿using _TevLib.ModuleSystem;
 using Members.KJY.Scripts.Utils.Mono;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
-namespace Members.KJY.Scripts.Program.Application
+namespace Members.KJY.Scripts.Program.ApplicationSystem
 {
     public class ApplicationDataBinder : MonoModule
     {

@@ -24,6 +24,7 @@ namespace _TevLib.ServiceLocatorSystem
             Debug.Log($"[ServiceLocator] Unregister - {typeof(T).Name}]");
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public static T GetService<T>()
         {
             if (Services.TryGetValue(typeof(T), out object service))
