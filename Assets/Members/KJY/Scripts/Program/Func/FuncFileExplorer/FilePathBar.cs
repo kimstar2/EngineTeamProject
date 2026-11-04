@@ -18,7 +18,6 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             _filePaths.Add(fileName);
 
             StringBuilder sB = new();
-            StringWriter writer = new(sB);
             sB.Append(FirstPath);
             
             foreach (string path in _filePaths)
@@ -26,7 +25,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             
             sB.Remove(sB.Length - SpacePath.Length, sB.Length);
             
-            writer.Write();
+            filePath.SetPath(sB.ToString());
         }
     }
 }

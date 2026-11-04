@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4385c40e66421f89f30f3add176b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileGroup
-  barTransform: {fileID: 0}
+  pathBar: {fileID: 0}
 --- !u!1001 &254499891207116713
 PrefabInstance:
   m_ObjectHideFlags: 0
