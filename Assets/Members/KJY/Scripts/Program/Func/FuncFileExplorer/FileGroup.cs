@@ -18,6 +18,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
     }
     public class FileGroup : MonoBehaviour
     {
+        [SerializeField] private FilePathBar pathBar;
         private readonly Stack<CellGroup> _undoCellGroups = new();
         private readonly List<Application> _crtApps = new();
         private readonly List<FileCell> _crtFiles = new();
@@ -33,7 +34,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             _crtFiles.Add(file);
         }
 
-        public void MakeNew()
+        public void MakeNew(string fileName)
         {
             CellGroup cellGroup = new CellGroup(_crtFiles, _crtApps);
             
@@ -45,6 +46,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             _crtApps?.Clear();
             _crtFiles?.Clear();
             
+            pathBar.MakePath(fileName);
             _undoCellGroups.Push(cellGroup);
         }
     }

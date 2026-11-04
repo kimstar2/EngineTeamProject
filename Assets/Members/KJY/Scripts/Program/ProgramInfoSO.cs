@@ -50,6 +50,11 @@ namespace Members.KJY.Scripts.Program
         public void AddFunc(ProgramFunc func)
         {
             FuncPrefabs.Add(func);
+        } 
+        
+        public void SetName(string prgName)
+        {
+            ProgramName = prgName;
         }
     }
 }

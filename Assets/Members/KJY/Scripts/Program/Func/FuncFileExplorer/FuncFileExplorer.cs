@@ -21,7 +21,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
         
         public override void Init()
         {
-            fileGroup.MakeNew();
+            fileGroup.MakeNew(FileData.FileName);
             foreach (FileSO fileData in FileData.FileList)
                 MakeFile(fileData);
             foreach (ProgramInfoSO programData in FileData.ProgramList)
@@ -39,17 +39,27 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
         public void MakeFile(FileSO fileData)
         {
             FileCell file = Instantiate(fileCellPrefab, fileGroup.transform);
-            file.OnInFile += HandleInFile;
             file.Init(fileData);
             
             fileGroup.AddCell(file);
             _fileList.Add(file);
+            
+            file.Opener.OnInFile += HandleInFile;
         }
 
-        private void HandleInFile(FileSO fileData)
+        private void HandleInFile(FileSO newFile)
         {
-            fileGroup.MakeNew();
-            MakeFile(fileData);
+            fileGroup.MakeNew(newFile.FileName);
+            foreach (FileSO fileData in newFile.FileList)
+                MakeFile(fileData);
+            foreach (ProgramInfoSO programData in newFile.ProgramList)
+                MakeApp(programData);
+        }
+
+        private void OnDestroy()
+        {
+            foreach (FileCell cell in _fileList)
+                cell.Opener.OnInFile -= HandleInFile;
         }
     }
 }

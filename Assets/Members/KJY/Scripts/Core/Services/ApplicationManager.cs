@@ -14,12 +14,12 @@ namespace Members.KJY.Scripts.Core.Services
         [SerializeField] private Transform parentTransform;
         [SerializeField] private Application applicationPrefab; // TODO : 풀링
         [SerializeField] private List<ProgramInfoSO> defaultApplications;
-        private readonly List<ApplicationOpener> _applicationList  = new();
-        private ApplicationOpener _currentApplication;
+        private readonly List<AbstractOpener> _applicationList  = new();
+        private AbstractOpener _currentApplication;
 
         private void OnDestroy()
         {
-            foreach (ApplicationOpener app in _applicationList)
+            foreach (AbstractOpener app in _applicationList)
                 app.OnClicked -= HandleClick;
         }
 
@@ -41,7 +41,7 @@ namespace Members.KJY.Scripts.Core.Services
 
         #region Handle
         
-        private void HandleClick(ApplicationOpener obj)
+        private void HandleClick(AbstractOpener obj)
         {
             if (obj == _currentApplication) return;
             if (_currentApplication != null)

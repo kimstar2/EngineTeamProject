@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileSO
   <FileName>k__BackingField: TestFile 1
   <FileList>k__BackingField:
-  - {fileID: 11400000, guid: aa1a7a7e6dd318e4f84818da5a0474bd, type: 2}
-  - {fileID: 11400000, guid: aa1a7a7e6dd318e4f84818da5a0474bd, type: 2}
-  - {fileID: 11400000, guid: aa1a7a7e6dd318e4f84818da5a0474bd, type: 2}
+  - {fileID: 11400000, guid: fd72a88f865310143a112cc6ed5e88f7, type: 2}
+  - {fileID: 11400000, guid: eeea4d01368779948a0cb2c704a13ac1, type: 2}
   <ProgramList>k__BackingField:
   - {fileID: 11400000, guid: 26210573a8a7ed24dbfac1f3554c5d0a, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
   <FuncPrefabs>k__BackingField:
   - {fileID: 4687302086139944742, guid: 4f2f12a4ae33881408a306d2b9888c3d, type: 3}
-  <ProgramIcon>k__BackingField: {fileID: -6627683105499170050, guid: fe296541efa406548a03d1ef43b98cf0, type: 3}
+  <ProgramIcon>k__BackingField: {fileID: 4414112921849270489, guid: c63260acc35a81e4b95893651fd7af76, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   <ProgramConBarColor>k__BackingField: {r: 0.29411766, g: 0.5019608, b: 0.7843138, a: 1}

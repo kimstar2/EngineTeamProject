@@ -27,6 +27,7 @@ namespace Members.KJY.Scripts.Core.Services
             explorer.SetFileData(fileData);
 
             ProgramInfoSO realInfo = Instantiate(fileInfoBase);
+            realInfo.SetName(fileData.FileName);
             realInfo.AddFunc(explorer);
                 
             ServiceLocator.GetService<IApplicationManager>().Make(realInfo);

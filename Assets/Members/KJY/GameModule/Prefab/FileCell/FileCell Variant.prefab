@@ -215,12 +215,19 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6932674309746159529, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
     - {fileID: 6813303613256051615, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
+    - {fileID: 7879511131675458852, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4464766310364759056, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8176882923483431415}
+    - targetCorrespondingSourceObject: {fileID: 4464766310364759056, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2021336934708638089}
+    - targetCorrespondingSourceObject: {fileID: 8423905189103021043, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4418172360814805967}
   m_SourcePrefab: {fileID: 100100000, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
 --- !u!1 &2224953209465619294 stripped
 GameObject:
@@ -239,3 +246,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33555d81745e4a77bd108309b0a5f048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileCell
+--- !u!114 &2021336934708638089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2224953209465619294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33214263636451cbf6b4818404476a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileOpener
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4867422278200008911}
+        m_TargetAssemblyTypeName: Members.KJY.Scripts.Utils.Mono.MonoImage, Assembly-CSharp
+        m_MethodName: SetFade
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.4
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4867422278200008911}
+        m_TargetAssemblyTypeName: Members.KJY.Scripts.Utils.Mono.MonoImage, Assembly-CSharp
+        m_MethodName: SetFade
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onClickedExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4867422278200008911}
+        m_TargetAssemblyTypeName: Members.KJY.Scripts.Utils.Mono.MonoImage, Assembly-CSharp
+        m_MethodName: SetFade
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4867422278200008911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6960903317804492673, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
+  m_PrefabInstance: {fileID: 2528373623135930190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+--- !u!114 &5962611139554400340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8190329560929230618, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
+  m_PrefabInstance: {fileID: 2528373623135930190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e66b2895f34deb9b02fc5e5f2f7d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoTMP_UGUI
+--- !u!1 &6336898142615776445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8423905189103021043, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
+  m_PrefabInstance: {fileID: 2528373623135930190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4418172360814805967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336898142615776445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8702fa2b4604fffbc985a66cd966202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileDataBinder
+  fileName: {fileID: 5962611139554400340}
