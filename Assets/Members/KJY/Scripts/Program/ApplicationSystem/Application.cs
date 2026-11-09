@@ -1,8 +1,6 @@
-﻿using System;
-using _TevLib.ModuleSystem;
-using UnityEngine;
+﻿using _TevLib.ModuleSystem;
 
-namespace Members.KJY.Scripts.Program.Application
+namespace Members.KJY.Scripts.Program.ApplicationSystem
 {
     public class Application : ModuleOwner
     {
@@ -18,15 +16,12 @@ namespace Members.KJY.Scripts.Program.Application
             Opener = GetModule<ApplicationOpener>();
         }
 
-        private void Start()
-        {
-            DataBinder.Init(ProgramInfo);
-            Opener.Init(ProgramInfo);
-        }
-
         public void Init(ProgramInfoSO info)
         {
             ProgramInfo = info;
+
+            DataBinder.Init(ProgramInfo);
+            Opener.Init(ProgramInfo);
         }
     }
 }

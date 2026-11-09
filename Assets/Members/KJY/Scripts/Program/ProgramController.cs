@@ -76,10 +76,7 @@ namespace Members.KJY.Scripts.Program
         {
             ProgramData programData = new ProgramData(parentRect,ProgramRect, gameObject, programInfo);
             foreach (ProgramFunc func in programInfo.FuncPrefabs)
-            {
-                ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
-                f.Init();
-            }
+                MakeFunc(func);
             ProgramControllerBarDataBinder.SetData(programInfo);
             ProgramDataBinder.SetData(programInfo);
             
@@ -100,7 +97,7 @@ namespace Members.KJY.Scripts.Program
             
             ChangeState(SystemInvoker.ProgramController,ProgramState.Opened);
         }
-        
+
         #region Handle
         private void HandleBeginDragging()
             => ChangeState(SystemInvoker.ProgramController,ProgramState.Enabled);
@@ -112,8 +109,13 @@ namespace Members.KJY.Scripts.Program
         public void ChangeState(SystemInvoker invoker, ProgramState state) => SystemStateMachine.ChangeState(invoker, state);
         public void SetLastPosition(Vector2 position) => LastPosition = position;
         public void SetLastSize(Vector2 size) => LastSize = size;
-
         public void OnClosing() => IsClosing = true;
+        
+        public void MakeFunc(ProgramFunc func)
+        {
+            ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
+            f.Init();
+        }
         
         #endregion
     }

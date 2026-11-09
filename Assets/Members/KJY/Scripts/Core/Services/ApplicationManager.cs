@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _TevLib.ServiceLocatorSystem;
 using Members.KJY.Scripts.Check;
 using Members.KJY.Scripts.Program;
-using Members.KJY.Scripts.Program.Application;
+using Members.KJY.Scripts.Program.ApplicationSystem;
 using UnityEngine;
-using Application = Members.KJY.Scripts.Program.Application.Application;
+using Application = Members.KJY.Scripts.Program.ApplicationSystem.Application;
 
 namespace Members.KJY.Scripts.Core.Services
 {
@@ -13,25 +14,16 @@ namespace Members.KJY.Scripts.Core.Services
         [SerializeField] private Transform parentTransform;
         [SerializeField] private Application applicationPrefab; // TODO : 풀링
         [SerializeField] private List<ProgramInfoSO> defaultApplications;
-        private readonly List<ApplicationOpener> _applicationList  = new();
-        private ApplicationOpener _currentApplication;
-
-        private void Awake()
-        {
-            Make();
-            
-            ServiceLocator.RegisterService<IApplicationManager>(this);
-        }
+        private readonly List<AbstractOpener> _applicationList  = new();
+        private AbstractOpener _currentApplication;
 
         private void OnDestroy()
         {
-            foreach (ApplicationOpener app in _applicationList)
+            foreach (AbstractOpener app in _applicationList)
                 app.OnClicked -= HandleClick;
-            
-            ServiceLocator.UnregisterService<IApplicationManager>();
         }
 
-        private void Make()
+        public void MakeDefaults()
         {
             foreach (var info in defaultApplications)
                 Make(info);
@@ -42,13 +34,14 @@ namespace Members.KJY.Scripts.Core.Services
         {
             Application application = Instantiate(applicationPrefab, parentTransform);
             application.Init(info);
+            application.Opener.OnClicked -= HandleClick;
             application.Opener.OnClicked += HandleClick;
             _applicationList.Add(application.Opener);
         }
 
         #region Handle
         
-        private void HandleClick(ApplicationOpener obj)
+        private void HandleClick(AbstractOpener obj)
         {
             if (obj == _currentApplication) return;
             if (_currentApplication != null)

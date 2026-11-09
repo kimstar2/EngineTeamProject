@@ -1,54 +1,42 @@
 ﻿using System;
-using System.Diagnostics.Tracing;
-using _TevLib.CoreLib.EventSystem;
 using _TevLib.ModuleSystem;
-using _TevLib.ServiceLocatorSystem;
 using Cysharp.Threading.Tasks;
-using Members.KJY.Scripts.Core.Services;
+using Members.KJY.Scripts.Program.ApplicationSystem;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Members.KJY.Scripts.Program.Application
+namespace Members.KJY.Scripts.Program
 {
-    public class ApplicationOpener : MonoModule , IPointerClickHandler , IPointerEnterHandler , IPointerExitHandler
+    public abstract class AbstractOpener : MonoModule , IPointerClickHandler , IPointerEnterHandler , IPointerExitHandler
     {
-        [SerializeField] private EventChannelSO eventChannel;
         private const float DelayTime = 0.4f;
         
-        private ProgramInfoSO _programInfo;
-        private IProgramManager _programManager;
-        private bool _canOpen;
+        protected bool CanOpen;
         private bool _isClicked;
-
-        [Header("Event Setting")] [HorizontalLine(color: EColor.Gray)]
+        
+        [Header("Event Setting")]
+        [HorizontalLine(color: EColor.Gray)]
         public UnityEvent onEnter;
         public UnityEvent onExit;
         public UnityEvent onClickedExit;
-        public UnityEvent onCancel;
-
-        public event Action<ApplicationOpener> OnClicked;
         
-        public void Init(ProgramInfoSO infoData)
-        {
-            _programInfo = infoData;
-            _programManager = ServiceLocator.GetService<IProgramManager>();
-        }
-
+        public event Action<AbstractOpener> OnClicked;
+        
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left) return;
             OnClicked?.Invoke(this);
             _isClicked = true;
-            if (_canOpen)
+            if (CanOpen)
             {
                 OpenProgram();
                 return;
             }
             WaitDoubleClick().Forget();
         }
-        
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             onEnter?.Invoke();
@@ -61,25 +49,21 @@ namespace Members.KJY.Scripts.Program.Application
             else
                 onExit?.Invoke();
         }
-
+        
         public void ExitClick()
         {
             _isClicked = false;
-            _canOpen = false;
+            CanOpen = false;
             onExit?.Invoke();
         }
         
-        public void OpenProgram()
-        {
-            _canOpen = false;
-            _programManager.MakeChain(_programInfo);
-        }
-
+        public abstract void OpenProgram();
+        
         private async UniTask WaitDoubleClick() // 컴퓨터 데스크톱에서 더블클릭하면 어플 켜지는거인데, 얘는 더블클릭체크
         {
-            _canOpen = true;
+            CanOpen = true;
             await UniTask.Delay(TimeSpan.FromSeconds(DelayTime),cancellationToken: destroyCancellationToken); 
-            _canOpen = false;
+            CanOpen = false;
         }
     }
 }
