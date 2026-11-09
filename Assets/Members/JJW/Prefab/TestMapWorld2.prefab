@@ -895,7 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5423528899937295238}
   m_Layer: 0
-  m_Name: TestMapWorld 2
+  m_Name: TestMapWorld2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
