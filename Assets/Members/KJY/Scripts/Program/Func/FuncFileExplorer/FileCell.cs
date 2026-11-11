@@ -10,6 +10,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
     {
         public FileDataBinder DataBinder {get; private set;}
         public FileOpener Opener {get; private set;}
+        public FileSO File {get; private set;}
 
         protected override void InitializeModules()
         {
@@ -22,6 +23,8 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
         {
             DataBinder.Init(fileData);
             Opener.Init(fileData);
+            
+            File = fileData;
         }
     }
 }
