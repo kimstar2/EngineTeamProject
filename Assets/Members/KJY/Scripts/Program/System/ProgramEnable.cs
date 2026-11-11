@@ -14,7 +14,7 @@ namespace Members.KJY.Scripts.Program.System
 
         private void Enable()
         {
-            ProgramCon.ProgramRect.transform.SetAsLastSibling();
+            ProgramCon.ProgramParent.transform.SetAsLastSibling();
             ProgramCon.ProgramBar.OnEnter?.Invoke();
             ProgramCon.OnEnter?.Invoke();
         }
