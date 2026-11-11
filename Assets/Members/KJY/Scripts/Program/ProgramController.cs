@@ -22,7 +22,9 @@ namespace Members.KJY.Scripts.Program
     }
     public class ProgramController : ModuleOwner , IRequiredPooling
     {
-        [field: Header("System Setting")] [field: HorizontalLine(color: EColor.Gray)]
+        [field: Header("System Setting")] 
+        [field: HorizontalLine(color: EColor.Gray)]
+        [field: SerializeField] public CanvasGroup CanvasGroup { get; private set; }
         [field: SerializeField] public SystemStateMachine SystemStateMachine { get; private set; } = new();
         [field:SerializeField] public Transform ProgramParent { get; private set; }
         [field:SerializeField] public Transform FuncParent { get; private set; }

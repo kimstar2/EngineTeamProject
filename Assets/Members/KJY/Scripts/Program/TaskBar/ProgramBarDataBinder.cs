@@ -18,7 +18,7 @@ namespace Members.KJY.Scripts.Program.TaskBar
         {
             CurrentProgramData = data;
             
-                iconImage.SetImage(data.ProgramIcon);
+            iconImage.SetImage(data.ProgramIcon);
             iconImage.SetColor(data.IconColor);
             nameTMP.SetText(data.ProgramName);
             nameTMP.SetColor(data.ProgramBarNameColor);

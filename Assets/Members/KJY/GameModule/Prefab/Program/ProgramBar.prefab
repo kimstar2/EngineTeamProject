@@ -67,7 +67,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Recycle Bin
+  m_text: 'None
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
   m_sharedMaterial: {fileID: -3259779781579491864, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
@@ -171,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e66b2895f34deb9b02fc5e5f2f7d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoTMP_UGUI
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!1 &3228535980865786456
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!1 &6812680535792014812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8020143640844766479, guid: e8783c6a339584c42902d9d2abdfc3a5, type: 3}
+  m_Sprite: {fileID: 4138830994555644304, guid: fe296541efa406548a03d1ef43b98cf0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1059,6 +1065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348452f67c5d49ddb6d2f32106355c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.Mono.MonoImage
+  <CacheInAwake>k__BackingField: 1
+  compo: {fileID: 0}
 --- !u!1 &9056001750142739833
 GameObject:
   m_ObjectHideFlags: 0

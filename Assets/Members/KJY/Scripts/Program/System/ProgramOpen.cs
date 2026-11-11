@@ -27,6 +27,7 @@ namespace Members.KJY.Scripts.Program.System
                 SetLink(gameObject).
                 SetAutoKill(true);;
             
+            ProgramCon.CanvasGroup.alpha = 1f;
             ProgramCon.ProgramTween.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(ProgramCon.LastSize, tweenDuration));
             ProgramCon.ProgramTween.Join(ProgramData.ProgramRect.Rect.DOAnchorPos(ProgramCon.LastPosition, tweenDuration));
             

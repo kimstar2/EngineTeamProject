@@ -21,16 +21,9 @@ namespace _TevLib.ServiceLocatorSystem.TimeService
 
         private void Awake()
         {
-            ServiceLocator.RegisterService<ITimeService>(this);
-            ServiceLocator.RegisterService<ITickService>(this);
             _baseFixedDeltaTime = Time.fixedDeltaTime;
         }
-
-        private void OnDestroy()
-        {
-            ServiceLocator.UnregisterService<ITimeService>();
-            ServiceLocator.UnregisterService<ITickService>();
-        }
+        
 
         private void Update()
         {
@@ -53,6 +46,11 @@ namespace _TevLib.ServiceLocatorSystem.TimeService
             Time.fixedDeltaTime = timeScale > 0f
                 ? _baseFixedDeltaTime * timeScale
                 : _baseFixedDeltaTime;
+        }
+
+        public void SetFixedDelta(float deltaT)
+        {
+            Time.fixedDeltaTime = deltaT;
         }
 
         public async UniTask Timer(float time, CancellationToken ct , bool independentTime = false) 

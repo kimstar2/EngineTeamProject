@@ -53,5 +53,5 @@ MonoBehaviour:
     <MinAnchor>k__BackingField: {x: 0.5, y: 0.5}
     <MaxAnchor>k__BackingField: {x: 0.5, y: 0.5}
     <Pivot>k__BackingField: {x: 0.5, y: 0.5}
-  tweenEase: 15
-  tweenDuration: 0.3
+  tweenEase: 20
+  tweenDuration: 0.2

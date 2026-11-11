@@ -27,7 +27,7 @@ namespace Members.KJY.Scripts.Program
             
             OnBeginDragging?.Invoke();
             _startPointPos = Rect.anchoredPosition;
-            _clickedPointPos = GetGUIPoint(eventData.position);
+            _clickedPointPos = GetGUIPoint(eventData);
         }
 
         public override void OnDrag(PointerEventData eventData)
@@ -36,7 +36,7 @@ namespace Members.KJY.Scripts.Program
             
             if (Rect == null) return;
             
-            Rect.anchoredPosition = GetGUIPoint(eventData.position) - _clickedPointPos + _startPointPos;
+            Rect.anchoredPosition = GetGUIPoint(eventData) - _clickedPointPos + _startPointPos;
             
             if (!rangeAdjustmentOnEndDrag)
                 UIUtils.AdjustmentUI(ProgramData.ParentRect.Rect,Rect);
@@ -51,8 +51,15 @@ namespace Members.KJY.Scripts.Program
 
         #region Helper
 
-        private static Vector2 GetGUIPoint(Vector2 position) 
-            => GUIUtility.ScreenToGUIPoint(position);
+        private Vector2 GetGUIPoint(PointerEventData eventData)
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                (RectTransform)Rect.parent,
+                eventData.position,
+                eventData.pressEventCamera,
+                out Vector2 localPoint);
+            return localPoint;
+        }
 
         #endregion
     }

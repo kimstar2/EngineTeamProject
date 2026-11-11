@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee3be0c3d5f4b458b1619de804e5e06, type: 3}
   m_Name: Start
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
-  <FuncPrefabs>k__BackingField:
-  - {fileID: 99539472537222207, guid: 3a6a2676c3e13f040ac386ec5cd4949e, type: 3}
-  <ProgramIcon>k__BackingField: {fileID: -7666885783339648234, guid: fe296541efa406548a03d1ef43b98cf0, type: 3}
+  <FuncPrefabs>k__BackingField: []
+  <ProgramIcon>k__BackingField: {fileID: 21300000, guid: 32f78a63d0684bb45a66257528bdab9c, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   <ProgramConBarColor>k__BackingField: {r: 0.29411766, g: 0.5019608, b: 0.7843138, a: 1}
@@ -26,17 +25,7 @@ MonoBehaviour:
   <ProgramConBg>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   <ProgramConBgColor>k__BackingField: {r: 0.72156864, g: 0.70980394, b: 0.72156864, a: 1}
   <StartPosition>k__BackingField: {x: 0, y: 0}
-  <StartSize>k__BackingField: {x: 500, y: 300}
-  <ProgramSystems>k__BackingField:
-  - <ProgramState>k__BackingField: 0
-    <System>k__BackingField: {fileID: 11400000, guid: 2460307c6cee2c648b8d47deeef6de5d, type: 2}
-  - <ProgramState>k__BackingField: 1
-    <System>k__BackingField: {fileID: 11400000, guid: e51925a5e5fe96945b59c8b235db0f14, type: 2}
-  - <ProgramState>k__BackingField: 2
-    <System>k__BackingField: {fileID: 11400000, guid: c389928f72a20f74b96ed545eff395c4, type: 2}
-  - <ProgramState>k__BackingField: 3
-    <System>k__BackingField: {fileID: 11400000, guid: 71a3792aafb23744585b95b7db412a56, type: 2}
-  - <ProgramState>k__BackingField: 4
-    <System>k__BackingField: {fileID: 11400000, guid: 8ab3441a4ceba9e418d872415888242d, type: 2}
-  <MinSize>k__BackingField: {x: 400, y: 300}
-  <MaxSize>k__BackingField: {x: 800, y: 500}
+  <StartSize>k__BackingField: {x: 400, y: 500}
+  <ProgramSystems>k__BackingField: []
+  <MinSize>k__BackingField: {x: 0, y: 0}
+  <MaxSize>k__BackingField: {x: 0, y: 0}
