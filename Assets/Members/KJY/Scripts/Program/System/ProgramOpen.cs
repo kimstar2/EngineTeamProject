@@ -30,7 +30,7 @@ namespace Members.KJY.Scripts.Program.System
             ProgramCon.ProgramTween.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(ProgramCon.LastSize, tweenDuration));
             ProgramCon.ProgramTween.Join(ProgramData.ProgramRect.Rect.DOAnchorPos(ProgramCon.LastPosition, tweenDuration));
             
-            ProgramCon.ProgramRect.transform.SetAsLastSibling();
+            ProgramCon.ProgramParent.transform.SetAsLastSibling();
             ProgramCon.ProgramBar.OnEnter?.Invoke();
             ProgramCon.OnEnter?.Invoke();
         }

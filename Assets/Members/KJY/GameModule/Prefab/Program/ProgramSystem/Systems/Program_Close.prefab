@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655b423e58d24741b1c5a71b6004dfde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.System.ProgramClose
+  <ChangeTime>k__BackingField: 0.2
   <AnchorUtil>k__BackingField:
-    <MinAnchor>k__BackingField: {x: 1, y: 1}
-    <MaxAnchor>k__BackingField: {x: 1, y: 1}
-    <Pivot>k__BackingField: {x: 1, y: 1}
-  tweenEase: 26
+    <MinAnchor>k__BackingField: {x: 0.5, y: 0.5}
+    <MaxAnchor>k__BackingField: {x: 0.5, y: 0.5}
+    <Pivot>k__BackingField: {x: 0.5, y: 0.5}
+  tweenEase: 15
   tweenDuration: 0.3
