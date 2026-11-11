@@ -25,7 +25,7 @@ MonoBehaviour:
   <ProgramBarNameColor>k__BackingField: {r: 0.037023783, g: 0.4641509, b: 0, a: 1}
   <ProgramConBg>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   <ProgramConBgColor>k__BackingField: {r: 0.72156864, g: 0.70980394, b: 0.72156864, a: 1}
-  <StartPosition>k__BackingField: {x: 0, y: 0}
+  <StartPosition>k__BackingField: {x: 300, y: 0}
   <StartSize>k__BackingField: {x: 500, y: 300}
   <ProgramSystems>k__BackingField:
   - <ProgramState>k__BackingField: 0
