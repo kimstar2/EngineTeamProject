@@ -39,4 +39,4 @@ MonoBehaviour:
   - <ProgramState>k__BackingField: 4
     <System>k__BackingField: {fileID: 11400000, guid: 8ab3441a4ceba9e418d872415888242d, type: 2}
   <MinSize>k__BackingField: {x: 400, y: 300}
-  <MaxSize>k__BackingField: {x: 1100, y: 600}
+  <MaxSize>k__BackingField: {x: 600, y: 500}

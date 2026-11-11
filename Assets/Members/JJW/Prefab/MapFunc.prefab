@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5897148513510611378}
   - component: {fileID: -5938005002944569785}
+  - component: {fileID: -4102131302059560098}
   m_Layer: 5
   m_Name: MapFunc
   m_TagString: Untagged
@@ -52,6 +53,20 @@ MonoBehaviour:
   mapWorldPrefab: {fileID: 5162343475033198944, guid: 50b4d7fa85cef314aa0f5a0a109bb86f, type: 3}
   mapView: {fileID: 6440092381569227734}
   uiUnitsPerWorldUnit: 100
+--- !u!114 &-4102131302059560098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292606940989822346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445c091f0f488fd47ae1403edf237819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.JJW._01.Code.MapWindowSnapJJW
+  snapDistance: 80
+  roadOverlap: 20
 --- !u!1 &5052943267433361815
 GameObject:
   m_ObjectHideFlags: 0
