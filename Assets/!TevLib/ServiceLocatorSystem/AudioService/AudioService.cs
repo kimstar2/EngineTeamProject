@@ -7,7 +7,7 @@ namespace _TevLib.ServiceLocatorSystem.AudioService
 {
     public class AudioService : MonoBehaviour , IAudioService
     {
-        [SerializeField] private GameObject soundPlayerPrefab;
+        [SerializeField] private SoundPlayer soundPlayerPrefab;
 
         private Dictionary<int, SoundPlayer> _playerDict = new();
 
@@ -16,8 +16,7 @@ namespace _TevLib.ServiceLocatorSystem.AudioService
         private void Awake()
         {
             ServiceLocator.RegisterService<IAudioService>(this);
-            GameObject bgmObject = Instantiate(soundPlayerPrefab, transform);
-            _bgmPlayer = bgmObject.GetComponent<SoundPlayer>();
+            _bgmPlayer = Instantiate(soundPlayerPrefab, transform);
         }
 
         private void Start()
@@ -32,8 +31,7 @@ namespace _TevLib.ServiceLocatorSystem.AudioService
 
         public void PlaySfx(SoundClipSO clipData, int channel = 0)
         {
-            GameObject sfxObject = Instantiate(soundPlayerPrefab, transform);
-            SoundPlayer sfxPlayer = sfxObject.GetComponent<SoundPlayer>();
+            SoundPlayer sfxPlayer = Instantiate(soundPlayerPrefab, transform);
             sfxPlayer.PlaySound(clipData);
 
             sfxPlayer.OnSoundFinished += HandleSoundFinish;

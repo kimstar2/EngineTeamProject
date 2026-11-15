@@ -45,8 +45,8 @@ namespace Members.KJY.Scripts.Program.System
                 SetLink(gameObject).
                 SetAutoKill(true);
 
-            ProgramCon.ProgramTween.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(Vector2.zero, tweenDuration));
-            ProgramCon.ProgramTween.Join(ProgramData.ProgramRect.Rect.DOMove(controller.ProgramBar.ClosePos.Rect.position, tweenDuration));
+            await ProgramCon.ProgramTween.Append(ProgramData.ProgramRect.Rect.DOSizeDelta(Vector2.zero, tweenDuration));
+            await ProgramCon.ProgramTween.Join(ProgramData.ProgramRect.Rect.DOMove(controller.ProgramBar.ClosePos.Rect.position, tweenDuration));
             await UniTask.Delay(TimeSpan.FromSeconds(ChangeTime),cancellationToken:destroyCancellationToken);
         }
     }

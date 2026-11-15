@@ -1845,7 +1845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e96155b6ab4475a8fc8e13cb3c8307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncNotePad
-  notePadData: {fileID: 11400000, guid: 827e924c9cf10aa44ab8202ae861cc4d, type: 2}
+  notePadData: {fileID: 11400000, guid: 362efbfcf44f93b418764e2b7b59aae2, type: 2}
   monoField: {fileID: 9147378695277562073}
   defaultFontSizeIndex: 3
   fontSizes:

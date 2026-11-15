@@ -36,7 +36,7 @@ namespace Members.KJY.Scripts.Program.System
         {
             ProgramCon.ProgramTween?.Kill();
             ProgramCon.ProgramTween = DOTween.Sequence().SetLink(gameObject);
-            ProgramCon.ProgramTween.Append(ProgramCon.CanvasGroup.DOFade(0f,0.25f));
+            await ProgramCon.ProgramTween.Append(ProgramCon.CanvasGroup.DOFade(0f,0.25f));
             await ProgramCon.ProgramTween.Insert(0.1f,Rect.Rect.DOSizeDelta(Vector2.zero, tweenDuration).
                 SetEase(tweenEase)).
                 ToUniTask(cancellationToken:destroyCancellationToken);
