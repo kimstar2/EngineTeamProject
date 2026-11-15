@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02409a638da79844b6d49891ccc6d72, type: 3}
+  m_Name: test
+  m_EditorClassIdentifier: Assembly-CSharp::FileData
+  FileName: "\uD30C\uC77C.lock"
+  UnlockedFileName: "\uD30C\uC77C.pdf"
+  Password: kth
+  IsLocked: 1
+  InsideFolder: {fileID: 11400000, guid: 0a61456131be82e4da7e4d9502cffde1, type: 2}
