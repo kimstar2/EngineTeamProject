@@ -1,26 +1,29 @@
+using Members.KJY.Scripts.Utils.Mono;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class SearchResult : MonoBehaviour
 {
-    private TMP_Text _title;
-    private TMP_Text _description;
-
-    private void Awake()
-    {
-        _title = transform.Find("Title").GetComponent<TMP_Text>();
-        _description = transform.Find("Description").GetComponent<TMP_Text>();
-    }
+    [SerializeField] private MonoTMP_UGUI _title;
+    [SerializeField] private MonoTMP_UGUI _description;
+    public event Action<SearchData> OnClicked;
+    private SearchData _searchData;
 
     public void SetData(SearchData data)
     {
-        _title.text = data.Title;
-        _description.text = data.Description;
+        _title.SetText(data.Title);
+        _description.SetText(data.Description);
     }
 
     public void SetEmpty()
     {
-        _title.text = "검색 결과가 없습니다.";
-        _description.text = "";
+        _title.SetText("검색 결과가 없습니다.");
+        _description.SetText("");
+    }
+
+    public void Clicked()
+    {
+        OnClicked?.Invoke(_searchData);
     }
 }

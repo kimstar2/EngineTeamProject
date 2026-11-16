@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _TevLib.Editor.PropertyAttribute;
 using _TevLib.ModuleSystem;
+using Assets.Members.KJY.Scripts.Program;
 using DG.Tweening;
 using Members.KJY.Scripts.Check;
 using Members.KJY.Scripts.Program.Entry;
@@ -39,7 +40,6 @@ namespace Members.KJY.Scripts.Program
         public IReadOnlyDictionary<ProgramState, ProgramSystemBase> ProgramReadonlyDict => _programDict;
         private readonly Dictionary<ProgramState, ProgramSystemBase> _programDict = new();
         
-        private List<ProgramSystems> _systems;
         private IProgramInit[] _programInits;
         
         public ProgramDragger ProgramDragger { get; private set; }
@@ -117,26 +117,8 @@ namespace Members.KJY.Scripts.Program
         public void MakeFunc(ProgramFunc func, ProgramEntry entry)
         {
             ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
-            CastAndSetData(f, entry);
+            ProgramCaster.CastAndSetData(f, entry);
             f.Init();
-        }
-        
-        private void CastAndSetData(ProgramFunc func, ProgramEntry entry)
-        {
-            switch (entry.BaseProgram)
-            {
-                case ProgramType.File:
-                    break;
-                case ProgramType.Internet:
-                    break;
-                case ProgramType.RecycleBin:
-                    break;
-                case ProgramType.Notepad:
-                    ((FuncNotePad)func).SetNotePadData((NotepadEntry)entry);
-                    break;
-                case ProgramType.Explore:
-                    break;
-            }
         }
         
         #endregion

@@ -7,7 +7,14 @@ public class SearchSystem : MonoBehaviour
     [SerializeField] private TMP_InputField _searchInput;
     [SerializeField] private SearchResult _resultPrefab;
     [SerializeField] private Transform _resultContent;
-    [SerializeField] private List<SearchData> _searchDatas;
+    private List<SearchData> _searchDatas;
+
+    public void SetSearchData(SearchData[] searchData)
+    {
+        _searchDatas.Clear();
+        foreach (SearchData data in searchData)
+            _searchDatas.Add(data);
+    }
 
     public void Search()
     {
