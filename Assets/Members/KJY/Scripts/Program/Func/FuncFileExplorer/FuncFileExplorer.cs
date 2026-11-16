@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program.Entry;
 using UnityEngine;
 using Application = Members.KJY.Scripts.Program.ApplicationSystem.Application;
 using NotImplementedException = System.NotImplementedException;
@@ -8,24 +9,24 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
 {
     public class FuncFileExplorer : ProgramFunc , IRequiredPooling
     {
-        [field:SerializeField] public FileSO FileData { get; private set; }
+        [field:SerializeField] public FileEntry FileData { get; private set; }
         [SerializeField] private FileCell fileCellPrefab;
         [SerializeField] private Application applicationPrefab;
         [SerializeField] private FileGroup fileGroup;
         private readonly List<FileCell> _fileList = new();
-        private readonly List<FileSO> _fileDataList = new();
+        private readonly List<FileEntry> _fileDataList = new();
 
-        public void SetFileData(FileSO fileData)
+        public void SetFileData(FileEntry fileData)
         {
             FileData = fileData;
         }
         
         public override void Init()
         {
-            fileGroup.MakeNew(FileData.FileName);
+            fileGroup.MakeNew(FileData.ProgramName);
             _fileDataList.Add(FileData);
             
-            foreach (FileSO fileData in FileData.FileList)
+            foreach (FileEntry fileData in FileData.FileList)
                 MakeFile(fileData);
             foreach (ProgramInfoSO programData in FileData.ProgramList)
                 MakeApp(programData);
@@ -43,12 +44,12 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
         public void MakeApp(ProgramInfoSO programData)
         {
             Application app = Instantiate(applicationPrefab, fileGroup.transform);
-            app.Init(programData);
+            app.Init(programData,FileData);
             
             fileGroup.AddCell(app);
         }
 
-        public void MakeFile(FileSO fileData)
+        public void MakeFile(FileEntry fileData)
         {
             FileCell file = Instantiate(fileCellPrefab, fileGroup.transform);
             file.Init(fileData);
@@ -59,11 +60,11 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             file.Opener.OnInFile += HandleInFile;
         }
 
-        private void HandleInFile(FileSO newFile)
+        private void HandleInFile(FileEntry newFile)
         {
             _fileDataList.Add(newFile);
-            fileGroup.MakeNew(newFile.FileName);
-            foreach (FileSO fileData in newFile.FileList)
+            fileGroup.MakeNew(newFile.ProgramName);
+            foreach (FileEntry fileData in newFile.FileList)
                 MakeFile(fileData);
             foreach (ProgramInfoSO programData in newFile.ProgramList)
                 MakeApp(programData);
@@ -77,7 +78,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             
             fileGroup.ClearCurrent();
             
-            foreach (FileSO fileData in _fileDataList[^1].FileList)
+            foreach (FileEntry fileData in _fileDataList[^1].FileList)
                 MakeFile(fileData);
             foreach (ProgramInfoSO programData in _fileDataList[^1].ProgramList)
                 MakeApp(programData);

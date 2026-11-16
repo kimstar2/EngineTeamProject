@@ -23,19 +23,37 @@ namespace Members.KJY.Scripts.Player
             PlayerSound = GetModule<PlayerSound>();
         }
 
+        private void Update()
+        {
+            bool on = false;
+            if (Keyboard.current.backspaceKey.wasPressedThisFrame)
+            {
+                PlayerSound.KeyBackSpaceBar();
+                on = true;
+            }
+
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                PlayerSound.KeySpaceBar();
+                on = true;
+            }
+            
+            if (on)
+                return;
+            
+            if (Keyboard.current.anyKey.wasPressedThisFrame)
+                PlayerSound.KeyEnter();
+        }
+
         private void OnEnable()
         {
             playerInputData.SetEnable();
             
-            playerInputData.OnAnyKeyPressed += PlayerSound.KeyEnter;
-            playerInputData.OnAnyKeyUnPressed += PlayerSound.KeyExit;
             playerInputData.OnAttackKeyPressed += PlayerSound.MouseClick;
         }
 
         private void OnDisable()
         {
-            playerInputData.OnAnyKeyPressed -= PlayerSound.KeyEnter;
-            playerInputData.OnAnyKeyUnPressed -= PlayerSound.KeyExit;
             playerInputData.OnAttackKeyPressed -= PlayerSound.MouseClick;
             
             playerInputData.SetDisable();

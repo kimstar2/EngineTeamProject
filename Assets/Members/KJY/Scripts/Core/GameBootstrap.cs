@@ -14,7 +14,6 @@ namespace Members.KJY.Scripts.Core
         [Header("Service Setting")]
         [SerializeField] private ProgramManager programManager;
         [SerializeField] private ApplicationManager applicationManager;
-        [SerializeField] private FileManager fileManager;
         [SerializeField] private TimeService timeService;
 
         [Header("Other Setting")]
@@ -23,15 +22,14 @@ namespace Members.KJY.Scripts.Core
         {
             ServiceLocator.RegisterService<IProgramManager>(programManager);
             ServiceLocator.RegisterService<IApplicationManager>(applicationManager);
-            ServiceLocator.RegisterService<IFileManager>(fileManager);
             ServiceLocator.RegisterService<ITimeService>(timeService);
             ServiceLocator.RegisterService<ITickService>(timeService);
         }
 
         private void Start()
         {
+            applicationManager.Init();
             applicationManager.MakeDefaults();
-            fileManager.MakeDefaults();
             Application.targetFrameRate = startFrameRate;
         }
 

@@ -5,6 +5,7 @@ using _TevLib.Editor.PropertyAttribute;
 using _TevLib.ModuleSystem;
 using DG.Tweening;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Program.Func;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
@@ -74,11 +75,11 @@ namespace Members.KJY.Scripts.Program
             ProgramDragger.OnBeginDragging -= HandleBeginDragging;
         }
 
-        public void Init(MonoRect parentRect,ProgramInfoSO programInfo,ProgramBar programBar)
+        public void Init(MonoRect parentRect,ProgramInfoSO programInfo,ProgramBar programBar, ProgramEntry entry)
         {
             ProgramData programData = new ProgramData(parentRect,ProgramRect, gameObject, programInfo);
             foreach (ProgramFunc func in programInfo.FuncPrefabs)
-                MakeFunc(func);
+                MakeFunc(func,entry);
             ProgramControllerBarDataBinder.SetData(programInfo);
             ProgramDataBinder.SetData(programInfo);
             
@@ -113,10 +114,29 @@ namespace Members.KJY.Scripts.Program
         public void SetLastSize(Vector2 size) => LastSize = size;
         public void OnClosing() => IsClosing = true;
         
-        public void MakeFunc(ProgramFunc func)
+        public void MakeFunc(ProgramFunc func, ProgramEntry entry)
         {
             ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
+            CastAndSetData(f, entry);
             f.Init();
+        }
+        
+        private void CastAndSetData(ProgramFunc func, ProgramEntry entry)
+        {
+            switch (entry.BaseProgram)
+            {
+                case ProgramType.File:
+                    break;
+                case ProgramType.Internet:
+                    break;
+                case ProgramType.RecycleBin:
+                    break;
+                case ProgramType.Notepad:
+                    ((FuncNotePad)func).SetNotePadData((NotepadEntry)entry);
+                    break;
+                case ProgramType.Explore:
+                    break;
+            }
         }
         
         #endregion

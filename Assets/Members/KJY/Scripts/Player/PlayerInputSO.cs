@@ -21,9 +21,7 @@ namespace Members.KJY.Scripts.Player
         
         public void SetDisable() => _controls?.Player.Disable();
         
-        public event Action OnAnyKeyPressed;
         public event Action OnAttackKeyPressed;
-        public event Action OnAnyKeyUnPressed;
         public void OnMove(InputAction.CallbackContext context) { }
 
         public void OnLook(InputAction.CallbackContext context) { }
@@ -38,20 +36,10 @@ namespace Members.KJY.Scripts.Player
 
         public void OnCrouch(InputAction.CallbackContext context) { }
 
-        public void OnJump(InputAction.CallbackContext context) { }
-
         public void OnPrevious(InputAction.CallbackContext context) { }
 
         public void OnNext(InputAction.CallbackContext context) { }
 
         public void OnSprint(InputAction.CallbackContext context) { }
-
-        public void OnAnykey(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-                OnAnyKeyPressed?.Invoke();
-            if (context.canceled)
-                OnAnyKeyUnPressed?.Invoke();
-        }
     }
 }

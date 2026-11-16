@@ -1,9 +1,10 @@
-﻿using Members.KJY.Scripts.Program.Func.FuncFileExplorer;
+﻿using Members.KJY.Scripts.Program.Entry;
+using Members.KJY.Scripts.Program.Func.FuncFileExplorer;
 
 namespace Members.KJY.Scripts.Core.Services
 {
     public interface IFileManager
     {
-        void MakeFile(FileSO fileData);
+        void MakeFile(FileEntry fileEntry);
     }
 }

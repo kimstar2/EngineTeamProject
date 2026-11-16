@@ -10,9 +10,11 @@ namespace Members.KJY.Scripts.Player
 {
     public class PlayerSound : MonoModule
     {
-        [SerializeField] private SoundClipSO mouseClickSound;
+        [SerializeField] private SoundClipSO[] mouseClickSound;
         [SerializeField] private SoundClipSO[] keyEnterSound;
-        [SerializeField] private SoundClipSO[] keyExitSound;
+        [SerializeField] private SoundClipSO[] keySpaceBarSound;
+        [SerializeField] private SoundClipSO[] keyBackSpaceSound;
+        
         private IAudioService _audioService;
 
         private void Start()
@@ -22,16 +24,21 @@ namespace Members.KJY.Scripts.Player
 
         public void MouseClick()
         {
-            _audioService.PlaySfx(mouseClickSound);
+            _audioService.PlaySfx(mouseClickSound.AllRandom());
         }
-        
+
         public void KeyEnter()
         {
             _audioService.PlaySfx(keyEnterSound.AllRandom());
         }   
-        public void KeyExit()
+        public void KeySpaceBar()
         {
-            // _audioService.PlaySfx(keyExitSound.AllRandom());
+            _audioService.PlaySfx(keySpaceBarSound.AllRandom());
+        }
+
+        public void KeyBackSpaceBar()
+        {
+            _audioService.PlaySfx(keyBackSpaceSound.AllRandom());
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using _TevLib.ModuleSystem;
+﻿using System.Collections.Generic;
+using _TevLib.ModuleSystem;
+using Members.KJY.Scripts.Program.Entry;
+using Members.KJY.Scripts.Program.Func;
+using UnityEngine;
 
 namespace Members.KJY.Scripts.Program.ApplicationSystem
 {
@@ -16,12 +20,19 @@ namespace Members.KJY.Scripts.Program.ApplicationSystem
             Opener = GetModule<ApplicationOpener>();
         }
 
-        public void Init(ProgramInfoSO info)
+        public void Init(ProgramInfoSO info, ProgramEntry entry)
         {
-            ProgramInfo = info;
+            ProgramInfo = Instantiate(info);
 
-            DataBinder.Init(ProgramInfo);
-            Opener.Init(ProgramInfo);
+            DataBinder.Init(ProgramInfo, entry);
+            Opener.Init(ProgramInfo,entry);
+        }
+
+        public void SetFunc(List<ProgramFunc> funcList)
+        {
+            ProgramInfo.FuncPrefabs.Clear();
+            foreach (ProgramFunc func in funcList)
+                ProgramInfo.AddFunc(func);
         }
     }
 }

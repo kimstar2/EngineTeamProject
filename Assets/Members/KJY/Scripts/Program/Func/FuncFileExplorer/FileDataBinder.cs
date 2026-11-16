@@ -1,4 +1,5 @@
 ﻿using _TevLib.ModuleSystem;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Utils.Mono;
 using UnityEngine;
 
@@ -8,9 +9,9 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
     {
         [SerializeField] private MonoTMP_UGUI fileName;
         
-        public void Init(FileSO programInfo)
+        public void Init(FileEntry fileEntry)
         {
-            fileName.SetText(programInfo.FileName);
+            fileName.SetText(fileEntry.ProgramName);
         }
     }
 }

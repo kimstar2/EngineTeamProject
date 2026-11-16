@@ -145,10 +145,7 @@ MonoBehaviour:
   parentTransform: {fileID: 0}
   applicationPrefab: {fileID: 6813303613256051615, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
   defaultApplications:
-  - {fileID: 11400000, guid: caa3b775725b823408ec205a184f5b53, type: 2}
-  - {fileID: 11400000, guid: 1498e64a538221c438c2d04b0499d368, type: 2}
-  - {fileID: 11400000, guid: 26210573a8a7ed24dbfac1f3554c5d0a, type: 2}
-  - {fileID: 11400000, guid: c533a018bd138e7498bb872cb79027d6, type: 2}
+  - {fileID: 11400000, guid: ba242f96360cbd94997e60a37d9af5aa, type: 2}
 --- !u!1 &1704304029210197666
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +320,57 @@ MonoBehaviour:
   applicationManager: {fileID: 3121034285775521494}
   fileManager: {fileID: 8021808112749618868}
   timeService: {fileID: 8013045370650732783}
-  startFrameRate: 45
+  startFrameRate: 60
+--- !u!1 &5424063559588928370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7594274748457786680}
+  - component: {fileID: 4512402411691323775}
+  m_Layer: 0
+  m_Name: PlayerSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7594274748457786680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424063559588928370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7499477751726610334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4512402411691323775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424063559588928370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9022c0b979d24737a2d726f7d6340c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Player.PlayerSound
+  mouseClickSound: {fileID: 11400000, guid: ad454fe2147b9854199b384c3d8b6fa9, type: 2}
+  keyEnterSound:
+  - {fileID: 11400000, guid: 170eb14712ec33342af690b77fdf2e6f, type: 2}
+  - {fileID: 11400000, guid: a46d5bf2885fd164f828155a239d72e9, type: 2}
+  - {fileID: 11400000, guid: fe6f53bd595afb142a682308b19b181f, type: 2}
+  keyExitSound: []
 --- !u!1 &5546214111533302216
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +558,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7594274748457786680}
   m_Father: {fileID: 6113248029962833208}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &864017662630829909
@@ -526,8 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc16e86adf1996a47861f8826f18e126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  mouseClickSound: {fileID: 11400000, guid: ad454fe2147b9854199b384c3d8b6fa9, type: 2}
-  keyboardSound: {fileID: 0}
+  playerInputData: {fileID: 11400000, guid: 7f563323b17603b4e9f9dbaf6650bcfc, type: 2}
 --- !u!1 &7070183978419265901
 GameObject:
   m_ObjectHideFlags: 0
