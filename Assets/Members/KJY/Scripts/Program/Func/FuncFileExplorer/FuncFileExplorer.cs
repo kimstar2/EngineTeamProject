@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using _TevLib.ServiceLocatorSystem;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Core.Services;
 using Members.KJY.Scripts.Program.Entry;
 using UnityEngine;
+using UnityEngine.Android;
 using Application = Members.KJY.Scripts.Program.ApplicationSystem.Application;
 using NotImplementedException = System.NotImplementedException;
 
@@ -16,6 +19,8 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
         private readonly List<FileCell> _fileList = new();
         private readonly List<FileEntry> _fileDataList = new();
 
+        private IApplicationManager _appManager;
+
         public void SetFileData(FileEntry fileData)
         {
             FileData = fileData;
@@ -23,12 +28,14 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
         
         public override void Init()
         {
+            _appManager = ServiceLocator.GetService<IApplicationManager>();
+            
             fileGroup.MakeNew(FileData.ProgramName);
             _fileDataList.Add(FileData);
             
             foreach (FileEntry fileData in FileData.FileList)
                 MakeFile(fileData);
-            foreach (ProgramInfoSO programData in FileData.ProgramList)
+            foreach (ProgramEntry programData in FileData.ProgramList)
                 MakeApp(programData);
         }
 
@@ -41,11 +48,12 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             fileGroup.PathBar.OnRemake -= Remake;
         }
 
-        public void MakeApp(ProgramInfoSO programData)
+        public void MakeApp(ProgramEntry programData)
         {
+            if (!_appManager.ProgramDict.TryGetValue(programData.BaseProgram, out ProgramInfoSO info))
+                return;
             Application app = Instantiate(applicationPrefab, fileGroup.transform);
-            app.Init(programData,FileData);
-            
+            app.Init(info,programData);
             fileGroup.AddCell(app);
         }
 
@@ -66,7 +74,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             fileGroup.MakeNew(newFile.ProgramName);
             foreach (FileEntry fileData in newFile.FileList)
                 MakeFile(fileData);
-            foreach (ProgramInfoSO programData in newFile.ProgramList)
+            foreach (ProgramEntry programData in newFile.ProgramList)
                 MakeApp(programData);
         }
 
@@ -80,7 +88,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             
             foreach (FileEntry fileData in _fileDataList[^1].FileList)
                 MakeFile(fileData);
-            foreach (ProgramInfoSO programData in _fileDataList[^1].ProgramList)
+            foreach (ProgramEntry programData in _fileDataList[^1].ProgramList)
                 MakeApp(programData);
         }
         

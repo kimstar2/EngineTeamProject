@@ -37,7 +37,6 @@ namespace Members.KJY.Scripts.Core
         {
             ServiceLocator.UnregisterService<IProgramManager>();
             ServiceLocator.UnregisterService<IApplicationManager>();
-            ServiceLocator.UnregisterService<IFileManager>();
             ServiceLocator.UnregisterService<ITimeService>();
             ServiceLocator.UnregisterService<ITickService>();
         }

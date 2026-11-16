@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f61bf4919204053ba67b9ded13de142, type: 3}
   m_Name: In 5
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileSO
-  <FileName>k__BackingField: In5
+  <BaseProgram>k__BackingField: 0
+  <ProgramName>k__BackingField: qwer
   <FileList>k__BackingField: []
-  <ProgramList>k__BackingField: []
+  <ProgramList>k__BackingField:
+  - {fileID: 11400000, guid: 8624ac96f586a8e42bcf5c98369c53d4, type: 2}
+  - {fileID: 11400000, guid: 63793a067c4cfa448a5f358c720e9843, type: 2}

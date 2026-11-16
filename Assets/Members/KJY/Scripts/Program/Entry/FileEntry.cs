@@ -7,6 +7,6 @@ namespace Members.KJY.Scripts.Program.Entry
     public class FileEntry : ProgramEntry
     {
         [field:SerializeField] public List<FileEntry> FileList { get; private set; }
-        [field:SerializeField] public List<ProgramInfoSO> ProgramList { get; private set; }
+        [field:SerializeField] public List<ProgramEntry> ProgramList { get; private set; }
     }
 }

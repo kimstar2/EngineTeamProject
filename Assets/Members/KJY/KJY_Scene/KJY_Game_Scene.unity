@@ -851,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 3233969027363277380, guid: 7c25f06c8dbcd1644a22a9d6cf5ba430, type: 3}
     - target: {fileID: 3121034285775521494, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
       propertyPath: defaultEntryList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3121034285775521494, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
       propertyPath: defaultApplications.Array.size
@@ -869,6 +869,10 @@ PrefabInstance:
       propertyPath: 'defaultEntryList.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: bccf0182ddb720f48b5300bba3512061, type: 2}
+    - target: {fileID: 3121034285775521494, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
+      propertyPath: 'defaultEntryList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8624ac96f586a8e42bcf5c98369c53d4, type: 2}
     - target: {fileID: 3121034285775521494, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
       propertyPath: 'defaultApplications.Array.data[1]'
       value: 

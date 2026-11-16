@@ -1,4 +1,5 @@
-﻿using Members.KJY.Scripts.Program;
+﻿using System.Collections.Generic;
+using Members.KJY.Scripts.Program;
 using Members.KJY.Scripts.Program.Entry;
 
 namespace Members.KJY.Scripts.Core.Services
@@ -7,5 +8,6 @@ namespace Members.KJY.Scripts.Core.Services
     {
         void UnClick();
         void Make(ProgramInfoSO info, ProgramEntry entry);
+        public IReadOnlyDictionary<ProgramType, ProgramInfoSO> ProgramDict { get; }
     }
 }

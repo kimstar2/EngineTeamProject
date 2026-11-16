@@ -21,9 +21,10 @@ namespace Members.KJY.Scripts.Core.Services
         [SerializeField] private List<ProgramEntry> defaultEntryList = new List<ProgramEntry>();
         [SerializeField] private ProgramListSO applicationList;
         private readonly List<AbstractOpener> _applicationList  = new();
-        private readonly Dictionary<ProgramType, ProgramInfoSO> _programDict = new();
         private AbstractOpener _currentApplication;
 
+        private readonly Dictionary<ProgramType, ProgramInfoSO> _programDict = new();
+        public IReadOnlyDictionary<ProgramType, ProgramInfoSO> ProgramDict => _programDict;
         
         [Header("File Setting")]
         [HorizontalLine(color: EColor.Gray)]
