@@ -12,6 +12,7 @@ public class SearchResult : MonoBehaviour
 
     public void SetData(SearchData data)
     {
+        _searchData = data;
         _title.SetText(data.Title);
         _description.SetText(data.Description);
     }
