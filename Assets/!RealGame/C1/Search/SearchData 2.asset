@@ -18,3 +18,4 @@ MonoBehaviour:
   Description: "\uACBD\uAE30\uB3C4 \uC548\uC591\uC2DC\uC5D0 \uC18C\uC7AC\uD574\uC788\uB294
     \uACBD\uAE30\uAC8C\uC784\uB9C8\uC774\uC2A4\uD130\uACE0\uB4F1\uD559\uAD50 \uAC24\uB7EC\uB9AC
     \uC785\uB2C8\uB2E4. "
+  openWebsite: {fileID: 3419308037116551506, guid: 94b14676effe6dd41a49151081d88dcd, type: 3}

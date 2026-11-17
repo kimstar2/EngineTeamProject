@@ -45,6 +45,7 @@ public class FileOpen : MonoBehaviour
             _fileViewer.SelectFile(_fileData, this);
             return;
         }
+
     }
     public void RefreshName()
     {

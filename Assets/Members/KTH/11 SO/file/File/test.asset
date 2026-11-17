@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FileData
   FileName: "\uD30C\uC77C.lock"
   UnlockedFileName: "\uD30C\uC77C.pdf"
-  Password: kth
+  Password: "\uBE44\uBC00\uBC88\uD638"
   IsLocked: 1
   InsideFolder: {fileID: 11400000, guid: 0a61456131be82e4da7e4d9502cffde1, type: 2}

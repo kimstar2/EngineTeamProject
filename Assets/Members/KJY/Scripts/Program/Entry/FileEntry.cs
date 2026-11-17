@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Members.KJY.Scripts.Program.Entry
 {
-    [CreateAssetMenu(fileName = "File Data", menuName = "KJY/Program/Func/File Data", order = 0)]
+    [CreateAssetMenu(fileName = "File Entry", menuName = "KJY/Program/Program Entry/File Entry", order = 0)]
     public class FileEntry : ProgramEntry
     {
         [field:SerializeField] public List<FileEntry> FileList { get; private set; }

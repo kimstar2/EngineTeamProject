@@ -251,6 +251,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135587748}
   m_CullTransparentMesh: 1
+--- !u!1 &310529657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3581262064230700970, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+  m_PrefabInstance: {fileID: 1405639620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &417310393
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,8 +743,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''Kimjunyung secret.file.xlsx" is protected'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
+  m_sharedMaterial: {fileID: -3259779781579491864, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1529,8 +1534,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
+  m_sharedMaterial: {fileID: -3259779781579491864, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2060,7 +2065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &983000302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2137,6 +2142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PasswordWindow
   _passwordInput: {fileID: 2032182665}
   _errorText: {fileID: 1596164838}
+  _title: {fileID: 622112214}
   _confirmButton: {fileID: 1352710841}
   _cancelButton: {fileID: 1036630672}
 --- !u!224 &1017740179 stripped
@@ -2745,7 +2751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1308127796
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2897,13 +2903,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1308127796}
     m_Modifications:
+    - target: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      propertyPath: _fileData
+      value: 
+      objectReference: {fileID: 11400000, guid: 15f31c267f5e0b2498c0a4ac4cd8563e, type: 2}
+    - target: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      propertyPath: _fileViewer
+      value: 
+      objectReference: {fileID: 2056461019}
     - target: {fileID: 3581262064230700970, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_Name
       value: File
       objectReference: {fileID: 0}
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2912,10 +2926,16 @@ PrefabInstance:
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1696532151}
+      objectReference: {fileID: 310529657}
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181233745447338356, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      propertyPath: m_text
+      value: '
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 9078359649028426008, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_Pivot.x
@@ -3224,8 +3244,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
+  m_sharedMaterial: {fileID: -3259779781579491864, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3361,8 +3381,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: OK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
+  m_sharedMaterial: {fileID: -3259779781579491864, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3597,11 +3617,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615076027}
   m_CullTransparentMesh: 1
---- !u!1 &1696532151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5699774816165807217, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
-  m_PrefabInstance: {fileID: 1405639620}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1705799139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4017,8 +4032,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter password
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
+  m_sharedMaterial: {fileID: -3259779781579491864, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4225,7 +4240,7 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: 5db998fb7ddd413468922c0c8b6422b9, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_KeepTextSelectionVisible: 0
@@ -4425,8 +4440,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cancel
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5004525f5b3af7343b38192bea740dfc, type: 2}
+  m_sharedMaterial: {fileID: 8168486620057760850, guid: 5004525f5b3af7343b38192bea740dfc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

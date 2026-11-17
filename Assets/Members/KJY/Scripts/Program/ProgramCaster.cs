@@ -1,6 +1,8 @@
-﻿using Members.KJY.Scripts.Program;
+﻿using Assets.Members.KJY.Scripts.Program.Entry;
+using Members.KJY.Scripts.Program;
 using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Program.Func;
+using Members.KJY.Scripts.Program.Func.FuncInternet;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +19,7 @@ namespace Assets.Members.KJY.Scripts.Program
                 case ProgramType.File:
                     break;
                 case ProgramType.Internet:
+                    ((FuncInternet)func).SearchSystem.SetSearchData((InternetEntry)entry);
                     break;
                 case ProgramType.RecycleBin:
                     break;

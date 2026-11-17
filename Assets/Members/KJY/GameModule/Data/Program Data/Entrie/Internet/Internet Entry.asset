@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024a4826c76da1c40971ce1eb1171983, type: 3}
+  m_Name: Internet Entry
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Members.KJY.Scripts.Program.Entry.InternetEntry
+  <BaseProgram>k__BackingField: 1
+  <ProgramName>k__BackingField: Internet
+  <SearchList>k__BackingField:
+  - {fileID: 11400000, guid: 347bb70765a23a74fb6f235406d4facc, type: 2}
+  - {fileID: 11400000, guid: 25c3ff5a09527a24a8d8fd418806144b, type: 2}
+  - {fileID: 11400000, guid: 3d5653861e2d6864585d0f689af5c7dd, type: 2}
