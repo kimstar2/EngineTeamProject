@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fead46c2c0b14a29850d4ca877cdaa02, type: 3}
-  m_Name: Key_BackSpace
+  m_Name: Key_Enter
   m_EditorClassIdentifier: SoundSystem_assembly::_TevLib.SoundSystem.Runtime.SoundClipSO
   audioType: 0
   clip: {fileID: 8300000, guid: b54d8925e65321240ae78390b4a96f99, type: 3}
   isLoop: 0
   randomizePitch: 1
-  randomPitchModifier: 0.5
-  volume: 1
-  pitch: 2
+  randomPitchModifier: 0.25
+  volume: 0.5
+  pitch: 0.85
   startTime: 0.032497916
-  endTime: 0.13249792
+  endTime: 0.18731518

@@ -17,7 +17,7 @@ MonoBehaviour:
   isLoop: 0
   randomizePitch: 0
   randomPitchModifier: 0.15
-  volume: 0.25
+  volume: 0.125
   pitch: 0.7
   startTime: 0.12097499
-  endTime: 0.38125455
+  endTime: 0.28819466

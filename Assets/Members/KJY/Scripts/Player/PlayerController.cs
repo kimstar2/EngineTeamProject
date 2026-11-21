@@ -1,10 +1,11 @@
-using System;
 using _TevLib.ModuleSystem;
 using _TevLib.ServiceLocatorSystem;
 using _TevLib.ServiceLocatorSystem.AudioService;
 using _TevLib.SoundSystem.Runtime;
 using Members.KJY.Scripts.Utils;
+using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 
@@ -37,12 +38,25 @@ namespace Members.KJY.Scripts.Player
                 PlayerSound.KeySpaceBar();
                 on = true;
             }
-            
+
+            if (Keyboard.current.enterKey.wasPressedThisFrame)
+            {
+                PlayerSound.KeyEnter();
+                on = true;
+            }
+
             if (on)
                 return;
-            
-            if (Keyboard.current.anyKey.wasPressedThisFrame)
-                PlayerSound.KeyEnter();
+
+            var keyboard = Keyboard.current;
+            if (keyboard == null)
+                return;
+
+            foreach (var key in keyboard.allKeys)
+            {
+                if (key.wasPressedThisFrame)
+                    PlayerSound.AnyKey();
+            }
         }
 
         private void OnEnable()
