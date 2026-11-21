@@ -23,6 +23,7 @@ namespace Members.KJY.Scripts.Program
         public UnityEvent onClickedExit;
         
         public event Action<AbstractOpener> OnClicked;
+        public event Action OnOpened;
         
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -31,6 +32,7 @@ namespace Members.KJY.Scripts.Program
             _isClicked = true;
             if (CanOpen)
             {
+                OnOpened?.Invoke();
                 OpenProgram();
                 return;
             }

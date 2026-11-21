@@ -13,7 +13,7 @@ public class SearchSystem : MonoBehaviour
     private List<SearchData> _searchDatas = new();
     private List<SearchResult> searchResults = new();
 
-    public void SetSearchData(InternetEntry Internetentry)
+    public void SetInternetData(InternetEntry Internetentry)
     {
         _searchDatas.Clear();
         foreach (SearchData data in Internetentry.SearchList)

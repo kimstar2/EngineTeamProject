@@ -59,6 +59,7 @@ namespace Members.KJY.Scripts.Core.Services
         public void Make(ProgramInfoSO info , ProgramEntry entry)
         {
             Application application = Instantiate(applicationPrefab, parentTransform);
+            application.name = entry.name;
             application.Init(info, entry);
             application.Opener.OnClicked -= HandleClick;
             application.Opener.OnClicked += HandleClick;
@@ -74,7 +75,7 @@ namespace Members.KJY.Scripts.Core.Services
             realInfo.SetName(fileEntry.ProgramName);
             realInfo.AddFunc(explorer);
                 
-            ServiceLocator.GetService<IApplicationManager>().Make(realInfo , fileEntry);
+            Make(realInfo , fileEntry);
         }
 
         

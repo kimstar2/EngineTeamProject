@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using _TevLib.CoreLib;
+using _TevLib.CoreLib.EventSystem;
 using Members.KJY.Scripts.Check;
 using Members.KJY.Scripts.Program;
 using Members.KJY.Scripts.Program.Entry;
+using Members.KJY.Scripts.Program.Error;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +25,11 @@ namespace Members.KJY.Scripts.Core.Services
         [SerializeField] private MonoRect programControllerParent;
         [SerializeField] private Transform programBarParent;
         [SerializeField] private ProgramInfoSO testProgramData;
+
+        [Header("Error Setting")] 
+        [HorizontalLine(color: EColor.Gray)]
+        [SerializeField] private EventChannelSO eventChannel;
+        [SerializeField] private ProgramInfoSO errorMessage;
         
         private readonly NotifyValue<ProgramController> _crtPCon = new();
         private readonly Dictionary<ProgramController, ProgramBar> _programChain = new();
@@ -30,10 +38,26 @@ namespace Members.KJY.Scripts.Core.Services
         
         private bool _dontSetNext;
 
-        private void Awake() => _crtPCon.OnValueChanged += HandlePConChanged;
-        private void OnDestroy() => _crtPCon.OnValueChanged -= HandlePConChanged;
+        private void Awake()
+        {
+            _crtPCon.OnValueChanged += HandlePConChanged;
+            eventChannel.AddListener<OnError>(HandleError);
+        }
 
-        
+        private void HandleError(OnError errorEvt)
+        {
+            ErrorEntry error =ScriptableObject.CreateInstance<ErrorEntry>();
+            error.SetErrorMessage(errorEvt.ErrorMessage);
+            MakeChain(errorMessage,error);
+        }
+
+        private void OnDestroy()
+        {
+            _crtPCon.OnValueChanged -= HandlePConChanged;
+            eventChannel.RemoveListener<OnError>(HandleError);
+        }
+
+
         private void Update()
         {
             if (Keyboard.current[testKey].wasPressedThisFrame)

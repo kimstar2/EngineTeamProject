@@ -303,6 +303,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  checkPassword: {fileID: 11400000, guid: 539ff24c26fed3641b402e77f0fe98fd, type: 2}
 --- !u!114 &4867422278200008911 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6960903317804492673, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}

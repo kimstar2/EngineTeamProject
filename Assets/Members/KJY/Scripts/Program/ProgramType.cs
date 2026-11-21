@@ -6,6 +6,8 @@
         Internet,
         RecycleBin,
         Notepad,
-        Explore
+        Explore,
+        FilePassword,
+        Error
     }
 }

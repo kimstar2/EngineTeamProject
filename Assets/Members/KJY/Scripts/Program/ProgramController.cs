@@ -78,6 +78,15 @@ namespace Members.KJY.Scripts.Program
         public void Init(MonoRect parentRect,ProgramInfoSO programInfo,ProgramBar programBar, ProgramEntry entry)
         {
             ProgramData programData = new ProgramData(parentRect,ProgramRect, gameObject, programInfo);
+            
+            foreach (ProgramSystems system in programInfo.ProgramSystems)
+            {
+                var programSystemBase = Instantiate(system.System.Program, ProgramParent);
+                programSystemBase.Initialize(this, programData);
+                SystemStateMachine.AddState(system.ProgramState, programSystemBase);
+                _programDict.Add(system.ProgramState,programSystemBase); 
+                
+            }
             foreach (ProgramFunc func in programInfo.FuncPrefabs)
                 MakeFunc(func,entry);
             ProgramControllerBarDataBinder.SetData(programInfo);
@@ -88,13 +97,6 @@ namespace Members.KJY.Scripts.Program
 
             SystemStateMachine.Init(programData);
             
-            foreach (ProgramSystems system in programInfo.ProgramSystems)
-            {
-                var programSystemBase = Instantiate(system.System.Program, ProgramParent);
-                programSystemBase.Initialize(this, programData);
-                SystemStateMachine.AddState(system.ProgramState, programSystemBase);
-                _programDict.Add(system.ProgramState,programSystemBase); 
-            }
             foreach (IProgramInit programInit in _programInits) 
                 programInit.ProgramInit(programData);
             
@@ -117,7 +119,7 @@ namespace Members.KJY.Scripts.Program
         public void MakeFunc(ProgramFunc func, ProgramEntry entry)
         {
             ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
-            ProgramCaster.CastAndSetData(f, entry);
+            ProgramCaster.CastAndSetData(f, entry, this);
             f.Init();
         }
         

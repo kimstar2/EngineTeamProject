@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: In 3
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileSO
   <BaseProgram>k__BackingField: 0
-  <ProgramName>k__BackingField: qwer
+  <ProgramName>k__BackingField: 1
   <FileList>k__BackingField:
   - {fileID: 11400000, guid: a324896261cd4244d8f66c9a6b7bea42, type: 2}
   <ProgramList>k__BackingField: []
+  <IsLocked>k__BackingField: 1
+  <Password>k__BackingField: "\uB315\uAE30"

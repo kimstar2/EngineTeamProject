@@ -33,7 +33,7 @@ namespace Members.KJY.Scripts.Program.Func
         }
         private float FSize => _crtFontSize.Value; // FontSize
 
-        public void SetNotePadData(NotepadEntry data)
+        public void SetNotePadEntry(NotepadEntry data)
         {
             _notePadData = data.NotepadData;
         }

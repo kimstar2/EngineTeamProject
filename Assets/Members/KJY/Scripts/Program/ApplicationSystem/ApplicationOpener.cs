@@ -27,6 +27,7 @@ namespace Members.KJY.Scripts.Program.ApplicationSystem
         
         public override void OpenProgram()
         {
+            
             CanOpen = false;
             _programManager.MakeChain(_programInfo , _programEntry);
         }
