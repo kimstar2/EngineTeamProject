@@ -1,39 +1,33 @@
+
 using UnityEngine;
+using Members.KJY.Scripts.Program.Entry;
 
 public class FileViewer : MonoBehaviour
 {
     [SerializeField] private Transform _fileContent;
     [SerializeField] private FileOpen _filePrefab;
     [SerializeField] private PasswordWindow _passwordWindow;
-
     [SerializeField] private GameObject _viewerPanel;
 
-    public void OpenFile(FileData file)
+    public void OpenFile(FileEntry file)
     {
-        if (file.InsideFolder == null)
-        {
-            return;
-        }
-
         _viewerPanel.SetActive(true);
-        ShowFolder(file.InsideFolder);
+        ShowFolder(file);
     }
 
-    private void ShowFolder(FolderData folder)
+    private void ShowFolder(FileEntry folder)
     {
         foreach (Transform child in _fileContent)
-        {
             Destroy(child.gameObject);
-        }
 
-        foreach (FileData file in folder.Files)
+        foreach (FileEntry file in folder.FileList)
         {
             FileOpen fileOpen = Instantiate(_filePrefab, _fileContent);
             fileOpen.SetData(file, selectedFile => SelectFile(selectedFile, fileOpen));
         }
     }
 
-    public void SelectFile(FileData file, FileOpen fileOpen)
+    public void SelectFile(FileEntry file, FileOpen fileOpen)
     {
         if (file.IsLocked)
         {
@@ -42,20 +36,18 @@ public class FileViewer : MonoBehaviour
                 fileOpen.RefreshName();
                 OpenFile(unlockedFile);
             });
-
             return;
         }
 
         OpenFile(file);
     }
 
-    private void OpenUnlockedFile(FileData file)
-    {
-        OpenFile(file);
-    }
-
     public void CloseViewer()
     {
         _viewerPanel.SetActive(false);
+    }
+    public PasswordWindow GetPasswordWindow()
+    {
+        return _passwordWindow;
     }
 }
