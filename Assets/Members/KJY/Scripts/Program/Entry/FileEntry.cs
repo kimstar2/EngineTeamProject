@@ -8,5 +8,18 @@ namespace Members.KJY.Scripts.Program.Entry
     {
         [field:SerializeField] public List<FileEntry> FileList { get; private set; }
         [field:SerializeField] public List<ProgramEntry> ProgramList { get; private set; }
+
+        [field: SerializeField] public bool IsLocked { get; private set; }
+        [field: SerializeField] public string Password { get; private set; }
+
+        public bool CheckPassword(string input)
+        {
+            return Password == input;
+        }
+
+        public void Unlock()
+        {
+            IsLocked = false;
+        }
     }
 }

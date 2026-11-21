@@ -1,53 +1,69 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Members.KJY.Scripts.Program.Entry;
+using Members.KJY.Scripts.Program.Func.FuncFileExplorer;
 
 public class FileOpen : MonoBehaviour
 {
     [SerializeField] private TMP_Text _fileName;
-    [SerializeField] private Button _button;
-    [SerializeField] private FileData _fileData;
+    [SerializeField] private FileEntry _fileData;
     [SerializeField] private FileViewer _fileViewer;
 
-    private Action<FileData> _onClick;
+    private FileOpener _fileOpener;
+    private Action<FileEntry> _onClick;
 
     private void Awake()
     {
-        _button.onClick.AddListener(OnClick);
-    }
+        _fileOpener = GetComponentInChildren<FileOpener>();
 
-    private void Start()
-    {
         if (_fileData != null)
         {
-            _fileName.text = string.IsNullOrEmpty(_fileData.UnlockedFileName) ? _fileData.FileName : (_fileData.IsLocked ? _fileData.FileName : _fileData.UnlockedFileName);
+            _fileName.SetText(_fileData.ProgramName);
+            SetupOpener();
         }
     }
 
-    public void SetData(FileData data, Action<FileData> onClick)
+    public void SetData(FileEntry data, Action<FileEntry> onClick)
     {
         _fileData = data;
         _onClick = onClick;
-        _fileName.text = data.IsLocked ? data.FileName : (string.IsNullOrEmpty(data.UnlockedFileName) ? data.FileName : data.UnlockedFileName);
+        _fileName.SetText(data.ProgramName);
+        SetupOpener();
     }
 
-    private void OnClick()
+    private void SetupOpener()
+    {
+        if (_fileOpener == null)
+            _fileOpener = GetComponentInChildren<FileOpener>();
+
+        if (_fileOpener == null)
+        {
+            return;
+        }
+
+        _fileOpener.OnInFile -= HandleOpen;
+        _fileOpener.Init(_fileData, _fileViewer.GetPasswordWindow());
+        _fileOpener.OnInFile += HandleOpen;
+    }
+
+    private void HandleOpen(FileEntry file)
     {
         if (_onClick != null)
-        {
-            _onClick.Invoke(_fileData);
-            return;
-        }
-
-        if (_fileData != null && _fileViewer != null)
-        {
-            _fileViewer.SelectFile(_fileData, this);
-            return;
-        }
+            _onClick.Invoke(file);
+        else
+            _fileViewer.SelectFile(file, this);
     }
+
     public void RefreshName()
     {
-        _fileName.text = _fileData.IsLocked || string.IsNullOrEmpty(_fileData.UnlockedFileName) ? _fileData.FileName : _fileData.UnlockedFileName;
+        if (_fileData != null)
+            _fileName.SetText(_fileData.ProgramName);
+    }
+
+    private void OnDestroy()
+    {
+        if (_fileOpener != null)
+            _fileOpener.OnInFile -= HandleOpen;
     }
 }
