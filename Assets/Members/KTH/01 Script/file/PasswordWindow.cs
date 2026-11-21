@@ -1,7 +1,9 @@
+
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Members.KJY.Scripts.Program.Entry;
 
 public class PasswordWindow : MonoBehaviour
 {
@@ -11,8 +13,8 @@ public class PasswordWindow : MonoBehaviour
     [SerializeField] private Button _confirmButton;
     [SerializeField] private Button _cancelButton;
 
-    private FileData _currentFile;
-    private Action<FileData> _onSuccess;
+    private FileEntry _currentFile;
+    private Action<FileEntry> _onSuccess;
 
     private void Awake()
     {
@@ -20,14 +22,14 @@ public class PasswordWindow : MonoBehaviour
         _cancelButton.onClick.AddListener(Close);
     }
 
-    public void Open(FileData fileData, Action<FileData> onSuccess)
+    public void Open(FileEntry fileEntry, Action<FileEntry> onSuccess)
     {
-        _currentFile = fileData;
+        _currentFile = fileEntry;
         _onSuccess = onSuccess;
 
-        _title.text = fileData.FileName + " 비밀번호 입력";
+        _title.SetText(fileEntry.ProgramName + " 비밀번호 입력");
         _passwordInput.text = "";
-        _errorText.text = "";
+        _errorText.SetText("");
 
         gameObject.SetActive(true);
         _passwordInput.ActivateInputField();
@@ -35,15 +37,15 @@ public class PasswordWindow : MonoBehaviour
 
     private void CheckPassword()
     {
-        if (_passwordInput.text == _currentFile.Password)
+        if (_currentFile.CheckPassword(_passwordInput.text))
         {
-            _currentFile.IsLocked = false;
+            _currentFile.Unlock();
             _onSuccess?.Invoke(_currentFile);
             Close();
         }
         else
         {
-            _errorText.text = "비밀번호가 틀렸습니다.";
+            _errorText.SetText("비밀번호가 틀렸습니다.");
         }
     }
 

@@ -251,6 +251,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135587748}
   m_CullTransparentMesh: 1
+--- !u!1 &257968094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5699774816165807217, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+  m_PrefabInstance: {fileID: 1405639620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &257968099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257968094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33214263636451cbf6b4818404476a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileOpener
+  onEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onClickedExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &310529657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3581262064230700970, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
@@ -528,10 +554,7 @@ MonoBehaviour:
   _searchInput: {fileID: 417310395}
   _resultPrefab: {fileID: 1202169210947903187, guid: 1485f2536782ec64ba3079538ff9af96, type: 3}
   _resultContent: {fileID: 616565180}
-  _searchDatas:
-  - {fileID: 11400000, guid: 347bb70765a23a74fb6f235406d4facc, type: 2}
-  - {fileID: 11400000, guid: 25c3ff5a09527a24a8d8fd418806144b, type: 2}
-  - {fileID: 11400000, guid: 3d5653861e2d6864585d0f689af5c7dd, type: 2}
+  websiteParent: {fileID: 0}
 --- !u!1 &535422152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,6 +2173,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9078359649028426008, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
   m_PrefabInstance: {fileID: 1405639620}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017740180 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+  m_PrefabInstance: {fileID: 1405639620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310529657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2fa14005aead744bc6542e6c1ef953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FileOpen
 --- !u!1 &1036630670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2906,7 +2940,7 @@ PrefabInstance:
     - target: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: _fileData
       value: 
-      objectReference: {fileID: 11400000, guid: 15f31c267f5e0b2498c0a4ac4cd8563e, type: 2}
+      objectReference: {fileID: 11400000, guid: 56d7eff383f23a5478041bfd6fb031d4, type: 2}
     - target: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: _fileViewer
       value: 
@@ -3021,7 +3055,10 @@ PrefabInstance:
     - {fileID: -8856866998931529851, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5699774816165807217, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 257968099}
   m_SourcePrefab: {fileID: 100100000, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
 --- !u!1 &1431879294
 GameObject:
@@ -4378,7 +4415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FileViewer
   _fileContent: {fileID: 1467141212}
-  _filePrefab: {fileID: 0}
+  _filePrefab: {fileID: 1017740180}
   _passwordWindow: {fileID: 983000305}
   _viewerPanel: {fileID: 2056461015}
 --- !u!1 &2095741507
