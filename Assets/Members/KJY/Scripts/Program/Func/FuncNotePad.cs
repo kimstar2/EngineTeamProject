@@ -1,5 +1,6 @@
 ﻿using System;
 using _TevLib.CoreLib;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
@@ -10,8 +11,8 @@ namespace Members.KJY.Scripts.Program.Func
     {
         [Header("Text Setting")]
         [HorizontalLine(color: EColor.Gray)]
-        [SerializeField] private NotePadDataSO notePadData;
         [SerializeField] private MonoInputField monoField;
+        private NotePadDataSO _notePadData;
         
         [Header("Font Setting")]
         [HorizontalLine(color: EColor.Gray)]
@@ -32,10 +33,15 @@ namespace Members.KJY.Scripts.Program.Func
         }
         private float FSize => _crtFontSize.Value; // FontSize
 
+        public void SetNotePadEntry(NotepadEntry data)
+        {
+            _notePadData = data.NotepadData;
+        }
+        
         public override void Init()
         {
-            monoField.SetText(notePadData.DefaultContent);
-            monoField.SetWarp(notePadData.TextWrapMode);
+            monoField.SetText(_notePadData.DefaultContent);
+            monoField.SetWarp(_notePadData.TextWrapMode);
             FontSizeIndex = defaultFontSizeIndex;
         }
 

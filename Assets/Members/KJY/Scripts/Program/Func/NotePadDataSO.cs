@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 namespace Members.KJY.Scripts.Program.Func
@@ -8,7 +9,7 @@ namespace Members.KJY.Scripts.Program.Func
     {
         [field:SerializeField] public TextWrappingModes TextWrapMode {get; private set;}
         
-        [field:TextArea]
+        [field:ResizableTextArea]
         [field:SerializeField] public string DefaultContent {get; private set;}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using _TevLib.ModuleSystem;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Utils.Mono;
 using UnityEngine;
 
@@ -9,10 +10,12 @@ namespace Members.KJY.Scripts.Program.ApplicationSystem
         [SerializeField] private MonoImage programIcon;
         [SerializeField] private MonoTMP_UGUI programName;
         
-        public void Init(ProgramInfoSO programInfo)
+        public void Init(ProgramInfoSO programInfo, ProgramEntry entry)
         {
             programIcon.SetImage(programInfo.ProgramIcon);
-            programName.SetText(programInfo.ProgramName);
+            programName.SetText(string.IsNullOrEmpty(entry.ProgramName) 
+                ? programInfo.ProgramName 
+                : entry.ProgramName);
         }
     }
 }

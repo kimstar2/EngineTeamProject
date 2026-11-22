@@ -54,16 +54,18 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _MaskFuzz: 1
-    - _MaskRange: 1
-    - _NoiseScale: 1.5
+    - _LerpB: 0
+    - _LerpT: 0
+    - _MaskFuzz: 1.5
+    - _MaskRange: 0.3
+    - _NoiseScale: 0.5
     - _NoiseSize: 0
-    - _Speed: 0.2
+    - _Speed: 0.3
     - _ZWrite: 0
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseColor: {r: 0.18926752, g: 0, b: 1, a: 1}
+    - _NoiseColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseOffset: {r: 2, g: 2, b: 0, a: 0}
     - _NoiseTiling: {r: 1, g: 1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

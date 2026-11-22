@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using _TevLib.Editor.PropertyAttribute;
 using _TevLib.ModuleSystem;
+using Assets.Members.KJY.Scripts.Program;
 using DG.Tweening;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Program.Func;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
@@ -38,7 +40,6 @@ namespace Members.KJY.Scripts.Program
         public IReadOnlyDictionary<ProgramState, ProgramSystemBase> ProgramReadonlyDict => _programDict;
         private readonly Dictionary<ProgramState, ProgramSystemBase> _programDict = new();
         
-        private List<ProgramSystems> _systems;
         private IProgramInit[] _programInits;
         
         public ProgramDragger ProgramDragger { get; private set; }
@@ -74,11 +75,20 @@ namespace Members.KJY.Scripts.Program
             ProgramDragger.OnBeginDragging -= HandleBeginDragging;
         }
 
-        public void Init(MonoRect parentRect,ProgramInfoSO programInfo,ProgramBar programBar)
+        public void Init(MonoRect parentRect,ProgramInfoSO programInfo,ProgramBar programBar, ProgramEntry entry)
         {
             ProgramData programData = new ProgramData(parentRect,ProgramRect, gameObject, programInfo);
+            
+            foreach (ProgramSystems system in programInfo.ProgramSystems)
+            {
+                var programSystemBase = Instantiate(system.System.Program, ProgramParent);
+                programSystemBase.Initialize(this, programData);
+                SystemStateMachine.AddState(system.ProgramState, programSystemBase);
+                _programDict.Add(system.ProgramState,programSystemBase); 
+                
+            }
             foreach (ProgramFunc func in programInfo.FuncPrefabs)
-                MakeFunc(func);
+                MakeFunc(func,entry);
             ProgramControllerBarDataBinder.SetData(programInfo);
             ProgramDataBinder.SetData(programInfo);
             
@@ -87,13 +97,6 @@ namespace Members.KJY.Scripts.Program
 
             SystemStateMachine.Init(programData);
             
-            foreach (ProgramSystems system in programInfo.ProgramSystems)
-            {
-                var programSystemBase = Instantiate(system.System.Program, ProgramParent);
-                programSystemBase.Initialize(this, programData);
-                SystemStateMachine.AddState(system.ProgramState, programSystemBase);
-                _programDict.Add(system.ProgramState,programSystemBase); 
-            }
             foreach (IProgramInit programInit in _programInits) 
                 programInit.ProgramInit(programData);
             
@@ -113,9 +116,10 @@ namespace Members.KJY.Scripts.Program
         public void SetLastSize(Vector2 size) => LastSize = size;
         public void OnClosing() => IsClosing = true;
         
-        public void MakeFunc(ProgramFunc func)
+        public void MakeFunc(ProgramFunc func, ProgramEntry entry)
         {
             ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
+            ProgramCaster.CastAndSetData(f, entry, this);
             f.Init();
         }
         

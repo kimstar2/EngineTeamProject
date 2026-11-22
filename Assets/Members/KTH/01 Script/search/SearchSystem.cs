@@ -1,3 +1,5 @@
+using Assets.Members.KJY.Scripts.Program.Entry;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,7 +9,16 @@ public class SearchSystem : MonoBehaviour
     [SerializeField] private TMP_InputField _searchInput;
     [SerializeField] private SearchResult _resultPrefab;
     [SerializeField] private Transform _resultContent;
-    [SerializeField] private List<SearchData> _searchDatas;
+    [SerializeField] private Transform websiteParent;
+    private List<SearchData> _searchDatas = new();
+    private List<SearchResult> searchResults = new();
+
+    public void SetInternetData(InternetEntry Internetentry)
+    {
+        _searchDatas.Clear();
+        foreach (SearchData data in Internetentry.SearchList)
+            _searchDatas.Add(data);
+    }
 
     public void Search()
     {
@@ -22,6 +33,8 @@ public class SearchSystem : MonoBehaviour
 
             SearchResult result = Instantiate(_resultPrefab, _resultContent);
             result.SetData(data);
+            result.OnClicked += HandleClickedResult;
+            searchResults.Add(result);
             found = true;
         }
 
@@ -32,11 +45,22 @@ public class SearchSystem : MonoBehaviour
         }
     }
 
+    private void HandleClickedResult(SearchData data)
+    {
+        var website = Instantiate(data.openWebsite, websiteParent);
+    }
+
     private void ClearResults()
     {
-        foreach (Transform child in _resultContent)
+        foreach (SearchResult result in searchResults)
         {
-            Destroy(child.gameObject);
+            result.OnClicked -= HandleClickedResult;
+            Destroy(result);
         }
+    }
+
+    private void OnDestroy()
+    {
+        ClearResults() ;
     }
 }

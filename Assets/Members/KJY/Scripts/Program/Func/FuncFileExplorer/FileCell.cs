@@ -1,6 +1,7 @@
 ﻿using System;
 using _TevLib.ModuleSystem;
 using Members.KJY.Scripts.Program.ApplicationSystem;
+using Members.KJY.Scripts.Program.Entry;
 using UnityEngine;
 using NotImplementedException = System.NotImplementedException;
 
@@ -10,7 +11,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
     {
         public FileDataBinder DataBinder {get; private set;}
         public FileOpener Opener {get; private set;}
-        public FileSO File {get; private set;}
+        public FileEntry File {get; private set;}
 
         protected override void InitializeModules()
         {
@@ -19,7 +20,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             Opener = GetModule<FileOpener>();
         }
 
-        public void Init(FileSO fileData)
+        public void Init(FileEntry fileData)
         {
             DataBinder.Init(fileData);
             Opener.Init(fileData);

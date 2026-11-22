@@ -25,6 +25,8 @@ namespace Members.KJY.Scripts.Program.System
         
         public void ChangeState(SystemInvoker invoker,ProgramState state)
         {
+            if (CurrentProgramState == ProgramState.Minimized && state == ProgramState.Enabled) return;
+            
             if (!_states.TryGetValue(state, out var systemState)) return;
             if (CurrentSystemState is {ProgramCon:{IsClosing:true}}) return;
             LastInvoker = invoker;
