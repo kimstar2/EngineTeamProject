@@ -6,8 +6,9 @@
         Internet,
         RecycleBin,
         Notepad,
-        Explore,
+        AdventureOS,
         FilePassword,
-        Error
+        Error,
+        Message,
     }
 }

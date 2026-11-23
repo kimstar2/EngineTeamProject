@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202b83115fed4e37aba00ca5cb6487b8, type: 3}
+  m_Name: PC Data
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.PCData
+  <CharacterName>k__BackingField: "\uB0C9\uAD6C"
+  <CharacterSprite>k__BackingField: {fileID: -6782630869963550080, guid: 479bcce91f18bd142985bd63b03fd7ef, type: 3}

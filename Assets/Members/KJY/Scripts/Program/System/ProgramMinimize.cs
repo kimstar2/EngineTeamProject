@@ -26,8 +26,8 @@ namespace Members.KJY.Scripts.Program.System
                     SetAnchorAndPivot();
                 }
                 ProgramCon.ProgramBar.OnExit?.Invoke();
-                await Minimize(ProgramCon);
                 base.ExecuteSystem();
+                await Minimize(ProgramCon);
             }
             catch (OperationCanceledException) { }
             catch (Exception e)

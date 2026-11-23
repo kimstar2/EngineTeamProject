@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Explore_Hunter
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
   <FuncPrefabs>k__BackingField:
+  - {fileID: -5938005002944569785, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
   - {fileID: 4687302086139944742, guid: 4f2f12a4ae33881408a306d2b9888c3d, type: 3}
   <ProgramIcon>k__BackingField: {fileID: 4414112921849270489, guid: c63260acc35a81e4b95893651fd7af76, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}

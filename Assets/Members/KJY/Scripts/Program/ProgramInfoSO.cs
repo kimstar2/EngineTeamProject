@@ -3,6 +3,7 @@ using Members.KJY.Scripts.Program.Func;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Splines.ExtrusionShapes;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Members.KJY.Scripts.Program
 {
@@ -55,6 +56,11 @@ namespace Members.KJY.Scripts.Program
         public void SetName(string prgName)
         {
             ProgramName = prgName;
+        }
+
+        public void SetStartPosition(Vector2 startPos)
+        {
+            StartPosition = startPos;
         }
     }
 }

@@ -6,6 +6,7 @@ using Members.KJY.Scripts.Program.Func.FuncInternet;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message;
 using Members.KJY.Scripts.Program.Func.FuncFileExplorer;
 using Members.KJY.Scripts.Program.System;
 using UnityEngine;
@@ -29,11 +30,10 @@ namespace Assets.Members.KJY.Scripts.Program
                 case ProgramType.Notepad:
                     ((FuncNotePad)func).SetNotePadEntry((NotepadEntry)entry);
                     break;
-                case ProgramType.Explore:
+                case ProgramType.AdventureOS:
                     break;
                 case ProgramType.FilePassword:
                     ((FuncFilePassword)func).SetPasswordEntry((FilePasswordEntry)entry, pc.ProgramReadonlyDict);
-                    Debug.Log("만들다");
                     break;
                 case ProgramType.Error:
                 {
@@ -41,6 +41,9 @@ namespace Assets.Members.KJY.Scripts.Program
                         ((FuncError)func).SetErrorEntry((ErrorEntry)entry, closeToken);
                     break;
                 }
+                case ProgramType.Message:
+                    ((FuncMessage)func).SetData((MessageEntry)entry);
+                    break;
             }
         }
     }
