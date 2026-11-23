@@ -4,6 +4,7 @@ using _TevLib.ServiceLocatorSystem;
 using _TevLib.ServiceLocatorSystem.TimeService;
 using Members.KJY.Scripts.Core.Services;
 using Members.KJY.Scripts.Program;
+using Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message;
 using UnityEngine;
 
 namespace Members.KJY.Scripts.Core
@@ -15,6 +16,7 @@ namespace Members.KJY.Scripts.Core
         [SerializeField] private ProgramManager programManager;
         [SerializeField] private ApplicationManager applicationManager;
         [SerializeField] private TimeService timeService;
+        [SerializeField] private AdvOS_MessageRaiser messageRaiser;
 
         [Header("Other Setting")]
         [SerializeField] private int startFrameRate = 60;
@@ -24,6 +26,7 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.RegisterService<IApplicationManager>(applicationManager);
             ServiceLocator.RegisterService<ITimeService>(timeService);
             ServiceLocator.RegisterService<ITickService>(timeService);
+            ServiceLocator.RegisterService<IMessageRaiser>(messageRaiser);
         }
 
         private void Start()
@@ -39,6 +42,7 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.UnregisterService<IApplicationManager>();
             ServiceLocator.UnregisterService<ITimeService>();
             ServiceLocator.UnregisterService<ITickService>();
+            ServiceLocator.UnregisterService<IMessageRaiser>();
         }
     }
 }

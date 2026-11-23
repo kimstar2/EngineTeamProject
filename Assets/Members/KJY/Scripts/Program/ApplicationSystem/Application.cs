@@ -26,6 +26,9 @@ namespace Members.KJY.Scripts.Program.ApplicationSystem
 
             DataBinder.Init(ProgramInfo, entry);
             Opener.Init(ProgramInfo,entry);
+            
+            if (entry.AwakeOpen)
+                Opener.OpenProgram();
         }
 
         public void SetFunc(List<ProgramFunc> funcList)

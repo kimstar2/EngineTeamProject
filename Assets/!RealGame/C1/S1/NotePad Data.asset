@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: NotePad Data
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.NotePadDataSO
   <TextWrapMode>k__BackingField: 1
-  <DefaultContent>k__BackingField: "<b><\uD560\uC77C \uBAA9\uB85D></b>\n- \uD559\uAD50
-    \uC219\uC81C \uB05D\uB0B4\uAE30\n- \uBD84\uB9AC\uC218\uAC70\uD558\uAE30\n- \uC778\uD130\uB137
-    \uC219\uC81C \uB05D\uB0B4\uAE30\n\n* \uC9C4\uC9DC\uB85C \uC911\uC694\uD55C \uAC83\n-
-    <b> OS Adventure \uBC84\uC804 \uC5C5\uB370\uC774\uD2B8 \uD558\uAE30!! </b>"
+  <DefaultContent>k__BackingField: "<b>=== Adventure OS ===\n<Tutoriel></b>\n- W,A,S,D
+    \uB85C \uC774\uB3D9\n- E \uB85C \uC0C1\uD638\uC791\uC6A9\uC774 \uAC00\uB2A5\uD568\uB2C8\uB2E4.\n-
+    \uC5EC\uB7EC \uB2E8\uC11C\uB97C \uD68D\uB4DD\uD558\uACE0 \uD37C\uC990\uC744 \uD480\uC5B4\uBCF4\uC0C8\uC694!"

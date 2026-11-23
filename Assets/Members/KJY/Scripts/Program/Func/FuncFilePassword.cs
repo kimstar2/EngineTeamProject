@@ -31,7 +31,7 @@ namespace Members.KJY.Scripts.Program.Func
             
             _filePasswordEntry.OnEnable += HandleEnable;
             _closeToken.OnExecute += HandleClose;
-            inputField.InputField.onEndEdit.AddListener(HandleCheckPassword);
+            inputField.InputField.onSubmit.AddListener(HandleCheckPassword);
         }
 
         private void HandleCheckPassword(string password)
@@ -39,11 +39,11 @@ namespace Members.KJY.Scripts.Program.Func
             if (password == _filePasswordEntry.Password)
             {
                 _filePasswordEntry.Open();
-                inputField.InputField.onEndEdit.RemoveListener(HandleCheckPassword);
                 _closeToken.ExecuteSystem();
             }
             else
             {
+                inputField.InputField.text = "";
                 onFailEvent?.Invoke();
             }
         }
@@ -56,6 +56,7 @@ namespace Members.KJY.Scripts.Program.Func
         
         private void HandleClose(ProgramSystemBase _)
         {
+            inputField.InputField.onSubmit.RemoveListener(HandleCheckPassword);
             _filePasswordEntry.OnEnable -= HandleEnable;
             _closeToken.OnExecute -= HandleClose;
             _filePasswordEntry.Close();

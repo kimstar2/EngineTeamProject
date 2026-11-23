@@ -5,6 +5,7 @@ using Members.KJY.Scripts.Check;
 using Members.KJY.Scripts.Program;
 using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Program.Error;
+using Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Program.TaskBar;
 using Members.KJY.Scripts.Utils.Mono;
@@ -17,6 +18,7 @@ namespace Members.KJY.Scripts.Core.Services
 {
     public class ProgramManager : MonoBehaviour , IProgramManager , IRequiredPooling
     {
+        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] private Key testKey;
         [field:Header("Game Setting")]
         [field:HorizontalLine(color:EColor.Gray)]
@@ -28,8 +30,11 @@ namespace Members.KJY.Scripts.Core.Services
 
         [Header("Error Setting")] 
         [HorizontalLine(color: EColor.Gray)]
-        [SerializeField] private EventChannelSO eventChannel;
         [SerializeField] private ProgramInfoSO errorMessage;
+        
+        [Header("Meesage Setting")]
+        [HorizontalLine(color: EColor.Gray)]
+        [SerializeField] private ProgramInfoSO messageInfo;
         
         private readonly NotifyValue<ProgramController> _crtPCon = new();
         private readonly Dictionary<ProgramController, ProgramBar> _programChain = new();
@@ -42,11 +47,23 @@ namespace Members.KJY.Scripts.Core.Services
         {
             _crtPCon.OnValueChanged += HandlePConChanged;
             eventChannel.AddListener<OnError>(HandleError);
+            eventChannel.AddListener<OnMessage>(HandleMessage);
+        }
+
+        private void HandleMessage(OnMessage msgEvt)
+        {
+            MessageEntry messageEntry = ScriptableObject.CreateInstance<MessageEntry>();
+            messageEntry.SetMessageData(msgEvt.PcData,msgEvt.Message);
+            
+            ProgramInfoSO clonedMessage = Instantiate(messageInfo);
+            clonedMessage.SetStartPosition(msgEvt.Position);
+            
+            MakeChain(clonedMessage,messageEntry);
         }
 
         private void HandleError(OnError errorEvt)
         {
-            ErrorEntry error =ScriptableObject.CreateInstance<ErrorEntry>();
+            ErrorEntry error = ScriptableObject.CreateInstance<ErrorEntry>();
             error.SetErrorMessage(errorEvt.ErrorMessage);
             MakeChain(errorMessage,error);
         }
@@ -55,6 +72,7 @@ namespace Members.KJY.Scripts.Core.Services
         {
             _crtPCon.OnValueChanged -= HandlePConChanged;
             eventChannel.RemoveListener<OnError>(HandleError);
+            eventChannel.RemoveListener<OnMessage>(HandleMessage);
         }
 
 

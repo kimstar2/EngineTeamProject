@@ -144,8 +144,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Application.ApplicationManager
   parentTransform: {fileID: 0}
   applicationPrefab: {fileID: 6813303613256051615, guid: d1174ef409ba2a04f83d003897217c2b, type: 3}
-  defaultApplications:
-  - {fileID: 11400000, guid: ba242f96360cbd94997e60a37d9af5aa, type: 2}
+  defaultEntryList:
+  - {fileID: 11400000, guid: 63793a067c4cfa448a5f358c720e9843, type: 2}
+  - {fileID: 11400000, guid: d00aa829d0e051d48bbba25e651b1f52, type: 2}
+  - {fileID: 11400000, guid: d522469a7a012994f9427408b18e62dc, type: 2}
+  applicationList: {fileID: 11400000, guid: a8a2b3793d3efc6459eace85d55369ea, type: 2}
+  fileInfoBase: {fileID: 11400000, guid: ce7ce4cb334d2ee4d8e35f3c772a1cf8, type: 2}
+  fileExplorerBase: {fileID: 3233969027363277380, guid: 7c25f06c8dbcd1644a22a9d6cf5ba430, type: 3}
 --- !u!1 &1704304029210197666
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,9 +323,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Core.GameBootstrap
   programManager: {fileID: 1306172945949069056}
   applicationManager: {fileID: 3121034285775521494}
-  fileManager: {fileID: 8021808112749618868}
   timeService: {fileID: 8013045370650732783}
+  messageRaiser: {fileID: 2538261810495334157}
   startFrameRate: 60
+--- !u!1 &4515782689380514901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 665315180799164187}
+  - component: {fileID: 2538261810495334157}
+  m_Layer: 0
+  m_Name: MessageRaiser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &665315180799164187
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515782689380514901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5147190813501648195}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2538261810495334157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515782689380514901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3743bd3ea0b042eead8e66d955dde942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.AdvOS_MessageRaiser
+  eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
 --- !u!1 &5424063559588928370
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,12 +419,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9022c0b979d24737a2d726f7d6340c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Player.PlayerSound
-  mouseClickSound: {fileID: 11400000, guid: ad454fe2147b9854199b384c3d8b6fa9, type: 2}
+  mouseClickSound:
+  - {fileID: 11400000, guid: ad454fe2147b9854199b384c3d8b6fa9, type: 2}
+  - {fileID: 11400000, guid: 0b5b807a07315af46803a35af62dafe9, type: 2}
+  anyKeySound:
+  - {fileID: 11400000, guid: 9a5cdba134398384bb2451fe9154a094, type: 2}
+  - {fileID: 11400000, guid: fb7067220ac251a4eb529a547b3281e3, type: 2}
+  - {fileID: 11400000, guid: 2566dae60f210194ab65c7cc4dbc4471, type: 2}
+  - {fileID: 11400000, guid: 827bb7f0e6a0fab4e85371152c6f271d, type: 2}
+  keySpaceBarSound:
+  - {fileID: 11400000, guid: 17af117adecb3e945a52f648d5390e2f, type: 2}
+  keyBackSpaceSound:
+  - {fileID: 11400000, guid: 3a81d41bde478e9458692b8304465e2b, type: 2}
   keyEnterSound:
-  - {fileID: 11400000, guid: 170eb14712ec33342af690b77fdf2e6f, type: 2}
-  - {fileID: 11400000, guid: a46d5bf2885fd164f828155a239d72e9, type: 2}
-  - {fileID: 11400000, guid: fe6f53bd595afb142a682308b19b181f, type: 2}
-  keyExitSound: []
+  - {fileID: 11400000, guid: d78217ac4dbe87f449fd45853240fbd4, type: 2}
 --- !u!1 &5546214111533302216
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,59 +637,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerInputData: {fileID: 11400000, guid: 7f563323b17603b4e9f9dbaf6650bcfc, type: 2}
---- !u!1 &7070183978419265901
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6380987208918843007}
-  - component: {fileID: 8021808112749618868}
-  m_Layer: 0
-  m_Name: FileManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6380987208918843007
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7070183978419265901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5147190813501648195}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8021808112749618868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7070183978419265901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b1949cbe90489e9520f10f9deb6d47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Core.Services.FileManager
-  fileInfoBase: {fileID: 11400000, guid: ce7ce4cb334d2ee4d8e35f3c772a1cf8, type: 2}
-  fileExplorerBase: {fileID: 3233969027363277380, guid: 7c25f06c8dbcd1644a22a9d6cf5ba430, type: 3}
-  defaultFiles:
-  - {fileID: 11400000, guid: 8af828063444fcf4fa9e84459d47504c, type: 2}
-  - {fileID: 11400000, guid: aa1a7a7e6dd318e4f84818da5a0474bd, type: 2}
 --- !u!1 &8050607594813748086
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +668,7 @@ RectTransform:
   - {fileID: 7768600733951747194}
   - {fileID: 1006392364396891846}
   - {fileID: 3740766919520037827}
-  - {fileID: 6380987208918843007}
+  - {fileID: 665315180799164187}
   m_Father: {fileID: 6113248029962833208}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -721,3 +730,5 @@ MonoBehaviour:
   programControllerParent: {fileID: 0}
   programBarParent: {fileID: 0}
   testProgramData: {fileID: 11400000, guid: caa3b775725b823408ec205a184f5b53, type: 2}
+  eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
+  errorMessage: {fileID: 11400000, guid: dea4d8e54ffaca24aa27ce38fc6dc4fd, type: 2}

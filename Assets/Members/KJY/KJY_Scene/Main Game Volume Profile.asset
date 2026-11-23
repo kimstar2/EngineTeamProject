@@ -78,6 +78,25 @@ MonoBehaviour:
   gain:
     m_OverrideState: 1
     m_Value: {x: 0.972266, y: 1, z: 0.8280407, w: 0}
+--- !u!114 &-6532685654451420789
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
+  m_Name: PaniniProjection
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.PaniniProjection
+  active: 1
+  distance:
+    m_OverrideState: 1
+    m_Value: 0.01
+  cropToFit:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &-6503970366743364693
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -152,6 +171,7 @@ MonoBehaviour:
   - {fileID: -7703603164169418649}
   - {fileID: -9037577240106962278}
   - {fileID: -8336954236148462150}
+  - {fileID: -6532685654451420789}
 --- !u!114 &691927383977369397
 MonoBehaviour:
   m_ObjectHideFlags: 3
