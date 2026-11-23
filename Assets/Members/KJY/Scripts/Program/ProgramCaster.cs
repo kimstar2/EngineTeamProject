@@ -42,8 +42,11 @@ namespace Assets.Members.KJY.Scripts.Program
                     break;
                 }
                 case ProgramType.Message:
-                    ((FuncMessage)func).SetData((MessageEntry)entry);
+                {
+                    if (pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken))
+                        ((FuncMessage)func).SetData((MessageEntry)entry,closeToken);
                     break;
+                }
             }
         }
     }

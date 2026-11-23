@@ -2356,6 +2356,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncInternet
   intro: {fileID: 4867251598440764375}
   start: {fileID: 2789678450190591712}
+  startMessage:
+  - ???
+  - "\uC5EC\uAE30\uAC00 \uC73C\uB370\uACE0"
 --- !u!114 &8781692999275002800
 MonoBehaviour:
   m_ObjectHideFlags: 0

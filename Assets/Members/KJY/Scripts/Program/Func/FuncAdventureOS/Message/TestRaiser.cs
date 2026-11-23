@@ -11,7 +11,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
         [ContextMenu("text")]
         public void Raise()
         {
-            ServiceLocator.GetService<IMessageRaiser>().Raise(pcData,testMessage,Vector2.zero);
+            // ServiceLocator.GetService<IMessageRaiser>().Raise(pcData,testMessage,Vector2.zero);
         }
     }
 }

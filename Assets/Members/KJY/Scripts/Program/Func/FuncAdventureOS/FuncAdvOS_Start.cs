@@ -27,6 +27,8 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         private Sequence _fadeSeq;
         private bool _isStart;
 
+        public event Action OnEndFade;
+        
         public void Init()
         {
             startButton.onClick.AddListener(HandleClick);
@@ -35,6 +37,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         private void OnDestroy()
         {
             startButton.onClick.RemoveListener(HandleClick);
+            _fadeSeq?.Kill();
         }
 
         private void HandleClick()
@@ -54,6 +57,10 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
             _fadeSeq.AppendCallback(() => bgGroup.alpha = 0);
             _fadeSeq.AppendInterval(outDur);
             _fadeSeq.Append(fadeGroup.DOFade(0f, outDur)).SetEase(outEase);
+            
+            if (OnEndFade != null)
+                _fadeSeq.AppendCallback(OnEndFade.Invoke);
+            
             fadeGroup.blocksRaycasts = false;
         }
     }

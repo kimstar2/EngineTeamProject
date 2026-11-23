@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
@@ -38,6 +39,10 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
             _introSeq.Append(introGroup.DOFade(0, outDur)).SetEase(outEase);
             _introSeq.AppendCallback(() => introGroup.blocksRaycasts = false);
         }
-        
+
+        private void OnDestroy()
+        {
+            _introSeq?.Kill();
+        }
     }
 }

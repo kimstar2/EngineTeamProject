@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 202b83115fed4e37aba00ca5cb6487b8, type: 3}
-  m_Name: PC Data
+  m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.PCData
   <CharacterName>k__BackingField: "\uB0C9\uAD6C"
   <CharacterSprite>k__BackingField: {fileID: -6782630869963550080, guid: 479bcce91f18bd142985bd63b03fd7ef, type: 3}
