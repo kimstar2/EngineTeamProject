@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Entry.AdventureOSEntry
   <BaseProgram>k__BackingField: 4
   <ProgramName>k__BackingField: Adventure OS
+  <AwakeOpen>k__BackingField: 0
+  <FirstMap>k__BackingField: {fileID: 11400000, guid: 3bdf57933d9819141990247199db2424, type: 2}

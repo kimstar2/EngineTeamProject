@@ -10,7 +10,7 @@ namespace Members.JJW._01.Code
         [SerializeField, Min(0f)] private float snapDistance = 30f;
         [SerializeField, Min(1f)] private float roadOverlap = 30f;
 
-        private MapWindowFunc _mapWindow;
+        private MapWindow _mapWindow;
         private ProgramController _controller;
         private ProgramDragger _dragger;
         private Canvas _canvas;
@@ -18,7 +18,7 @@ namespace Members.JJW._01.Code
 
         private void OnEnable()
         {
-            _mapWindow = GetComponent<MapWindowFunc>();
+            _mapWindow = GetComponent<MapWindow>();
             _controller = GetComponentInParent<ProgramController>();
 
             Canvas canvas = GetComponentInParent<Canvas>();

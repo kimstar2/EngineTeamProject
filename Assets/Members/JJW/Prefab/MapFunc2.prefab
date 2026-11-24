@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587a4b044c0c01d4e891728921a74944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.JJW._01.Code.MapWindowFunc
-  mapWorldPrefab: {fileID: 5162343475033198944, guid: 053a664a5a2d9024796d16dd099775d6, type: 3}
   mapView: {fileID: 6440092381569227734}
   uiUnitsPerWorldUnit: 100
 --- !u!114 &5251613082253336676

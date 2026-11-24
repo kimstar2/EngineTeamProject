@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.AdvOS_MessageRaiser
   eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
+  playerData: {fileID: 11400000, guid: 13bbf1ebb04c062409457985e5462147, type: 2}
 --- !u!1 &5424063559588928370
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,11 +725,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1583415eb114b4d9251caf4444245bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.ProgramConnector
+  eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
   testKey: 5
   <ProgramControllerPrefab>k__BackingField: {fileID: 7616028829886333550, guid: b2f73947c903d81458659efc27cc54b6, type: 3}
   <ProgramBarPrefab>k__BackingField: {fileID: 1561226184655720589, guid: 9eb09aed4fbad97489800e5a4199b226, type: 3}
   programControllerParent: {fileID: 0}
   programBarParent: {fileID: 0}
   testProgramData: {fileID: 11400000, guid: caa3b775725b823408ec205a184f5b53, type: 2}
-  eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
   errorMessage: {fileID: 11400000, guid: dea4d8e54ffaca24aa27ce38fc6dc4fd, type: 2}
+  messageInfo: {fileID: 11400000, guid: 73fb9562636d30b4096d32a3f1654ab5, type: 2}

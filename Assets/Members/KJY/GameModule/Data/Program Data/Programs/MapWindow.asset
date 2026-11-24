@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MapWindow
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
   <FuncPrefabs>k__BackingField:
-  - {fileID: 99539472537222207, guid: 3a6a2676c3e13f040ac386ec5cd4949e, type: 3}
+  - {fileID: 0}
   <ProgramIcon>k__BackingField: {fileID: -7666885783339648234, guid: fe296541efa406548a03d1ef43b98cf0, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
