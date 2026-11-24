@@ -1,18 +1,19 @@
 using Members.KJY.Scripts.Program;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Program.Func;
+using Members.KJY.Scripts.World;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Members.JJW._01.Code
 {
-    public class MapWindowFunc : ProgramFunc
+    public class MapWindow : MonoBehaviour
     {
-        [SerializeField] private GameObject mapWorldPrefab;
         [SerializeField] private RawImage mapView;
         [SerializeField, Min(1f)] private float uiUnitsPerWorldUnit = 100f;
 
         private static int _nextMapIndex;
-        private GameObject _mapWorld;
+        private WorldMap _worldMap;
         private Camera _mapCamera;
         private RenderTexture _renderTexture;
         private PlayerWindowBoundsJJW _playerBounds;
@@ -26,31 +27,35 @@ namespace Members.JJW._01.Code
         
         public int RoadCount => _roads == null ? 0 : _roads.Length;
 
-        public override void Init()
+        public void MakeWorldMap(MapEntry mapEntry)
         {
-            base.Init();
-            if (mapWorldPrefab == null || mapView == null)
+            Vector3 mapPosition = new(1000f + _nextMapIndex * 100f, 1000f, 0f);
+            
+            _worldMap = Instantiate(mapEntry.WorldMap, mapPosition, Quaternion.identity);
+
+            if (_worldMap == null)
             {
-                return;
+                Debug.LogError("월드 맵 세팅 안함");
             }
+            
+            if (mapView == null)
+                return;
 
             _programController = GetComponentInParent<ProgramController>();
             if (_programController != null)
                 _panel = _programController.ProgramRect.Rect;
 
-            Vector3 mapPosition = new(1000f + _nextMapIndex * 100f, 1000f, 0f);
             _nextMapIndex++;
-            _mapWorld = Instantiate(mapWorldPrefab, mapPosition, Quaternion.identity);
-            _roads = _mapWorld.GetComponentsInChildren<MapRoadArea>();
-            _mapCamera = _mapWorld.GetComponentInChildren<Camera>(true);
+            _roads = _worldMap.GetComponentsInChildren<MapRoadArea>();
+            _mapCamera = _worldMap.GetComponentInChildren<Camera>(true);
             if (_mapCamera == null)
             {
                 return;
             }
 
-            _playerBounds = _mapWorld.GetComponentInChildren<PlayerWindowBoundsJJW>();
+            _playerBounds = _worldMap.GetComponentInChildren<PlayerWindowBoundsJJW>();
             if (_playerBounds != null)
-                _playerBounds.Initialize(_mapWorld.transform);
+                _playerBounds.Initialize(_worldMap.transform);
 
             _renderTexture = new RenderTexture(1024, 1024, 24);
             _renderTexture.Create();
@@ -267,7 +272,7 @@ namespace Members.JJW._01.Code
                 Destroy(_renderTexture);
             }
 
-            if (_mapWorld != null) Destroy(_mapWorld);
+            if (_worldMap != null) Destroy(_worldMap);
         }
     }
 }

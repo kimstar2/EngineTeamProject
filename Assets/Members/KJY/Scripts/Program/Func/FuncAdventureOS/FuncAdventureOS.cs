@@ -1,4 +1,5 @@
 ﻿using _TevLib.ServiceLocatorSystem;
+using Members.JJW._01.Code;
 using Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message;
 using NaughtyAttributes;
 using UnityEngine;
@@ -12,8 +13,9 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         [HorizontalLine(color:EColor.Gray)]
         [SerializeField] private FuncAdvOS_Intro intro;
         [SerializeField] private FuncAdvOS_Start start;
-        
-        [Header("In Game")]
+
+        [field:Header("In Game")] 
+        [field:SerializeField] public MapWindow MapWindow { get; private set; }
         [SerializeField] private string[] startMessage;
         
         public override void Init()
