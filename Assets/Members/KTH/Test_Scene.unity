@@ -1702,6 +1702,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9078359649028426008, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
   m_PrefabInstance: {fileID: 1405639620}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017740181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310529657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd738d24300d8214f9d55ba1ea5f5b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DownloadTest
+  _downloadWindowPrefab: {fileID: 1744429259472126542, guid: 4f9b9c002de0ee54f9da0b6cf41b39f4, type: 3}
+  _canvas: {fileID: 662935691}
+  _desktopContent: {fileID: 662935691}
+  _testFolder: {fileID: 11400000, guid: 5e9954f4cce5cab4893d3fe69185fd32, type: 2}
 --- !u!1 &1055914976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,7 +2220,11 @@ PrefabInstance:
     - target: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: _fileData
       value: 
-      objectReference: {fileID: 11400000, guid: 15f31c267f5e0b2498c0a4ac4cd8563e, type: 2}
+      objectReference: {fileID: 11400000, guid: 56d7eff383f23a5478041bfd6fb031d4, type: 2}
+    - target: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 988363835392296742, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: _fileViewer
       value: 
@@ -2215,7 +2235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2224,10 +2244,22 @@ PrefabInstance:
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 310529657}
+      objectReference: {fileID: 1017740181}
     - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartDownload
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DownloadTest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127537237309983280, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6181233745447338356, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
       propertyPath: m_text
@@ -2319,7 +2351,10 @@ PrefabInstance:
     - {fileID: -8856866998931529851, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3581262064230700970, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1017740181}
   m_SourcePrefab: {fileID: 100100000, guid: f6b13e475a1c9604eb05d584581fb6c4, type: 3}
 --- !u!1 &1431879294
 GameObject:
