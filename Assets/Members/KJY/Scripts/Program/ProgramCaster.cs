@@ -41,7 +41,7 @@ namespace Assets.Members.KJY.Scripts.Program
                 {
                     var t = Get<FuncAdventureOS,AdventureOSEntry>(func,entry);
                     t.func.FuncMapWindow.InitManager();
-                    t.func.FuncMapWindow.MakeWorldMap(((AdventureOSEntry)entry).FirstMap, pc);
+                    t.func.FuncMapWindow.MakeWorldMap(t.entry.FirstMap, pc);
                     break;
                 }
                 case ProgramType.FilePassword:
