@@ -9,6 +9,7 @@ namespace Members.JJW._01.Code
     public class MapWindowSnapJJW : MonoBehaviour
     {
         [SerializeField, Min(0f)] private float snapDistance = 30f;
+        [Tooltip("Overlap in screen pixels when no player has spawned yet.")]
         [SerializeField, Min(1f)] private float roadOverlap = 30f;
 
         private FuncMapWindow _funcMapWindow;
@@ -16,7 +17,7 @@ namespace Members.JJW._01.Code
         private ProgramDragger _dragger;
         private Canvas _canvas;
         private bool _dragStarted;
-        private readonly List<(int road, MapWindowSnapJJW other, int otherRoad)> _links = new();
+        private readonly List<(int road, int direction, MapWindowSnapJJW other, int otherRoad)> _links = new();
 
         private void OnEnable()
         {
@@ -60,6 +61,15 @@ namespace Members.JJW._01.Code
 
         private void LateUpdate()
         {
+            for (int i = _links.Count - 1; i >= 0; i--)
+            {
+                var link = _links[i];
+                if (TryGetConnectedEnds(link, out _, out _, out _)) continue;
+                if (link.other != null)
+                    link.other._links.RemoveAll(reverse => reverse.other == this);
+                _links.RemoveAt(i);
+            }
+
             if (!_dragStarted || _dragger == null || _dragger.IsDragging)
                 return;
 
@@ -76,11 +86,10 @@ namespace Members.JJW._01.Code
 
             MapWindowSnapJJW[] windows = FindObjectsByType<MapWindowSnapJJW>();
 
-            bool found = false;
-            float bestDistance = snapDistance * snapDistance;
+            float bestDistance = float.PositiveInfinity;
             Vector2 bestOffset = Vector2.zero;
             MapWindowSnapJJW partner = null;
-            int myRoad = -1, theirRoad = -1;
+            int myRoad = -1, theirRoad = -1, myDirection = 0;
 
             foreach (MapWindowSnapJJW other in windows)
             {
@@ -94,92 +103,59 @@ namespace Members.JJW._01.Code
                     continue;
                 }
 
+                Vector2 margin = Vector2.Max(_funcMapWindow.PlayerScreenMargin(), other._funcMapWindow.PlayerScreenMargin());
+                float fallback = Mathf.Max(roadOverlap, other.roadOverlap);
                 for (int i = 0; i < _funcMapWindow.RoadCount; i++)
                 {
-                    if (!_funcMapWindow.TryGetRoadSnapData(i, out Rect source, out Vector2 sourceCenter, out bool sourceHorizontal))
+                    for (int direction = -1; direction <= 1; direction += 2)
                     {
-                        continue;
-                    }
+                        if (!_funcMapWindow.TryGetRoadEnd(i, direction, out MapRoadEnd source))
+                            continue;
 
-                    for (int j = 0; j < other._funcMapWindow.RoadCount; j++)
-                    {
-                        if (!other._funcMapWindow.TryGetRoadSnapData(j, out Rect target, out Vector2 targetCenter, out bool targetHorizontal))
+                        for (int j = 0; j < other._funcMapWindow.RoadCount; j++)
                         {
-                            continue;
+                            if (!other._funcMapWindow.TryGetRoadEnd(j, -direction, out MapRoadEnd target)
+                                || !source.TryGetOffset(target, margin, fallback, snapDistance, out Vector2 offset)
+                                || offset.sqrMagnitude >= bestDistance || other.IsEndInUse(j, -direction))
+                                continue;
+
+                            bestDistance = offset.sqrMagnitude;
+                            bestOffset = offset;
+                            partner = other;
+                            myRoad = i;
+                            theirRoad = j;
+                            myDirection = direction;
                         }
-
-                        if (sourceHorizontal != targetHorizontal)
-                            continue;
-
-                        Vector2 margin = Vector2.Max(_funcMapWindow.PlayerScreenMargin(), other._funcMapWindow.PlayerScreenMargin());
-                        float overlap = Mathf.Max(roadOverlap, 2f * Mathf.Max(margin.x, margin.y) + 2f);
-                        if (!TryCalculateOffset(source, target, sourceCenter, targetCenter, sourceHorizontal, overlap, out Vector2 offset))
-                        {
-                            continue;
-                        }
-
-                        float distance = offset.sqrMagnitude;
-
-                        if (distance > bestDistance)
-                            continue;
-
-                        if (found && distance >= bestDistance)
-                            continue;
-
-                        found = true;
-                        bestDistance = distance;
-                        bestOffset = offset;
-                        partner = other;
-                        myRoad = i;
-                        theirRoad = j;
                     }
                 }
             }
 
-            if (found && ApplySnap(bestOffset))
+            if (partner != null && ApplySnap(bestOffset))
             {
-                _links.Add((myRoad, partner, theirRoad));
-                partner._links.Add((theirRoad, this, myRoad));
+                _links.Add((myRoad, myDirection, partner, theirRoad));
+                partner._links.Add((theirRoad, -myDirection, this, myRoad));
             }
         }
 
-        private bool TryCalculateOffset(
-            Rect source,
-            Rect target,
-            Vector2 sourceCenter,
-            Vector2 targetCenter,
-            bool horizontal,
-            float overlap,
-            out Vector2 offset)
+        private bool IsEndInUse(int road, int direction)
         {
-            offset = Vector2.zero;
+            foreach (var link in _links)
+                if (link.road == road && link.direction == direction) return true;
+            return false;
+        }
 
-            if (source.width < overlap
-                || source.height < overlap
-                || target.width < overlap
-                || target.height < overlap)
-            {
+        private bool TryGetConnectedEnds((int road, int direction, MapWindowSnapJJW other, int otherRoad) link,
+            out MapRoadEnd source, out MapRoadEnd target, out Vector2 margin)
+        {
+            source = target = default;
+            margin = default;
+            if (link.other == null || !_funcMapWindow.TryGetRoadEnd(link.road, link.direction, out source)
+                || !link.other._funcMapWindow.TryGetRoadEnd(link.otherRoad, -link.direction, out target))
                 return false;
-            }
 
-            if (horizontal)
-            {
-                offset.y = targetCenter.y - sourceCenter.y;
-                offset.x = Mathf.Clamp(0f, target.xMin + overlap - source.xMax, target.xMax - overlap - source.xMin);
-            }
-            else
-            {
-                offset.x = targetCenter.x - sourceCenter.x;
-                offset.y = Mathf.Clamp(0f, target.yMin + overlap - source.yMax, target.yMax - overlap - source.yMin);
-            }
-
-            source.position += offset;
-
-            float overlapWidth = Mathf.Min(source.xMax, target.xMax) - Mathf.Max(source.xMin, target.xMin);
-
-            float overlapHeight = Mathf.Min(source.yMax, target.yMax) - Mathf.Max(source.yMin, target.yMin);
-
-            return overlapWidth >= overlap - 0.01f && overlapHeight >= overlap - 0.01f;
+            margin = Vector2.Max(_funcMapWindow.PlayerScreenMargin(), link.other._funcMapWindow.PlayerScreenMargin());
+            float fallback = Mathf.Max(roadOverlap, link.other.roadOverlap);
+            return source.TryGetOffset(target, margin, fallback, 1f, out Vector2 offset) && offset.sqrMagnitude <= 1f;
         }
 
         private bool ApplySnap(Vector2 offset)
@@ -210,17 +186,12 @@ namespace Members.JJW._01.Code
             Vector2 next = _funcMapWindow.MapWorldToScreen(center + step);
             foreach (var link in _links)
             {
-                FuncMapWindow target = link.other._funcMapWindow;
-                if (!_funcMapWindow.TryGetRoadSnapData(link.road, out Rect a, out Vector2 ca, out bool horizontal)
-                    || !target.TryGetRoadSnapData(link.otherRoad, out Rect b, out Vector2 cb, out bool targetHorizontal)
-                    || horizontal != targetHorizontal) continue;
-
-                if (Mathf.Abs(horizontal ? ca.y - cb.y : ca.x - cb.x) > 1f) continue;
-                
-                Vector2 margin = Vector2.Max(_funcMapWindow.PlayerScreenMargin(), target.PlayerScreenMargin());
-                if (!MapPassageMath.TryCross(a, b, margin, horizontal, screen, next, out float fraction))
+                if (!TryGetConnectedEnds(link, out MapRoadEnd source, out MapRoadEnd exit, out Vector2 margin)
+                    || (next[source.Axis] - screen[source.Axis]) * link.direction <= 0f
+                    || !MapPassageMath.TryCross(source.Area, exit.Area, margin, source.Axis == 0, screen, next, out float fraction))
                     continue;
 
+                FuncMapWindow target = link.other._funcMapWindow;
                 Vector2 crossing = Vector2.Lerp(screen, next, fraction);
                 if (!target.TryGetLanding(player, crossing, out Vector2 landing)) continue;
                 if (fraction > 0f) return fraction;
@@ -229,6 +200,49 @@ namespace Members.JJW._01.Code
                 return 1f;
             }
             return 1f;
+        }
+    }
+
+    internal readonly struct MapRoadEnd
+    {
+        public readonly Rect Area;
+        public readonly int Axis;
+        private readonly int _direction;
+        private readonly Vector2 _point;
+
+        public MapRoadEnd(Rect area, Vector2 center, bool horizontal, int direction)
+        {
+            Area = area;
+            Axis = horizontal ? 0 : 1;
+            _direction = direction;
+            center[Axis] = direction > 0 ? area.max[Axis] : area.min[Axis];
+            _point = center;
+        }
+
+        public bool TryGetOffset(MapRoadEnd other, Vector2 margin, float fallbackDepth, float snapDistance, out Vector2 offset)
+        {
+            offset = default;
+            if (Axis != other.Axis || _direction != -other._direction) return false;
+
+            float depth = margin[Axis] > 0f ? 2f * margin[Axis] + 2f : fallbackDepth;
+            if (Mathf.Min(Area.size[Axis], other.Area.size[Axis]) <= depth + 1f) return false;
+
+            Vector2 delta = other._point - _point;
+            float gap = delta[Axis] * _direction;
+            if (gap < -depth - 1f) return false;
+
+            int cross = 1 - Axis;
+            float separation = Mathf.Max(0f, gap);
+            if (separation * separation + delta[cross] * delta[cross] > snapDistance * snapDistance)
+                return false;
+
+            float low = Mathf.Max(Area.min[cross] + delta[cross], other.Area.min[cross]);
+            float high = Mathf.Min(Area.max[cross] + delta[cross], other.Area.max[cross]);
+            if (high <= low || high - low < 2f * margin[cross]) return false;
+
+            offset = delta;
+            offset[Axis] += _direction * depth;
+            return true;
         }
     }
 
