@@ -54,6 +54,7 @@ namespace Members.JJW._01.Code
                 || !WindowBoundsMathJJW.Contains(area, center)) return false;
 
             CollectBlockedAreas(_rbColl.bounds.extents, obstacles);
+            
             return WindowBoundsMathJJW.IsFree(center, _blockedAreas);
         }
 

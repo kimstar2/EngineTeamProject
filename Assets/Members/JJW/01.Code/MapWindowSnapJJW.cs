@@ -74,7 +74,7 @@ namespace Members.JJW._01.Code
 
             Canvas.ForceUpdateCanvases();
 
-            MapWindowSnapJJW[] windows = FindObjectsByType<MapWindowSnapJJW>(FindObjectsSortMode.InstanceID);
+            MapWindowSnapJJW[] windows = FindObjectsByType<MapWindowSnapJJW>();
 
             bool found = false;
             float bestDistance = snapDistance * snapDistance;
