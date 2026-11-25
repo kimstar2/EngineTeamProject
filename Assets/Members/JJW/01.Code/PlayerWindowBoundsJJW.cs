@@ -10,6 +10,9 @@ namespace Members.JJW._01.Code
         private Rigidbody2D _rb;
         private BoxCollider2D _rbColl;
         private Collider2D[] _obstacles;
+        private MapWindow _owner;
+        internal Vector2 Margin => (Vector2)_rbColl.bounds.extents + Vector2.one * Padding;
+        private Vector2 ColliderOffset => _rb.transform.TransformVector(_rbColl.offset);
 
         private Rect _centerArea;
         private bool _canMove;
@@ -24,9 +27,10 @@ namespace Members.JJW._01.Code
             _rbColl = GetComponent<BoxCollider2D>();
         }
 
-        public void Initialize(Transform mapRoot)
+        internal void Initialize(MapWindow owner, Collider2D[] obstacles)
         {
-            _obstacles = mapRoot.GetComponentsInChildren<Collider2D>();
+            _owner = owner;
+            _obstacles = obstacles;
 
             Physics2D.SyncTransforms();
 
@@ -37,6 +41,20 @@ namespace Members.JJW._01.Code
         {
             _canMove = false;
             _rb.linearVelocity = Vector2.zero;
+        }
+
+        internal void PlaceAt(Vector2 center)
+        {
+            _rb.position = center - ColliderOffset;
+        }
+
+        internal bool CanStandAt(Vector2 center, Rect visible, Collider2D[] obstacles)
+        {
+            if (!WindowBoundsMathJJW.TryGetCenterArea(visible, Margin, 0f, out Rect area)
+                || !WindowBoundsMathJJW.Contains(area, center)) return false;
+
+            CollectBlockedAreas(_rbColl.bounds.extents, obstacles);
+            return WindowBoundsMathJJW.IsFree(center, _blockedAreas);
         }
 
         public bool TrySetVisibleArea(Rect visibleArea)
@@ -55,7 +73,7 @@ namespace Members.JJW._01.Code
 
             if (!WindowBoundsMathJJW.Contains(area, center))
             {
-                CollectBlockedAreas(halfSize);
+                CollectBlockedAreas(halfSize, _obstacles);
 
                 if (!WindowBoundsMathJJW.TryFindNearest(
                         area,
@@ -90,20 +108,29 @@ namespace Members.JJW._01.Code
             if (!WindowBoundsMathJJW.Contains(_centerArea, center))
                 return Vector2.zero;
 
+            if (_owner != null && !_owner.isActiveAndEnabled)
+                return Vector2.zero;
+            if (velocity != Vector2.zero && _owner != null && _owner.Snap != null)
+            {
+                float fraction = _owner.Snap.WalkAcross(this, center, velocity * deltaTime);
+                velocity *= fraction;
+                center = _rb.position + ColliderOffset;
+            }
+
             Vector2 next = center + velocity * deltaTime;
             Vector2 limited = WindowBoundsMathJJW.Clamp(_centerArea, next);
 
             return (limited - center) / deltaTime;
         }
 
-        private void CollectBlockedAreas(Vector2 halfSize)
+        private void CollectBlockedAreas(Vector2 halfSize, Collider2D[] obstacles)
         {
             _blockedAreas.Clear();
 
-            if (_obstacles == null)
+            if (obstacles == null)
                 return;
 
-            foreach (Collider2D obstacle in _obstacles)
+            foreach (Collider2D obstacle in obstacles)
             {
                 if (obstacle == null
                     || !obstacle.enabled
@@ -160,7 +187,7 @@ namespace Members.JJW._01.Code
                 Mathf.Clamp(point.y, area.yMin, area.yMax));
         }
 
-        private static bool IsFree(Vector2 point, List<Rect> blocked)
+        internal static bool IsFree(Vector2 point, List<Rect> blocked)
         {
             foreach (Rect wall in blocked)
             {

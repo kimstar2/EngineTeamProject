@@ -24,6 +24,9 @@ namespace Members.JJW._01.Code
         private bool _hasAcceptedSize;
         
         private MapRoadArea[] _roads;
+        private Collider2D[] _mapColliders;
+        internal MapWindowSnapJJW Snap { get; private set; }
+        private static PlayerWindowBoundsJJW _activePlayer;
         
         public int RoadCount => _roads == null ? 0 : _roads.Length;
 
@@ -53,9 +56,22 @@ namespace Members.JJW._01.Code
                 return;
             }
 
-            _playerBounds = _worldMap.GetComponentInChildren<PlayerWindowBoundsJJW>();
-            if (_playerBounds != null)
-                _playerBounds.Initialize(_worldMap.transform);
+            Snap = GetComponent<MapWindowSnapJJW>();
+            _mapColliders = _worldMap.GetComponentsInChildren<Collider2D>();
+            var spawnPlayer = _worldMap.GetComponentInChildren<PlayerWindowBoundsJJW>();
+            if (spawnPlayer != null)
+            {
+                if (_activePlayer == null)
+                {
+                    _activePlayer = _playerBounds = spawnPlayer;
+                    _playerBounds.Initialize(this, _mapColliders);
+                }
+                else
+                {
+                    spawnPlayer.gameObject.SetActive(false);
+                    Destroy(spawnPlayer.gameObject);
+                }
+            }
 
             _renderTexture = new RenderTexture(1024, 1024, 24);
             _renderTexture.Create();
@@ -136,7 +152,7 @@ namespace Members.JJW._01.Code
             _hasAcceptedSize = true;
         }
         
-        private Vector2 MapWorldToScreen(Vector2 worldPosition)
+        internal Vector2 MapWorldToScreen(Vector2 worldPosition)
         {
             RectTransform viewRect = mapView.rectTransform;
             Rect visibleArea = GetVisibleArea(viewRect.rect.size);
@@ -255,6 +271,42 @@ namespace Members.JJW._01.Code
             horizontal = bounds.size.x >= bounds.size.y;
 
             return true;
+        }
+
+        internal Vector2 PlayerScreenMargin()
+        {
+            if (_activePlayer == null) return Vector2.zero;
+            Vector2 origin = _mapCamera.transform.position;
+            return MapWorldToScreen(origin + _activePlayer.Margin) - MapWorldToScreen(origin);
+        }
+
+        internal bool TryGetLanding(PlayerWindowBoundsJJW player, Vector2 screen, out Vector2 center)
+        {
+            center = default;
+            if (_playerBounds != null) return false;
+            RectTransform view = mapView.rectTransform;
+            Canvas canvas = mapView.canvas.rootCanvas;
+            Camera cam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(view, screen, cam, out Vector2 local))
+                return false;
+
+            Rect visible = GetVisibleArea(view.rect.size);
+            center = Rect.NormalizedToPoint(visible, Rect.PointToNormalized(view.rect, local));
+            return player.CanStandAt(center, visible, _mapColliders);
+        }
+
+        internal void TransferPlayerTo(MapWindow destination, Vector2 center)
+        {
+            var player = _playerBounds;
+            _playerBounds = null;
+            destination._playerBounds = player;
+            player.transform.SetParent(destination._worldMap.transform, true);
+            player.Initialize(destination, destination._mapColliders);
+            player.PlaceAt(center);
+            destination._playerBounds.TrySetVisibleArea(destination.GetVisibleArea(destination.mapView.rectTransform.rect.size));
+            destination.RememberWindowSize();
+            if (destination._programController != null)
+                destination._programController.ChangeState(SystemInvoker.ProgramController, ProgramState.Enabled);
         }
 
         private void OnDestroy()
