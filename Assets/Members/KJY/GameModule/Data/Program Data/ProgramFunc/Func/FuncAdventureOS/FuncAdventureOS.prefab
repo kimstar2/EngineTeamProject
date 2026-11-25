@@ -1653,6 +1653,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.FuncAdvOS_Start
   startButton: {fileID: 6628618069792237141}
+  onMotion:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4928476775413662305}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   fadeGroup: {fileID: 6024526384182333120}
   inWaitTime: 0.5
   outEase: 1
@@ -2360,9 +2375,7 @@ MonoBehaviour:
   intro: {fileID: 4867251598440764375}
   start: {fileID: 2789678450190591712}
   <FuncMapWindow>k__BackingField: {fileID: 8512500073811102124}
-  startMessage:
-  - ???
-  - "\uC5EC\uAE30\uAC00 \uC73C\uB370\uACE0"
+  startMessage: {fileID: 11400000, guid: d6e6e23d577bd33448884be77a9aee42, type: 2}
 --- !u!114 &8781692999275002800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2529,6 +2542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapFunc
       objectReference: {fileID: 0}
+    - target: {fileID: 2292606940989822346, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2610,7 +2627,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3258732495147934849, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
@@ -2619,12 +2637,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
   m_PrefabInstance: {fileID: 6608344564442879979}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4928476775413662305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2292606940989822346, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+  m_PrefabInstance: {fileID: 6608344564442879979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8512500073811102124 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -5938005002944569785, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
   m_PrefabInstance: {fileID: 6608344564442879979}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4928476775413662305}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 587a4b044c0c01d4e891728921a74944, type: 3}

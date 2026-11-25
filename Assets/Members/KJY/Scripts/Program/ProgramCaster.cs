@@ -68,7 +68,7 @@ namespace Assets.Members.KJY.Scripts.Program
                 {
                     var t = Get<FuncMessage,MessageEntry>(func,entry);
                     if (pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken))
-                        t.func.SetData(t.entry,closeToken);
+                        t.func.SetData(t.entry,pc,closeToken);
                     break;
                 }
                 // 필요한 애들은 추가해서 쓰기

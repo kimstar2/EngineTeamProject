@@ -6,6 +6,7 @@ namespace _TevLib.HashDataSystem
     [CreateAssetMenu(fileName = "AnimHash data", menuName = "TevLib/System/HashData/AnimHash", order = 0)]
     public class AnimHashSO : ScriptableObject
     {
+        public const int NullHash = -1805666355;
         [field: SerializeField] public string HashName { get; private set; }
         [field: SerializeField] public int HashValue { get; private set; }
 

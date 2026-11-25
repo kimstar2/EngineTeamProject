@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.AdvOS_MessageRaiser
   eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
-  playerData: {fileID: 11400000, guid: 13bbf1ebb04c062409457985e5462147, type: 2}
+  playerData: {fileID: 9100000, guid: 63ee86efd213bf34285c95f33e79dc6c, type: 2}
 --- !u!1 &5424063559588928370
 GameObject:
   m_ObjectHideFlags: 0

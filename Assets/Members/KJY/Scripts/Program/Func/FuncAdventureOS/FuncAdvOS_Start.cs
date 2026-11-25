@@ -3,6 +3,7 @@ using DG.Tweening;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
@@ -12,6 +13,8 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         [Header("Event Setting")]
         [HorizontalLine(color:EColor.Gray)]
         [SerializeField] private Button startButton;
+
+        [SerializeField] private UnityEvent onMotion;
         
         [Header("Fade Tween Setting")]
         [HorizontalLine(color:EColor.Gray)]
@@ -56,6 +59,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
             _fadeSeq.Append(fadeGroup.DOFade(1f, outDur)).SetEase(outEase);
             _fadeSeq.AppendCallback(() => bgGroup.alpha = 0);
             _fadeSeq.AppendInterval(outDur);
+            _fadeSeq.AppendCallback(() => onMotion?.Invoke());
             _fadeSeq.Append(fadeGroup.DOFade(0f, outDur)).SetEase(outEase);
             
             if (OnEndFade != null)
