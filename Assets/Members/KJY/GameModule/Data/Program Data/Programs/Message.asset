@@ -38,6 +38,6 @@ MonoBehaviour:
   - <ProgramState>k__BackingField: 3
     <System>k__BackingField: {fileID: 11400000, guid: 71a3792aafb23744585b95b7db412a56, type: 2}
   - <ProgramState>k__BackingField: 4
-    <System>k__BackingField: {fileID: 11400000, guid: 8ab3441a4ceba9e418d872415888242d, type: 2}
+    <System>k__BackingField: {fileID: 11400000, guid: df947daa407ac7447900470e0420f2e8, type: 2}
   <MinSize>k__BackingField: {x: 150, y: 175}
   <MaxSize>k__BackingField: {x: 800, y: 400}
