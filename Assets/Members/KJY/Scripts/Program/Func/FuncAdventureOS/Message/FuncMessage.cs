@@ -44,7 +44,6 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
             _textAnimTMP = (TextAnimator_TMP)messageTmp.TextAnimator;
             _parentRect = _pc.ProgramRect.Rect.parent as RectTransform;
             _tmpText = _textAnimTMP.TMProComponent;
-            // _pc.ProgramRect.Rect.pivot.
             
             messageTmp.onCharacterVisible.AddListener(HandleResizeTmpMesh);
             messageTmp.onTextShowed.AddListener(HandleTextShowed);
@@ -75,7 +74,8 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
             _textTween?.Kill();
             _textTween = DOTween.To(() => _pc.ProgramRect.Rect.sizeDelta,
                 x => _pc.ProgramRect.Rect.sizeDelta = x,
-                applyMinSize + preferredSize, reSizeDur).SetEase(reSizeEase);
+                applyMinSize + preferredSize, reSizeDur).SetEase(reSizeEase)
+                .OnUpdate(() => UIUtils.AdjustmentUI(_parentRect, _pc.ProgramRect.Rect));
             
             UIUtils.AdjustmentUI(_parentRect, _pc.ProgramRect.Rect);
         }
@@ -93,12 +93,12 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
             _closeToken = closeToken;
             
             charAnim.runtimeAnimatorController = entry.AnimCon;
-            MessageAsync(entry.Message).Forget();
+            MessageAsync(entry).Forget();
         }
 
-        private async UniTask MessageAsync(MessageGroup[] msgArr)
+        private async UniTask MessageAsync(MessageEntry msgEntry)
         {
-            foreach (MessageGroup msg in msgArr)
+            foreach (MessageGroup msg in msgEntry.Message)
             {
                 _crtMessage = msg.Message;
                 
@@ -108,8 +108,6 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
                     charAnim.Play(msg.AnimHash.HashValue);
                 
                 messageTmp.ShowText("* " + msg.Message);
-                
-                msg.Event?.Invoke();
                 
                 await UniTask.WaitUntil(() => _moveNext);
                 
