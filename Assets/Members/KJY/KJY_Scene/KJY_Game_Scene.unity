@@ -2610,12 +2610,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3d9b528e3c47e19745e68ca6f59f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.TestRaiser
-  pcData: {fileID: 11400000, guid: 13bbf1ebb04c062409457985e5462147, type: 2}
+  test: {fileID: 9100000, guid: 63ee86efd213bf34285c95f33e79dc6c, type: 2}
   testMessage:
-  - "\uD53C\uD53C\uD53C\uD53C\uD53C\uD53C\uD53C\uD53C\uD53C\uD53C\uD53C\uD53C"
-  - "\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74\uCE74"
-  - "\uCE04\uCE04\uCE04\uCE04\uCE04\uCE04\uCE04\uCE04\uCE04"
-  - "\uB3C8\uAE4C\uC2A4\uB3C8\uAE4C\uC2A4\uB3C8\uAE4C\uC2A4\uB3C8\uAE4C\uC2A4"
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: qwd
+    <Message>k__BackingField: abcsabcsabcsabcsabcsabcsabcs
+    <Event>k__BackingField:
+      m_PersistentCalls:
+        m_Calls: []
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: qwd
+    <Message>k__BackingField: 'abcsabcsabcsabcsabcsabc
+
+      sabcsabcsabcsabcsabcsabcsabcsabcs'
+    <Event>k__BackingField:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &812618027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5674,6 +5684,6 @@ SceneRoots:
   - {fileID: 2037019951}
   - {fileID: 812618027}
   - {fileID: 921420577}
+  - {fileID: 807939665}
   - {fileID: 371048893}
   - {fileID: 756889065}
-  - {fileID: 807939665}

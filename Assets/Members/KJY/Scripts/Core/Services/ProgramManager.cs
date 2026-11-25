@@ -54,7 +54,7 @@ namespace Members.KJY.Scripts.Core.Services
         private void HandleMessage(OnMessage msgEvt)
         {
             MessageEntry messageEntry = ScriptableObject.CreateInstance<MessageEntry>();
-            messageEntry.SetMessageData(msgEvt.PcData,msgEvt.Message);
+            messageEntry.SetMessageData(msgEvt.AnimCon,msgEvt.MessageGroup);
             
             ProgramInfoSO clonedMessage = Instantiate(messageInfo);
             clonedMessage.SetStartPosition(msgEvt.Position);

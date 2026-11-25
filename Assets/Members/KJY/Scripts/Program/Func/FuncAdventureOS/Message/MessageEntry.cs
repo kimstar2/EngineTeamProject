@@ -1,19 +1,20 @@
 ﻿using Cysharp.Threading.Tasks;
 using Members.KJY.Scripts.Program.Entry;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
 {
     public class MessageEntry : ProgramEntry
     {
-        public PCData PcData { get; private set; }
-        public string[] Message { get; private set; }
+        public AnimatorController AnimCon { get; private set; }
+        public MessageGroup[] Message { get; private set; }
         
         
-        public void SetMessageData(PCData pcData, string[] msgArr)
+        public void SetMessageData(AnimatorController pcData, MessageGroup[] msgArr)
         {
             BaseProgram = ProgramType.Message;
-            PcData = pcData;
+            AnimCon = pcData;
             Message = msgArr;
         }
     }

@@ -16,7 +16,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
 
         [field:Header("In Game")] 
         [field:SerializeField] public FuncMapWindow FuncMapWindow { get; private set; }
-        [SerializeField] private string[] startMessage;
+        [SerializeField] private MessageListSO startMessage;
         
         public override void Init()
         {
@@ -34,7 +34,8 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
 
         private void HandleEndFade()
         {
-            ServiceLocator.GetService<IMessageRaiser>().PlayerRaise(startMessage, new Vector2(0f,-250f));
+            // MessageListSO clone = startMessage
+            ServiceLocator.GetService<IMessageRaiser>().PlayerRaise(startMessage.MessageList, new Vector2(0f,-250f));
         }
     }
 }
