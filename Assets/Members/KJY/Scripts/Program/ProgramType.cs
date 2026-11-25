@@ -10,6 +10,6 @@
         FilePassword,
         Error,
         Message,
-        Download,
+        WorldMap
     }
 }

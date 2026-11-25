@@ -6,9 +6,12 @@ using Members.KJY.Scripts.Program.Func.FuncInternet;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Members.JJW._01.Code;
+using Members.KJY.Scripts.Program.Func.FuncAdventureOS;
 using Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message;
 using Members.KJY.Scripts.Program.Func.FuncFileExplorer;
 using Members.KJY.Scripts.Program.System;
+using Members.KJY.Scripts.World;
 using UnityEngine;
 
 namespace Assets.Members.KJY.Scripts.Program
@@ -31,7 +34,10 @@ namespace Assets.Members.KJY.Scripts.Program
                     ((FuncNotePad)func).SetNotePadEntry((NotepadEntry)entry);
                     break;
                 case ProgramType.AdventureOS:
+                    Debug.Log("Im ironMan");
+                    ((FuncAdventureOS)func).MapWindow.MakeWorldMap(((AdventureOSEntry)entry).FirstMap);
                     break;
+                
                 case ProgramType.FilePassword:
                     ((FuncFilePassword)func).SetPasswordEntry((FilePasswordEntry)entry, pc.ProgramReadonlyDict);
                     break;

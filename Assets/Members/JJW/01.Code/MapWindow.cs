@@ -1,18 +1,19 @@
 using Members.KJY.Scripts.Program;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Program.Func;
+using Members.KJY.Scripts.World;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Members.JJW._01.Code
 {
-    public class MapWindowFunc : ProgramFunc
+    public class MapWindow : MonoBehaviour
     {
-        [SerializeField] private GameObject mapWorldPrefab;
         [SerializeField] private RawImage mapView;
         [SerializeField, Min(1f)] private float uiUnitsPerWorldUnit = 100f;
 
         private static int _nextMapIndex;
-        private GameObject _mapWorld;
+        private WorldMap _worldMap;
         private Camera _mapCamera;
         private RenderTexture _renderTexture;
         private PlayerWindowBoundsJJW _playerBounds;
@@ -23,34 +24,54 @@ namespace Members.JJW._01.Code
         private bool _hasAcceptedSize;
         
         private MapRoadArea[] _roads;
+        private Collider2D[] _mapColliders;
+        internal MapWindowSnapJJW Snap { get; private set; }
+        private static PlayerWindowBoundsJJW _activePlayer;
         
         public int RoadCount => _roads == null ? 0 : _roads.Length;
 
-        public override void Init()
+        public void MakeWorldMap(MapEntry mapEntry)
         {
-            base.Init();
-            if (mapWorldPrefab == null || mapView == null)
+            Vector3 mapPosition = new(1000f + _nextMapIndex * 100f, 1000f, 0f);
+            
+            _worldMap = Instantiate(mapEntry.WorldMap, mapPosition, Quaternion.identity);
+
+            if (_worldMap == null)
             {
-                return;
+                Debug.LogError("월드 맵 세팅 안함");
             }
+            
+            if (mapView == null)
+                return;
 
             _programController = GetComponentInParent<ProgramController>();
             if (_programController != null)
                 _panel = _programController.ProgramRect.Rect;
 
-            Vector3 mapPosition = new(1000f + _nextMapIndex * 100f, 1000f, 0f);
             _nextMapIndex++;
-            _mapWorld = Instantiate(mapWorldPrefab, mapPosition, Quaternion.identity);
-            _roads = _mapWorld.GetComponentsInChildren<MapRoadArea>();
-            _mapCamera = _mapWorld.GetComponentInChildren<Camera>(true);
+            _roads = _worldMap.GetComponentsInChildren<MapRoadArea>();
+            _mapCamera = _worldMap.GetComponentInChildren<Camera>(true);
             if (_mapCamera == null)
             {
                 return;
             }
 
-            _playerBounds = _mapWorld.GetComponentInChildren<PlayerWindowBoundsJJW>();
-            if (_playerBounds != null)
-                _playerBounds.Initialize(_mapWorld.transform);
+            Snap = GetComponent<MapWindowSnapJJW>();
+            _mapColliders = _worldMap.GetComponentsInChildren<Collider2D>();
+            var spawnPlayer = _worldMap.GetComponentInChildren<PlayerWindowBoundsJJW>();
+            if (spawnPlayer != null)
+            {
+                if (_activePlayer == null)
+                {
+                    _activePlayer = _playerBounds = spawnPlayer;
+                    _playerBounds.Initialize(this, _mapColliders);
+                }
+                else
+                {
+                    spawnPlayer.gameObject.SetActive(false);
+                    Destroy(spawnPlayer.gameObject);
+                }
+            }
 
             _renderTexture = new RenderTexture(1024, 1024, 24);
             _renderTexture.Create();
@@ -131,7 +152,7 @@ namespace Members.JJW._01.Code
             _hasAcceptedSize = true;
         }
         
-        private Vector2 MapWorldToScreen(Vector2 worldPosition)
+        internal Vector2 MapWorldToScreen(Vector2 worldPosition)
         {
             RectTransform viewRect = mapView.rectTransform;
             Rect visibleArea = GetVisibleArea(viewRect.rect.size);
@@ -252,6 +273,42 @@ namespace Members.JJW._01.Code
             return true;
         }
 
+        internal Vector2 PlayerScreenMargin()
+        {
+            if (_activePlayer == null) return Vector2.zero;
+            Vector2 origin = _mapCamera.transform.position;
+            return MapWorldToScreen(origin + _activePlayer.Margin) - MapWorldToScreen(origin);
+        }
+
+        internal bool TryGetLanding(PlayerWindowBoundsJJW player, Vector2 screen, out Vector2 center)
+        {
+            center = default;
+            if (_playerBounds != null) return false;
+            RectTransform view = mapView.rectTransform;
+            Canvas canvas = mapView.canvas.rootCanvas;
+            Camera cam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(view, screen, cam, out Vector2 local))
+                return false;
+
+            Rect visible = GetVisibleArea(view.rect.size);
+            center = Rect.NormalizedToPoint(visible, Rect.PointToNormalized(view.rect, local));
+            return player.CanStandAt(center, visible, _mapColliders);
+        }
+
+        internal void TransferPlayerTo(MapWindow destination, Vector2 center)
+        {
+            var player = _playerBounds;
+            _playerBounds = null;
+            destination._playerBounds = player;
+            player.transform.SetParent(destination._worldMap.transform, true);
+            player.Initialize(destination, destination._mapColliders);
+            player.PlaceAt(center);
+            destination._playerBounds.TrySetVisibleArea(destination.GetVisibleArea(destination.mapView.rectTransform.rect.size));
+            destination.RememberWindowSize();
+            if (destination._programController != null)
+                destination._programController.ChangeState(SystemInvoker.ProgramController, ProgramState.Enabled);
+        }
+
         private void OnDestroy()
         {
             if (_mapCamera != null)
@@ -267,7 +324,7 @@ namespace Members.JJW._01.Code
                 Destroy(_renderTexture);
             }
 
-            if (_mapWorld != null) Destroy(_mapWorld);
+            if (_worldMap != null) Destroy(_worldMap);
         }
     }
 }

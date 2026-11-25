@@ -2324,6 +2324,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1760719625539307669, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 575967623571024477}
+    - targetCorrespondingSourceObject: {fileID: 1760719625539307669, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 748564053735345753}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6226593318493127853, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
       insertIndex: -1
@@ -2356,6 +2359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncInternet
   intro: {fileID: 4867251598440764375}
   start: {fileID: 2789678450190591712}
+  <MapWindow>k__BackingField: {fileID: 8512500073811102124}
   startMessage:
   - ???
   - "\uC5EC\uAE30\uAC00 \uC73C\uB370\uACE0"
@@ -2513,3 +2517,116 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6352414866961183238, guid: d5bad9a74ee339c43a185fff08a3114d, type: 3}
   m_PrefabInstance: {fileID: 630608923698271740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6608344564442879979
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1885027170111881256}
+    m_Modifications:
+    - target: {fileID: 2292606940989822346, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_Name
+      value: MapFunc
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+--- !u!224 &748564053735345753 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5897148513510611378, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+  m_PrefabInstance: {fileID: 6608344564442879979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8512500073811102124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5938005002944569785, guid: 441d62608ac3e474eb7013b222c48b12, type: 3}
+  m_PrefabInstance: {fileID: 6608344564442879979}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587a4b044c0c01d4e891728921a74944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.JJW._01.Code.MapWindowFunc
