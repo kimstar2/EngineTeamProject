@@ -10,5 +10,6 @@
         FilePassword,
         Error,
         Message,
+        Download,
     }
 }

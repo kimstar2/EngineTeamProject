@@ -47,6 +47,9 @@ namespace Assets.Members.KJY.Scripts.Program
                         ((FuncMessage)func).SetData((MessageEntry)entry,closeToken);
                     break;
                 }
+                case ProgramType.Download:
+                    ((FuncDownload)func).SetDownloadEntry((FileEntry)entry, pc.ProgramReadonlyDict);
+                    break;
             }
         }
     }
