@@ -1,23 +1,28 @@
+using _TevLib.ServiceLocatorSystem;
+using Members.KJY.Scripts.Core.Services;
 using Members.KJY.Scripts.Program;
 using Members.KJY.Scripts.Program.Entry;
+using Members.KJY.Scripts.Program.Error;
 using Members.KJY.Scripts.Program.Func;
+using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.World;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Members.JJW._01.Code
 {
-    public class MapWindow : MonoBehaviour
+    public class FuncMapWindow : ProgramFunc
     {
         [SerializeField] private RawImage mapView;
         [SerializeField, Min(1f)] private float uiUnitsPerWorldUnit = 100f;
 
+        public ProgramController PC { get; private set; }
+            
         private static int _nextMapIndex;
         private WorldMap _worldMap;
-        private Camera _mapCamera;
         private RenderTexture _renderTexture;
         private PlayerWindowBoundsJJW _playerBounds;
-        private ProgramController _programController;
         private RectTransform _panel;
         private Vector2 _acceptedSize;
         private Vector2 _acceptedPosition;
@@ -28,40 +33,45 @@ namespace Members.JJW._01.Code
         internal MapWindowSnapJJW Snap { get; private set; }
         private static PlayerWindowBoundsJJW _activePlayer;
         
+        private IMapManager _mapManager;
+        
         public int RoadCount => _roads == null ? 0 : _roads.Length;
-
-        public void MakeWorldMap(MapEntry mapEntry)
+        
+        public void InitManager()
         {
+            _mapManager = ServiceLocator.GetService<IMapManager>();
+        }
+
+        public void MakeWorldMap(MapEntry mapEntry , ProgramController pC)
+        {
+            PC = pC;
             Vector3 mapPosition = new(1000f + _nextMapIndex * 100f, 1000f, 0f);
-            
-            _worldMap = Instantiate(mapEntry.WorldMap, mapPosition, Quaternion.identity);
 
-            if (_worldMap == null)
+            if (_mapManager.TryGet(mapEntry, out var worldMap))
+                _worldMap = worldMap;
+            else
             {
-                Debug.LogError("월드 맵 세팅 안함");
+                _worldMap = Instantiate(mapEntry.WorldMap, mapPosition, Quaternion.identity);
+                _mapManager.Add(mapEntry,_worldMap);
             }
-            
-            if (mapView == null)
+            _worldMap.SetActive(true);
+
+            if (PC != null)
+                _panel = PC.ProgramRect.Rect;
+
+            if (_worldMap.MapCamera == null)
                 return;
-
-            _programController = GetComponentInParent<ProgramController>();
-            if (_programController != null)
-                _panel = _programController.ProgramRect.Rect;
-
+            
             _nextMapIndex++;
-            _roads = _worldMap.GetComponentsInChildren<MapRoadArea>();
-            _mapCamera = _worldMap.GetComponentInChildren<Camera>(true);
-            if (_mapCamera == null)
-            {
-                return;
-            }
+            _roads = _worldMap.Loads;
+            _mapColliders = _worldMap.MapColliders;
 
             Snap = GetComponent<MapWindowSnapJJW>();
-            _mapColliders = _worldMap.GetComponentsInChildren<Collider2D>();
+
             var spawnPlayer = _worldMap.GetComponentInChildren<PlayerWindowBoundsJJW>();
             if (spawnPlayer != null)
             {
-                if (_activePlayer == null)
+                if (_mapManager.ActivePlayer == null)
                 {
                     _activePlayer = _playerBounds = spawnPlayer;
                     _playerBounds.Initialize(this, _mapColliders);
@@ -73,23 +83,28 @@ namespace Members.JJW._01.Code
                 }
             }
 
-            _renderTexture = new RenderTexture(1024, 1024, 24);
-            _renderTexture.Create();
-            _mapCamera.clearFlags = CameraClearFlags.SolidColor;
-            _mapCamera.backgroundColor = Color.black;
-            _mapCamera.targetTexture = _renderTexture;
-            mapView.texture = _renderTexture;
+            
+            if (!_worldMap.IsSetTexture)
+            {
+                _renderTexture = new RenderTexture(1024, 1024, 24);
+                _renderTexture.Create();
+                _worldMap.MapCamera.clearFlags = CameraClearFlags.SolidColor;
+                _worldMap.MapCamera.backgroundColor = Color.black;
+                _worldMap.MapCamera.targetTexture = _renderTexture;
+                mapView.texture = _renderTexture;
+                _worldMap.SetTexture(_renderTexture);
+            }
+            else
+                mapView.texture = _worldMap.CameraTexture;
         }
 
         private void LateUpdate()
         {
-            if (_mapCamera == null || mapView == null) return;
-
             Canvas.ForceUpdateCanvases();
             Vector2 size = mapView.rectTransform.rect.size;
             if (size.x <= 1f || size.y <= 1f)
             {
-                _mapCamera.enabled = false;
+                _worldMap.MapCamera.enabled = false;
                 _playerBounds?.Pause();
                 return;
             }
@@ -125,23 +140,23 @@ namespace Members.JJW._01.Code
 
         private void UpdateCamera(Vector2 size)
         {
-            _mapCamera.aspect = size.x / size.y;
-            _mapCamera.orthographicSize = size.y / (uiUnitsPerWorldUnit * 2f);
-            _mapCamera.enabled = true;
+            _worldMap.MapCamera.aspect = size.x / size.y;
+            _worldMap.MapCamera.orthographicSize = size.y / (uiUnitsPerWorldUnit * 2f);
+            _worldMap.MapCamera.enabled = true;
         }
 
         private Rect GetVisibleArea(Vector2 size)
         {
             Vector2 worldSize = size / uiUnitsPerWorldUnit;
-            Vector2 center = _mapCamera.transform.position;
+            Vector2 center = _worldMap.MapCamera.transform.position;
             return new Rect(center - worldSize * 0.5f, worldSize);
         }
 
         private bool IsWindowTransitioning()
         {
-            if (_programController == null) return false;
-            ProgramState state = _programController.SystemStateMachine.CurrentProgramState;
-            return _programController.IsStateChanging || state == ProgramState.Minimized || state == ProgramState.Closed;
+            if (PC == null) return false;
+            ProgramState state = PC.SystemStateMachine.CurrentProgramState;
+            return PC.IsStateChanging || state == ProgramState.Minimized || state == ProgramState.Closed;
         }
 
         private void RememberWindowSize()
@@ -179,7 +194,7 @@ namespace Members.JJW._01.Code
         {
             screenRect = default;
 
-            if (_mapCamera == null
+            if (_worldMap.MapCamera == null
                 || mapView == null
                 || !isActiveAndEnabled
                 || !mapView.isActiveAndEnabled
@@ -276,7 +291,7 @@ namespace Members.JJW._01.Code
         internal Vector2 PlayerScreenMargin()
         {
             if (_activePlayer == null) return Vector2.zero;
-            Vector2 origin = _mapCamera.transform.position;
+            Vector2 origin = _worldMap.MapCamera.transform.position;
             return MapWorldToScreen(origin + _activePlayer.Margin) - MapWorldToScreen(origin);
         }
 
@@ -295,7 +310,7 @@ namespace Members.JJW._01.Code
             return player.CanStandAt(center, visible, _mapColliders);
         }
 
-        internal void TransferPlayerTo(MapWindow destination, Vector2 center)
+        internal void TransferPlayerTo(FuncMapWindow destination, Vector2 center)
         {
             var player = _playerBounds;
             _playerBounds = null;
@@ -305,26 +320,13 @@ namespace Members.JJW._01.Code
             player.PlaceAt(center);
             destination._playerBounds.TrySetVisibleArea(destination.GetVisibleArea(destination.mapView.rectTransform.rect.size));
             destination.RememberWindowSize();
-            if (destination._programController != null)
-                destination._programController.ChangeState(SystemInvoker.ProgramController, ProgramState.Enabled);
+            if (destination.PC != null)
+                destination.PC.ChangeState(SystemInvoker.ProgramController, ProgramState.Enabled);
         }
 
-        private void OnDestroy()
+        public void StateEnable()
         {
-            if (_mapCamera != null)
-            {
-                _mapCamera.enabled = false;
-                _mapCamera.targetTexture = null;
-            }
-
-            if (mapView != null) mapView.texture = null;
-            if (_renderTexture != null)
-            {
-                _renderTexture.Release();
-                Destroy(_renderTexture);
-            }
-
-            if (_worldMap != null) Destroy(_worldMap);
+            PC.ChangeState(SystemInvoker.ProgramController, ProgramState.Enabled);
         }
     }
 }

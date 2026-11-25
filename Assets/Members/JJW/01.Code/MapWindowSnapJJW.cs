@@ -11,7 +11,7 @@ namespace Members.JJW._01.Code
         [SerializeField, Min(0f)] private float snapDistance = 30f;
         [SerializeField, Min(1f)] private float roadOverlap = 30f;
 
-        private MapWindow _mapWindow;
+        private FuncMapWindow _funcMapWindow;
         private ProgramController _controller;
         private ProgramDragger _dragger;
         private Canvas _canvas;
@@ -20,7 +20,7 @@ namespace Members.JJW._01.Code
 
         private void OnEnable()
         {
-            _mapWindow = GetComponent<MapWindow>();
+            _funcMapWindow = GetComponent<FuncMapWindow>();
             _controller = GetComponentInParent<ProgramController>();
 
             Canvas canvas = GetComponentInParent<Canvas>();
@@ -87,23 +87,23 @@ namespace Members.JJW._01.Code
                 if (other == this
                     || !other.isActiveAndEnabled
                     || other._canvas != _canvas
-                    || other._mapWindow == null
+                    || other._funcMapWindow == null
                     || other._dragger == null
                     || other._dragger.IsDragging)
                 {
                     continue;
                 }
 
-                for (int i = 0; i < _mapWindow.RoadCount; i++)
+                for (int i = 0; i < _funcMapWindow.RoadCount; i++)
                 {
-                    if (!_mapWindow.TryGetRoadSnapData(i, out Rect source, out Vector2 sourceCenter, out bool sourceHorizontal))
+                    if (!_funcMapWindow.TryGetRoadSnapData(i, out Rect source, out Vector2 sourceCenter, out bool sourceHorizontal))
                     {
                         continue;
                     }
 
-                    for (int j = 0; j < other._mapWindow.RoadCount; j++)
+                    for (int j = 0; j < other._funcMapWindow.RoadCount; j++)
                     {
-                        if (!other._mapWindow.TryGetRoadSnapData(j, out Rect target, out Vector2 targetCenter, out bool targetHorizontal))
+                        if (!other._funcMapWindow.TryGetRoadSnapData(j, out Rect target, out Vector2 targetCenter, out bool targetHorizontal))
                         {
                             continue;
                         }
@@ -111,7 +111,7 @@ namespace Members.JJW._01.Code
                         if (sourceHorizontal != targetHorizontal)
                             continue;
 
-                        Vector2 margin = Vector2.Max(_mapWindow.PlayerScreenMargin(), other._mapWindow.PlayerScreenMargin());
+                        Vector2 margin = Vector2.Max(_funcMapWindow.PlayerScreenMargin(), other._funcMapWindow.PlayerScreenMargin());
                         float overlap = Mathf.Max(roadOverlap, 2f * Mathf.Max(margin.x, margin.y) + 2f);
                         if (!TryCalculateOffset(source, target, sourceCenter, targetCenter, sourceHorizontal, overlap, out Vector2 offset))
                         {
@@ -187,7 +187,7 @@ namespace Members.JJW._01.Code
             RectTransform panel = _controller.ProgramRect.Rect;
             Vector2 previousPosition = panel.anchoredPosition;
 
-            if (!_mapWindow.TryMoveByScreenOffset(offset))
+            if (!_funcMapWindow.TryMoveByScreenOffset(offset))
                 return false;
 
             Vector2 snappedPosition = panel.anchoredPosition;
@@ -206,18 +206,18 @@ namespace Members.JJW._01.Code
         {
             if (_links.Count == 0) return 1f;
 
-            Vector2 screen = _mapWindow.MapWorldToScreen(center);
-            Vector2 next = _mapWindow.MapWorldToScreen(center + step);
+            Vector2 screen = _funcMapWindow.MapWorldToScreen(center);
+            Vector2 next = _funcMapWindow.MapWorldToScreen(center + step);
             foreach (var link in _links)
             {
-                MapWindow target = link.other._mapWindow;
-                if (!_mapWindow.TryGetRoadSnapData(link.road, out Rect a, out Vector2 ca, out bool horizontal)
+                FuncMapWindow target = link.other._funcMapWindow;
+                if (!_funcMapWindow.TryGetRoadSnapData(link.road, out Rect a, out Vector2 ca, out bool horizontal)
                     || !target.TryGetRoadSnapData(link.otherRoad, out Rect b, out Vector2 cb, out bool targetHorizontal)
                     || horizontal != targetHorizontal) continue;
 
                 if (Mathf.Abs(horizontal ? ca.y - cb.y : ca.x - cb.x) > 1f) continue;
                 
-                Vector2 margin = Vector2.Max(_mapWindow.PlayerScreenMargin(), target.PlayerScreenMargin());
+                Vector2 margin = Vector2.Max(_funcMapWindow.PlayerScreenMargin(), target.PlayerScreenMargin());
                 if (!MapPassageMath.TryCross(a, b, margin, horizontal, screen, next, out float fraction))
                     continue;
 
@@ -225,7 +225,7 @@ namespace Members.JJW._01.Code
                 if (!target.TryGetLanding(player, crossing, out Vector2 landing)) continue;
                 if (fraction > 0f) return fraction;
 
-                _mapWindow.TransferPlayerTo(target, landing);
+                _funcMapWindow.TransferPlayerTo(target, landing);
                 return 1f;
             }
             return 1f;

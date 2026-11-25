@@ -23,3 +23,5 @@ MonoBehaviour:
     program: {fileID: 11400000, guid: caa3b775725b823408ec205a184f5b53, type: 2}
   - programType: 4
     program: {fileID: 11400000, guid: 26210573a8a7ed24dbfac1f3554c5d0a, type: 2}
+  - programType: 8
+    program: {fileID: 11400000, guid: 0819f260fb19d204489a9c40082bb79b, type: 2}

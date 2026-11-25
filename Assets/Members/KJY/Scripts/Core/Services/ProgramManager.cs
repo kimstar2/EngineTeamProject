@@ -32,7 +32,7 @@ namespace Members.KJY.Scripts.Core.Services
         [HorizontalLine(color: EColor.Gray)]
         [SerializeField] private ProgramInfoSO errorMessage;
         
-        [Header("Meesage Setting")]
+        [Header("Message Setting")]
         [HorizontalLine(color: EColor.Gray)]
         [SerializeField] private ProgramInfoSO messageInfo;
         
@@ -40,6 +40,7 @@ namespace Members.KJY.Scripts.Core.Services
         private readonly Dictionary<ProgramController, ProgramBar> _programChain = new();
         
         private readonly List<ProgramController> _enterList = new();
+        private readonly HashSet<ProgramInfoSO> _onlyOneSet = new();
         
         private bool _dontSetNext;
 
@@ -91,6 +92,13 @@ namespace Members.KJY.Scripts.Core.Services
 
         public void MakeChain(ProgramInfoSO programData, ProgramEntry entry) // 프로그램 키는거
         {
+            if (programData.OnlyOneProgram && !_onlyOneSet.Add(programData))
+            {
+                ErrorEntry error = ScriptableObject.CreateInstance<ErrorEntry>();
+                error.SetErrorMessage($"{programData.ProgramName} 창이 이미 열려 있습니다. 기존 창을 이용해 주세요.");
+                MakeChain(errorMessage,error);
+                return;
+            }
             ProgramController program = Instantiate(ProgramControllerPrefab,programControllerParent.transform);
             ProgramBar programBar = Instantiate(ProgramBarPrefab,programBarParent);
             
@@ -146,8 +154,10 @@ namespace Members.KJY.Scripts.Core.Services
             GetSystem(obj.ProgramCon, ProgramState.Minimized).OnExecute -= HandleProgramMinimized;
             GetSystem(obj.ProgramCon, ProgramState.Closed).OnExecute -= HandleProgramClose;
             
-            _programChain.Remove(obj.ProgramCon);
+            if (obj.ProgramData.ProgramInfo.OnlyOneProgram)
+                _onlyOneSet.Remove(obj.ProgramData.ProgramInfo);
             
+            _programChain.Remove(obj.ProgramCon);
             _enterList.Remove(obj.ProgramCon);
             if (_enterList.Count == 0) return;
             var nextPCon = _enterList[^1];

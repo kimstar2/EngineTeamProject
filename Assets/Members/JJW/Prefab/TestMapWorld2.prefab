@@ -935,6 +935,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1260047a648b4c2ca9b3e6d88505f086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.World.WorldMap
+  <MapCamera>k__BackingField: {fileID: 3231306194827729420}
+  <Loads>k__BackingField:
+  - {fileID: 4134914727979098084}
+  - {fileID: 457180185522663339}
+  <MapColliders>k__BackingField:
+  - {fileID: 2224916374131011165}
+  - {fileID: 9185622830157726617}
+  - {fileID: 3707593474423030601}
+  - {fileID: 6109746417548460760}
+  - {fileID: 7418185109271541585}
+  - {fileID: 4150235237949041372}
 --- !u!1 &6988384632991019533
 GameObject:
   m_ObjectHideFlags: 0

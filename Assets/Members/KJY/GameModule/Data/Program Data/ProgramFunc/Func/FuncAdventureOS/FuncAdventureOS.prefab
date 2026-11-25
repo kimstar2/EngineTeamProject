@@ -2317,6 +2317,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1760719625539307669, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 748564053735345753}
+    - targetCorrespondingSourceObject: {fileID: 1760719625539307669, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5829928218774972410}
     - targetCorrespondingSourceObject: {fileID: 1760719625539307669, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
       insertIndex: -1
@@ -2324,9 +2327,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1760719625539307669, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 575967623571024477}
-    - targetCorrespondingSourceObject: {fileID: 1760719625539307669, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 748564053735345753}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6226593318493127853, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
       insertIndex: -1
@@ -2359,7 +2359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncInternet
   intro: {fileID: 4867251598440764375}
   start: {fileID: 2789678450190591712}
-  <MapWindow>k__BackingField: {fileID: 8512500073811102124}
+  <FuncMapWindow>k__BackingField: {fileID: 8512500073811102124}
   startMessage:
   - ???
   - "\uC5EC\uAE30\uAC00 \uC73C\uB370\uACE0"

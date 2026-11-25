@@ -148,9 +148,59 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 63793a067c4cfa448a5f358c720e9843, type: 2}
   - {fileID: 11400000, guid: d00aa829d0e051d48bbba25e651b1f52, type: 2}
   - {fileID: 11400000, guid: d522469a7a012994f9427408b18e62dc, type: 2}
+  - {fileID: 11400000, guid: 7a6ff0175f9d9754197a82bf5fc386b1, type: 2}
+  - {fileID: 11400000, guid: 8af828063444fcf4fa9e84459d47504c, type: 2}
   applicationList: {fileID: 11400000, guid: a8a2b3793d3efc6459eace85d55369ea, type: 2}
   fileInfoBase: {fileID: 11400000, guid: ce7ce4cb334d2ee4d8e35f3c772a1cf8, type: 2}
   fileExplorerBase: {fileID: 3233969027363277380, guid: 7c25f06c8dbcd1644a22a9d6cf5ba430, type: 3}
+--- !u!1 &1284163568639968938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2938701819424086352}
+  - component: {fileID: 2044393057244712016}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2938701819424086352
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284163568639968938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5147190813501648195}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2044393057244712016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284163568639968938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba9dd95ecde436bb297883b30884890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Core.Services.MapManager
 --- !u!1 &1704304029210197666
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +375,7 @@ MonoBehaviour:
   applicationManager: {fileID: 3121034285775521494}
   timeService: {fileID: 8013045370650732783}
   messageRaiser: {fileID: 2538261810495334157}
+  mapManager: {fileID: 2044393057244712016}
   startFrameRate: 60
 --- !u!1 &4515782689380514901
 GameObject:
@@ -670,6 +721,7 @@ RectTransform:
   - {fileID: 1006392364396891846}
   - {fileID: 3740766919520037827}
   - {fileID: 665315180799164187}
+  - {fileID: 2938701819424086352}
   m_Father: {fileID: 6113248029962833208}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -726,11 +778,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.ProgramConnector
   eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
-  testKey: 5
+  testKey: 27
   <ProgramControllerPrefab>k__BackingField: {fileID: 7616028829886333550, guid: b2f73947c903d81458659efc27cc54b6, type: 3}
   <ProgramBarPrefab>k__BackingField: {fileID: 1561226184655720589, guid: 9eb09aed4fbad97489800e5a4199b226, type: 3}
   programControllerParent: {fileID: 0}
   programBarParent: {fileID: 0}
-  testProgramData: {fileID: 11400000, guid: caa3b775725b823408ec205a184f5b53, type: 2}
+  testProgramData: {fileID: 11400000, guid: 357ebcdbd8781e148bff6a7f19e95476, type: 2}
   errorMessage: {fileID: 11400000, guid: dea4d8e54ffaca24aa27ce38fc6dc4fd, type: 2}
   messageInfo: {fileID: 11400000, guid: 73fb9562636d30b4096d32a3f1654ab5, type: 2}

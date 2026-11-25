@@ -936,6 +936,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1260047a648b4c2ca9b3e6d88505f086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.World.WorldMap
+  <MapCamera>k__BackingField: {fileID: 3231306194827729420}
+  <Loads>k__BackingField:
+  - {fileID: 1265093989858528697}
+  - {fileID: 9134777876965759718}
+  <MapColliders>k__BackingField:
+  - {fileID: 9150504684261282967}
+  - {fileID: 6242573522384419572}
+  - {fileID: 4909073459043730956}
+  - {fileID: 3707593474423030601}
+  - {fileID: 6109746417548460760}
+  - {fileID: 7418185109271541585}
+  - {fileID: 4150235237949041372}
 --- !u!1 &6988384632991019533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1095,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c049d44b1c8ef44195061ec0b77b461, type: 3}
+--- !u!61 &4909073459043730956 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1380177488628390512, guid: 2c049d44b1c8ef44195061ec0b77b461, type: 3}
+  m_PrefabInstance: {fileID: 6271236437475466364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8620786042770599309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2352224168269492721, guid: 2c049d44b1c8ef44195061ec0b77b461, type: 3}

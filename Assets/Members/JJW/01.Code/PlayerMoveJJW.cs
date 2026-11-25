@@ -1,4 +1,5 @@
 using System;
+using Members.KJY.Scripts.Program;
 using UnityEngine;
 
 namespace Members.JJW._01.Code
@@ -24,7 +25,13 @@ namespace Members.JJW._01.Code
 
         private void FixedUpdate()
         {
-            PlayerMove();
+            if (_windowBounds.Owner.PC.SystemStateMachine.CurrentProgramState == ProgramState.Enabled)
+                PlayerMove();
+            else
+            {
+                _xyMove = Vector2.zero;
+                RbCompo.linearVelocity = Vector2.zero;
+            }
         }
 
         private void PlayerMove()

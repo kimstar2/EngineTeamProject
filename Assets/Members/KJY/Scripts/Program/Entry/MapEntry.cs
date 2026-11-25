@@ -8,5 +8,7 @@ namespace Members.KJY.Scripts.Program.Entry
     {
         [field:SerializeField] public WorldMap WorldMap { get; private set; }
         [field:SerializeField] public Vector2 Position { get; private set; }
+        
+        
     }
 }

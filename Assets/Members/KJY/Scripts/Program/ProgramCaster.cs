@@ -12,6 +12,7 @@ using Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message;
 using Members.KJY.Scripts.Program.Func.FuncFileExplorer;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.World;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace Assets.Members.KJY.Scripts.Program
@@ -23,37 +24,60 @@ namespace Assets.Members.KJY.Scripts.Program
         {
             switch (entry.BaseProgram)
             {
-                case ProgramType.File:
-                    break;
                 case ProgramType.Internet:
-                    ((FuncInternet)func).SearchSystem.SetInternetData((InternetEntry)entry);
+                {
+                    var t = Get<FuncInternet,InternetEntry>(func,entry);
+                    t.func.SearchSystem.SetInternetData(t.entry);
                     break;
-                case ProgramType.RecycleBin:
-                    break;
+                }
                 case ProgramType.Notepad:
-                    ((FuncNotePad)func).SetNotePadEntry((NotepadEntry)entry);
+                {
+                    var t = Get<FuncNotePad,NotepadEntry>(func,entry);
+                    t.func.SetNotePadEntry(t.entry);
                     break;
+                    
+                }
                 case ProgramType.AdventureOS:
-                    Debug.Log("Im ironMan");
-                    ((FuncAdventureOS)func).MapWindow.MakeWorldMap(((AdventureOSEntry)entry).FirstMap);
+                {
+                    var t = Get<FuncAdventureOS,AdventureOSEntry>(func,entry);
+                    t.func.FuncMapWindow.InitManager();
+                    t.func.FuncMapWindow.MakeWorldMap(((AdventureOSEntry)entry).FirstMap, pc);
                     break;
-                
+                }
                 case ProgramType.FilePassword:
-                    ((FuncFilePassword)func).SetPasswordEntry((FilePasswordEntry)entry, pc.ProgramReadonlyDict);
+                {
+                    var t = Get<FuncFilePassword,FilePasswordEntry>(func,entry);
+                    t.func.SetPasswordEntry(t.entry, pc.ProgramReadonlyDict);
                     break;
+                }
                 case ProgramType.Error:
                 {
+                    var t = Get<FuncError,ErrorEntry>(func,entry);
                     if (pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken))
-                        ((FuncError)func).SetErrorEntry((ErrorEntry)entry, closeToken);
+                        t.func.SetErrorEntry(t.entry, closeToken);
+                    break;
+                }
+                case ProgramType.WorldMap:
+                {
+                    var t = Get<FuncMapWindow,MapEntry>(func,entry);
+                    t.func.InitManager();
+                    t.func.MakeWorldMap(t.entry,pc);
                     break;
                 }
                 case ProgramType.Message:
                 {
+                    var t = Get<FuncMessage,MessageEntry>(func,entry);
                     if (pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken))
-                        ((FuncMessage)func).SetData((MessageEntry)entry,closeToken);
+                        t.func.SetData(t.entry,closeToken);
                     break;
                 }
+                // 필요한 애들은 추가해서 쓰기
             }
         }
+
+        private static (T func,T1 entry) Get<T,T1>(ProgramFunc f, ProgramEntry e) where T : ProgramFunc where T1 : ProgramEntry
+        {
+            return (f as T, e as T1); 
+        }    
     }
 }

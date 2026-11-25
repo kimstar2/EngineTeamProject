@@ -15,7 +15,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         [SerializeField] private FuncAdvOS_Start start;
 
         [field:Header("In Game")] 
-        [field:SerializeField] public MapWindow MapWindow { get; private set; }
+        [field:SerializeField] public FuncMapWindow FuncMapWindow { get; private set; }
         [SerializeField] private string[] startMessage;
         
         public override void Init()

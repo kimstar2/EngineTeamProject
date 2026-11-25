@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Members.KJY.Scripts.Program;
+using Members.KJY.Scripts.Utils;
 
 namespace Members.JJW._01.Code
 {
@@ -144,6 +145,7 @@ namespace Members.JJW._01.Code
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            UIUtils.AdjustmentUI(parentRect,ProgramData.ProgramRect.Rect);
             isResizing = false;
         }
     }

@@ -5,12 +5,12 @@ namespace Members.JJW._01.Code
 {
     public class PlayerWindowBoundsJJW : MonoBehaviour
     {
+        public FuncMapWindow Owner { get; private set; }
         private const float Padding = 0.01f;
 
         private Rigidbody2D _rb;
         private BoxCollider2D _rbColl;
         private Collider2D[] _obstacles;
-        private MapWindow _owner;
         internal Vector2 Margin => (Vector2)_rbColl.bounds.extents + Vector2.one * Padding;
         private Vector2 ColliderOffset => _rb.transform.TransformVector(_rbColl.offset);
 
@@ -27,9 +27,9 @@ namespace Members.JJW._01.Code
             _rbColl = GetComponent<BoxCollider2D>();
         }
 
-        internal void Initialize(MapWindow owner, Collider2D[] obstacles)
+        internal void Initialize(FuncMapWindow owner, Collider2D[] obstacles)
         {
-            _owner = owner;
+            Owner = owner;
             _obstacles = obstacles;
 
             Physics2D.SyncTransforms();
@@ -109,11 +109,11 @@ namespace Members.JJW._01.Code
             if (!WindowBoundsMathJJW.Contains(_centerArea, center))
                 return Vector2.zero;
 
-            if (_owner != null && !_owner.isActiveAndEnabled)
+            if (Owner != null && !Owner.isActiveAndEnabled)
                 return Vector2.zero;
-            if (velocity != Vector2.zero && _owner != null && _owner.Snap != null)
+            if (velocity != Vector2.zero && Owner != null && Owner.Snap != null)
             {
-                float fraction = _owner.Snap.WalkAcross(this, center, velocity * deltaTime);
+                float fraction = Owner.Snap.WalkAcross(this, center, velocity * deltaTime);
                 velocity *= fraction;
                 center = _rb.position + ColliderOffset;
             }

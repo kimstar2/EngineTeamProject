@@ -51,7 +51,6 @@ namespace Members.KJY.Scripts.Program.Func
         private void HandleEnable()
         {
             _enableToken.ExecuteSystem();
-            Debug.Log("enable");
         }
         
         private void HandleClose(ProgramSystemBase _)

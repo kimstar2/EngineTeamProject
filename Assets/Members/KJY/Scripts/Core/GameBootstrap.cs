@@ -17,6 +17,7 @@ namespace Members.KJY.Scripts.Core
         [SerializeField] private ApplicationManager applicationManager;
         [SerializeField] private TimeService timeService;
         [SerializeField] private AdvOS_MessageRaiser messageRaiser;
+        [SerializeField] private MapManager mapManager;
 
         [Header("Other Setting")]
         [SerializeField] private int startFrameRate = 60;
@@ -27,6 +28,7 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.RegisterService<ITimeService>(timeService);
             ServiceLocator.RegisterService<ITickService>(timeService);
             ServiceLocator.RegisterService<IMessageRaiser>(messageRaiser);
+            ServiceLocator.RegisterService<IMapManager>(mapManager);
         }
 
         private void Start()
@@ -43,6 +45,7 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.UnregisterService<ITimeService>();
             ServiceLocator.UnregisterService<ITickService>();
             ServiceLocator.UnregisterService<IMessageRaiser>();
+            ServiceLocator.UnregisterService<IMapManager>();
         }
     }
 }

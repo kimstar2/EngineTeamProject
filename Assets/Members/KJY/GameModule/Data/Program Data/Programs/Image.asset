@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee3be0c3d5f4b458b1619de804e5e06, type: 3}
   m_Name: Image
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.TaskBar.ProgramBarDataSO
-  <FuncPrefabs>k__BackingField:
-  - {fileID: 99539472537222207, guid: 3a6a2676c3e13f040ac386ec5cd4949e, type: 3}
+  <FuncPrefabs>k__BackingField: []
   <ProgramIcon>k__BackingField: {fileID: -7666885783339648234, guid: fe296541efa406548a03d1ef43b98cf0, type: 3}
   <IconColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <ProgramConBar>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -25,6 +24,7 @@ MonoBehaviour:
   <ProgramBarNameColor>k__BackingField: {r: 0.037023783, g: 0.4641509, b: 0, a: 1}
   <ProgramConBg>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   <ProgramConBgColor>k__BackingField: {r: 0.72156864, g: 0.70980394, b: 0.72156864, a: 1}
+  <OnlyOneProgram>k__BackingField: 0
   <StartPosition>k__BackingField: {x: 0, y: 0}
   <StartSize>k__BackingField: {x: 500, y: 300}
   <ProgramSystems>k__BackingField:

@@ -233,14 +233,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1306172945949069056, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
-      propertyPath: testKey
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 1306172945949069056, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
-      propertyPath: testProgramData
-      value: 
-      objectReference: {fileID: 11400000, guid: 357ebcdbd8781e148bff6a7f19e95476, type: 2}
-    - target: {fileID: 1306172945949069056, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
       propertyPath: programBarParent
       value: 
       objectReference: {fileID: 1921522020}
@@ -248,14 +240,6 @@ PrefabInstance:
       propertyPath: programControllerParent
       value: 
       objectReference: {fileID: 1250922979}
-    - target: {fileID: 3121034285775521494, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
-      propertyPath: defaultEntryList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3121034285775521494, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
-      propertyPath: 'defaultEntryList.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: f4a74bb79fb07fe42aedb243e5321f7a, type: 2}
     - target: {fileID: 3121034285775521494, guid: 16148c5716083d24aa5e473ec29f994a, type: 3}
       propertyPath: parentTransform
       value: 
