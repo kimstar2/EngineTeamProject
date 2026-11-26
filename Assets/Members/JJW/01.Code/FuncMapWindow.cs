@@ -194,7 +194,7 @@ namespace Members.JJW._01.Code
         {
             screenRect = default;
 
-            if (_worldMap.MapCamera == null
+            if (_worldMap == null || _worldMap.MapCamera == null
                 || mapView == null
                 || !isActiveAndEnabled
                 || !mapView.isActiveAndEnabled
@@ -288,9 +288,26 @@ namespace Members.JJW._01.Code
             return true;
         }
 
+        internal bool TryGetRoadEnd(int index, int direction, out MapRoadEnd end)
+        {
+            end = default;
+            if (!TryGetRoadSnapData(index, out Rect road, out Vector2 center, out bool horizontal))
+                return false;
+
+            Rect view = GetVisibleArea(mapView.rectTransform.rect.size);
+            Bounds bounds = _roads[index].WorldBounds;
+            int axis = horizontal ? 0 : 1;
+            if (direction > 0 ? bounds.max[axis] < view.max[axis] : bounds.min[axis] > view.min[axis])
+                return false;
+
+            end = new MapRoadEnd(road, center, horizontal, direction);
+            return true;
+        }
+
         internal Vector2 PlayerScreenMargin()
         {
-            if (_activePlayer == null) return Vector2.zero;
+            if (_activePlayer == null || _worldMap == null || _worldMap.MapCamera == null)
+                return Vector2.zero;
             Vector2 origin = _worldMap.MapCamera.transform.position;
             return MapWorldToScreen(origin + _activePlayer.Margin) - MapWorldToScreen(origin);
         }
