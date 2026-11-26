@@ -1,4 +1,5 @@
 
+using Members.KJY.Scripts.Program;
 using UnityEngine;
 using Members.KJY.Scripts.Program.Entry;
 
@@ -20,8 +21,10 @@ public class FileViewer : MonoBehaviour
         foreach (Transform child in _fileContent)
             Destroy(child.gameObject);
 
-        foreach (FileEntry file in folder.FileList)
+        foreach (var programEntry in folder.ProgramList)
         {
+            if (programEntry.BaseProgram != ProgramType.File) continue;
+            var file = (FileEntry)programEntry;
             FileOpen fileOpen = Instantiate(_filePrefab, _fileContent);
             fileOpen.SetData(file, selectedFile => SelectFile(selectedFile, fileOpen));
         }

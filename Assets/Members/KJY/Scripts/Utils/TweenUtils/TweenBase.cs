@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Members.KJY.Scripts.Utils.TweenUtils
 {
-    public abstract class TweenBase : MonoBase<Transform>, ITweenable
+    public abstract class TweenBase<T> : MonoBase<Transform>, ITweenable
     {
         [field:Header("Default Tween Setting")]
         [field:HorizontalLine(color: EColor.Gray)]
@@ -36,6 +36,7 @@ namespace Members.KJY.Scripts.Utils.TweenUtils
         }
 
         public abstract void ExecuteTween();
+        public abstract void ExecuteOther(T target);
 
         public void KillTween()
         {
@@ -51,5 +52,6 @@ namespace Members.KJY.Scripts.Utils.TweenUtils
         {
             CurrentTween.SetId(_id).SetEase(Ease);
         }
+
     }
 }

@@ -38,7 +38,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             if (_fileData.IsLocked)
             {
                 _filePassword = ScriptableObject.CreateInstance<FilePasswordEntry>();
-                _filePassword.Init(_fileData.Password);
+                _filePassword.Init(_fileData.Password,_fileData.RenderOrder);
                 
                 _filePassword.OnPasswordSuccess += HandleOpen;
                 _filePassword.OnClose += HandleClose;
@@ -48,6 +48,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             }
 
             OnInFile?.Invoke(_fileData);
+            _fileData.InFile?.Invoke();
         }
         
         private void HandleClose()
@@ -61,6 +62,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
         {
             HandleClose();
             OnInFile?.Invoke(_fileData);
+            _fileData.InFile?.Invoke();
         }
     }
 }

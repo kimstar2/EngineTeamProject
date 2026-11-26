@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589ae785f42847b191d8f57ed9f1e44a, type: 3}
+  m_Name: Tuto Message
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.MessageListSO
+  renderOrder: 1
+  <MessageList>k__BackingField:
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uC548\uB155\uD558\uC138\uC694! Adventure OS \uC5D0
+      \uC624\uC2E0 \uAC83\uC744 \uD658\uC601\uD569\uB2C8\uB2E4!"
+    <UseEvent>k__BackingField: 0
+    <Event>k__BackingField: {fileID: 0}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 0}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uC544..! \uCC98\uC74C \uD50C\uB808\uC774 \uD574\uBCF4\uC168\uC744
+      \uC218\uB3C4 \uC788\uC73C\uB2C8\n\uC6B0\uC120 Adventure OS\uC5D0 \uB300\uD574\uC11C
+      \uC54C\uB824\uB4DC\uB9B4\uAC8C\uC694!"
+    <UseEvent>k__BackingField: 0
+    <Event>k__BackingField: {fileID: 0}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 0}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "Adventure OS\uB294 \uCEF4\uD4E8\uD130\uC758 \uAE30\uBCF8
+      \uAE30\uB2A5\uC73C\uB85C\uB3C4\n\uAC8C\uC784\uC744 \uD560 \uC218 \uC788\uAC8C
+      \uB9CC\uB4E0 \uC5B4\uB4DC\uBCA4\uCCD0\uD615 \uD37C\uC990\uAC8C\uC784\uC785\uB2C8\uB2E4!"
+    <UseEvent>k__BackingField: 0
+    <Event>k__BackingField: {fileID: 0}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 0}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uC5B4\uB5A4 \uB290\uB08C\uC778\uC9C0 \uC798 \uBAA8\uB974\uC2DC\uACA0\uC8E0?
+      \n\uBA3C\uC800 \uC608\uC2DC \uD37C\uC990\uC744 \uBCF4\uC5EC\uB4DC\uB9B4\uAC8C\uC694!"
+    <UseEvent>k__BackingField: 0
+    <Event>k__BackingField: {fileID: 0}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 0}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uB300\uBD80\uBD84\uC758 \uD37C\uC990\uC740 \uC774\uB7F0
+      \uD30C\uC77C\uC758 \uD615\uD0DC\uB97C \uC9C0\uB2C8\uACE0 \uC788\uC5B4\uC694."
+    <UseEvent>k__BackingField: 1
+    <Event>k__BackingField: {fileID: 11400000, guid: dea3db931bbb59f46ab871362caff76a, type: 2}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 11400000, guid: 47c8faa28754cbb4fb5111a8683a889c, type: 2}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uD37C\uC990\uC744 \uD478\uB294 \uBC29\uBC95\uC740
+      \uB2E4\uC74C \uD37C\uC990 \uD3F4\uB354\uC758 \uBE44\uBC00\uBC88\uD638\uB97C
+      \uCC3E\uACE0\n\uC7A0\uACA8\uC788\uB294 \uB2E4\uC74C \uD37C\uC990 \uD3F4\uB354\uB97C
+      \uC5EC\uB294 \uAC83 \uC774\uC5D0\uC694."
+    <UseEvent>k__BackingField: 0
+    <Event>k__BackingField: {fileID: 11400000, guid: dea3db931bbb59f46ab871362caff76a, type: 2}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 11400000, guid: 47c8faa28754cbb4fb5111a8683a889c, type: 2}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uC624? <rainb>\"\uC5C4\uCCAD \uBE44\uBC00\uC2A4\uB7EC\uC6B4
+      \uD30C\uC77C\"</rainb>\uC774 \uC788\uB294\uB370\uC694?\n\uC774 \uACF3\uC5D0
+      <wave a=0.25>\uC7A0\uACA8\uC788\uB294 \uB2E4\uC74C \uD37C\uC990 \uD3F4\uB354</wave>\uB97C
+      \uC5EC\uB294 \uD78C\uD2B8\uAC00 \uC788\uC744 \uC218\uB3C4??"
+    <UseEvent>k__BackingField: 0
+    <Event>k__BackingField: {fileID: 11400000, guid: dea3db931bbb59f46ab871362caff76a, type: 2}
+    <UseAdvanceEvent>k__BackingField: 1
+    <AdvanceEvent>k__BackingField: {fileID: 11400000, guid: 47c8faa28754cbb4fb5111a8683a889c, type: 2}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uC88B\uC2B5\uB2C8\uB2E4. \uD37C\uC990\uC774 \uC5B4\uB5A4
+      \uB290\uB08C\uC778\uC9C0 \uAC10\uC774 \uC7A1\uD788\uC2E4\uAC70\uB77C \uBBFF\uC2B5\uB2C8\uB2E4."
+    <UseEvent>k__BackingField: 0
+    <Event>k__BackingField: {fileID: 11400000, guid: 11f05f0cc754bfd40845d6b6ace168ce, type: 2}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 11400000, guid: 47c8faa28754cbb4fb5111a8683a889c, type: 2}
+  - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
+    <Name>k__BackingField: ???
+    <Message>k__BackingField: "\uC88B\uC2B5\uB2C8\uB2E4. \uD37C\uC990\uC774 \uC5B4\uB5A4
+      \uB290\uB08C\uC778\uC9C0 \uAC10\uC774 \uC7A1\uD788\uC2E4\uAC70\uB77C \uBBFF\uC2B5\uB2C8\uB2E4."
+    <UseEvent>k__BackingField: 1
+    <Event>k__BackingField: {fileID: 11400000, guid: 11f05f0cc754bfd40845d6b6ace168ce, type: 2}
+    <UseAdvanceEvent>k__BackingField: 0
+    <AdvanceEvent>k__BackingField: {fileID: 11400000, guid: 47c8faa28754cbb4fb5111a8683a889c, type: 2}

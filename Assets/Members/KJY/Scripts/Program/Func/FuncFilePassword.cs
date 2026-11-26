@@ -23,14 +23,12 @@ namespace Members.KJY.Scripts.Program.Func
         {
             _filePasswordEntry = entry;
 
-            if (!systemDict.TryGetValue(ProgramState.Closed, out _closeToken))
-                return;
-            
-            if (!systemDict.TryGetValue(ProgramState.Enabled, out _enableToken))
-                return;
-            
-            _filePasswordEntry.OnEnable += HandleEnable;
-            _closeToken.OnExecute += HandleClose;
+            if (systemDict.TryGetValue(ProgramState.Closed, out _closeToken))
+                _closeToken.OnExecute += HandleClose;
+
+            if (systemDict.TryGetValue(ProgramState.Enabled, out _enableToken))
+                _filePasswordEntry.OnEnable += HandleEnable;
+
             inputField.InputField.onSubmit.AddListener(HandleCheckPassword);
         }
 
@@ -39,7 +37,7 @@ namespace Members.KJY.Scripts.Program.Func
             if (password == _filePasswordEntry.Password)
             {
                 _filePasswordEntry.Open();
-                _closeToken.ExecuteSystem();
+                _closeToken?.ExecuteSystem();
             }
             else
             {

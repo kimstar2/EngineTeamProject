@@ -12,7 +12,6 @@ namespace Members.KJY.Scripts.Program.Func
         [Header("Text Setting")]
         [HorizontalLine(color: EColor.Gray)]
         [SerializeField] private MonoInputField monoField;
-        private NotePadDataSO _notePadData;
         
         [Header("Font Setting")]
         [HorizontalLine(color: EColor.Gray)]
@@ -20,6 +19,7 @@ namespace Members.KJY.Scripts.Program.Func
         [SerializeField] private float[] fontSizes;
         private readonly NotifyValue<float> _crtFontSize = new();
         private int _crtFontSizeIndex;
+        private NotepadEntry _notePadEntry;
 
         private int FontSizeIndex
         {
@@ -35,13 +35,13 @@ namespace Members.KJY.Scripts.Program.Func
 
         public void SetNotePadEntry(NotepadEntry data)
         {
-            _notePadData = data.NotepadData;
+            _notePadEntry = data;
         }
         
         public override void Init()
         {
-            monoField.SetText(_notePadData.DefaultContent);
-            monoField.SetWarp(_notePadData.TextWrapMode);
+            monoField.SetText(_notePadEntry.DefaultContent);
+            monoField.SetWarp(_notePadEntry.TextWrapMode);
             FontSizeIndex = defaultFontSizeIndex;
         }
 

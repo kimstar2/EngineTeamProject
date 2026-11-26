@@ -7,7 +7,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
     public class TestRaiser : MonoBehaviour
     {
         [SerializeField] private AnimatorController test;
-        [SerializeField] private MessageGroup[] testMessage;
+        [SerializeField] private MessageListSO testMessage;
         
         [ContextMenu("text")]
         public void Raise()

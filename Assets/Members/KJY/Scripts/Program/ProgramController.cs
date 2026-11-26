@@ -77,11 +77,11 @@ namespace Members.KJY.Scripts.Program
 
         public void Init(MonoRect parentRect,ProgramInfoSO programInfo,ProgramBar programBar, ProgramEntry entry)
         {
-            ProgramData programData = new ProgramData(parentRect,ProgramRect, gameObject, programInfo);
+            ProgramData programData = new ProgramData(parentRect,ProgramRect, gameObject, programInfo, entry);
             
-            foreach (ProgramSystems system in programInfo.ProgramSystems)
+            foreach (ProgramSystems system in entry.GetSystems(programInfo))
             {
-                var programSystemBase = Instantiate(system.System.Program, ProgramParent);
+                ProgramSystemBase programSystemBase = Instantiate(system.System.Program, ProgramParent);
                 programSystemBase.Initialize(this, programData);
                 SystemStateMachine.AddState(system.ProgramState, programSystemBase);
                 _programDict.Add(system.ProgramState,programSystemBase); 
@@ -89,18 +89,16 @@ namespace Members.KJY.Scripts.Program
             }
             foreach (ProgramFunc func in programInfo.FuncPrefabs)
                 MakeFunc(func,entry);
-            ProgramControllerBarDataBinder.SetData(programInfo);
+            ProgramControllerBarDataBinder.SetData(programInfo,entry);
             ProgramDataBinder.SetData(programInfo);
             
             IsClosing = false;
             ProgramBar = programBar;
 
-            SystemStateMachine.Init(programData);
+            SystemStateMachine.Init(programData, this);
             
             foreach (IProgramInit programInit in _programInits) 
                 programInit.ProgramInit(programData);
-            
-            ChangeState(SystemInvoker.ProgramController,ProgramState.Opened);
         }
 
         #region Handle
@@ -112,6 +110,17 @@ namespace Members.KJY.Scripts.Program
         #region Helper
         
         public void ChangeState(SystemInvoker invoker, ProgramState state) => SystemStateMachine.ChangeState(invoker, state);
+        public void OpenWithoutAnimation()
+        {
+            ProgramTween?.Kill();
+            ProgramRect.SetSizeDelta(LastSize);
+            ProgramRect.SetAnchoredPos(LastPosition);
+            CanvasGroup.alpha = 1f;
+            ProgramParent.SetAsLastSibling();
+            ProgramBar.OnEnter?.Invoke();
+            OnEnter?.Invoke();
+        }
+
         public void SetLastPosition(Vector2 position) => LastPosition = position;
         public void SetLastSize(Vector2 size) => LastSize = size;
         public void OnClosing() => IsClosing = true;

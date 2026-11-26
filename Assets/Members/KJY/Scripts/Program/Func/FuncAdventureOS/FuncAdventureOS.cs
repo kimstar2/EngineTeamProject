@@ -17,25 +17,29 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         [field:Header("In Game")] 
         [field:SerializeField] public FuncMapWindow FuncMapWindow { get; private set; }
         [SerializeField] private MessageListSO startMessage;
-        
+        private IMessageRaiser _messageRaiser;
+
+
         public override void Init()
         {
             base.Init();
             intro.StartIntro();
             start.Init();
+
+            _messageRaiser = ServiceLocator.GetService<IMessageRaiser>();
             
             start.OnEndFade += HandleEndFade;
         }
 
         private void OnDestroy()
         {
+
             start.OnEndFade -= HandleEndFade;
         }
 
         private void HandleEndFade()
         {
-            // MessageListSO clone = startMessage
-            ServiceLocator.GetService<IMessageRaiser>().PlayerRaise(startMessage.MessageList, new Vector2(0f,-250f));
+            _messageRaiser.PlayerRaise(startMessage, new Vector2(0f,-250f));
         }
     }
 }

@@ -2157,6 +2157,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4627844572852752576, guid: 63439fd90683ecd43ad6644adcf5279c, type: 3}
+      propertyPath: programController
+      value: 
+      objectReference: {fileID: 7616028829886333550}
+    - target: {fileID: 4627844572852752576, guid: 63439fd90683ecd43ad6644adcf5279c, type: 3}
       propertyPath: _programController
       value: 
       objectReference: {fileID: 7616028829886333550}
@@ -2284,6 +2288,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6772104288420643812, guid: 62b5b50b20c5c0f46abfc012a7abbfa6, type: 3}
+      propertyPath: programController
+      value: 
+      objectReference: {fileID: 7616028829886333550}
+    - target: {fileID: 6772104288420643812, guid: 62b5b50b20c5c0f46abfc012a7abbfa6, type: 3}
       propertyPath: _programController
       value: 
       objectReference: {fileID: 7616028829886333550}
@@ -2398,10 +2406,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChangeStateTo_Enabled
       objectReference: {fileID: 0}
+    - target: {fileID: 790504291889453354, guid: 5ec49e601220a1744874263d711af8b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2377404350537898726, guid: 5ec49e601220a1744874263d711af8b8, type: 3}
       propertyPath: programState
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2377404350537898726, guid: 5ec49e601220a1744874263d711af8b8, type: 3}
+      propertyPath: programController
+      value: 
+      objectReference: {fileID: 7616028829886333550}
     - target: {fileID: 2377404350537898726, guid: 5ec49e601220a1744874263d711af8b8, type: 3}
       propertyPath: _programController
       value: 

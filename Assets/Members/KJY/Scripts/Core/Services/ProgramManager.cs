@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _TevLib.CoreLib;
 using _TevLib.CoreLib.EventSystem;
 using Members.KJY.Scripts.Check;
@@ -24,7 +25,8 @@ namespace Members.KJY.Scripts.Core.Services
         [field:HorizontalLine(color:EColor.Gray)]
         [field:SerializeField] public ProgramController ProgramControllerPrefab {get; private set;}
         [field:SerializeField] public ProgramBar ProgramBarPrefab {get; private set;}
-        [SerializeField] private MonoRect programControllerParent;
+        [SerializeField] private MonoRect backProgramTask;
+        [SerializeField] private MonoRect frontProgramTask;
         [SerializeField] private Transform programBarParent;
         [SerializeField] private ProgramInfoSO testProgramData;
 
@@ -40,7 +42,7 @@ namespace Members.KJY.Scripts.Core.Services
         private readonly Dictionary<ProgramController, ProgramBar> _programChain = new();
         
         private readonly List<ProgramController> _enterList = new();
-        private readonly HashSet<ProgramInfoSO> _onlyOneSet = new();
+        private readonly HashSet<UnityEngine.Object> _onlyOneSet = new();
         
         private bool _dontSetNext;
 
@@ -54,12 +56,10 @@ namespace Members.KJY.Scripts.Core.Services
         private void HandleMessage(OnMessage msgEvt)
         {
             MessageEntry messageEntry = ScriptableObject.CreateInstance<MessageEntry>();
-            messageEntry.SetMessageData(msgEvt.AnimCon,msgEvt.MessageGroup);
+            messageEntry.SetMessageData(msgEvt.AnimCon,msgEvt.MessageGroup,msgEvt.EventDict);
             
-            ProgramInfoSO clonedMessage = Instantiate(messageInfo);
-            clonedMessage.SetStartPosition(msgEvt.Position);
-            
-            MakeChain(clonedMessage,messageEntry);
+            messageEntry.SetSpawnPos(msgEvt.Position);
+            MakeChain(messageInfo,messageEntry);
         }
 
         private void HandleError(OnError errorEvt)
@@ -92,25 +92,38 @@ namespace Members.KJY.Scripts.Core.Services
 
         public void MakeChain(ProgramInfoSO programData, ProgramEntry entry) // 프로그램 키는거
         {
-            if (programData.OnlyOneProgram && !_onlyOneSet.Add(programData))
+            var limitKey = entry.GetInstanceLimitKey(programData);
+            if (limitKey != null && !_onlyOneSet.Add(limitKey))
             {
                 ErrorEntry error = ScriptableObject.CreateInstance<ErrorEntry>();
-                error.SetErrorMessage($"{programData.ProgramName} 창이 이미 열려 있습니다. 기존 창을 이용해 주세요.");
+                error.SetErrorMessage($"{entry.GetProgramName(programData)} 창이 이미 열려 있습니다. 기존 창을 이용해 주세요.");
                 MakeChain(errorMessage,error);
                 return;
             }
-            ProgramController program = Instantiate(ProgramControllerPrefab,programControllerParent.transform);
+
+
+            MonoRect renderTask = entry.RenderOrder switch
+            {
+                ProgramRenderOrder.BackProgramTask => backProgramTask,
+                ProgramRenderOrder.FrontProgramTask => frontProgramTask,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            
+            ProgramController program = Instantiate(ProgramControllerPrefab,renderTask.transform);
             ProgramBar programBar = Instantiate(ProgramBarPrefab,programBarParent);
             
             _programChain.Add(program, programBar);
             
-            program.Init(programControllerParent,programData,programBar,entry);
-            programBar.Init(programData,program);
+            program.Init(renderTask,programData,programBar,entry);
+            programBar.Init(programData,program,entry);
 
             programBar.OnClick += HandleClicked;
-            GetSystem(program, ProgramState.Enabled).OnExecute += HandleProgramEnable;
-            GetSystem(program, ProgramState.Minimized).OnExecute += HandleProgramMinimized;
-            GetSystem(program, ProgramState.Closed).OnExecute += HandleProgramClose;
+            if (program.ProgramReadonlyDict.TryGetValue(ProgramState.Enabled, out var enabledSystem))
+                enabledSystem.OnExecute += HandleProgramEnable;
+            if (program.ProgramReadonlyDict.TryGetValue(ProgramState.Minimized, out var minimizedSystem))
+                minimizedSystem.OnExecute += HandleProgramMinimized;
+            if (program.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closedSystem))
+                closedSystem.OnExecute += HandleProgramClose;
             
             program.ChangeState(SystemInvoker.ProgramManager, ProgramState.Opened);
             ChangePCon(program);
@@ -150,12 +163,14 @@ namespace Members.KJY.Scripts.Core.Services
             if (_programChain.TryGetValue(obj.ProgramCon, out ProgramBar programBar))
                 programBar.OnClick -= HandleClicked;
             
-            GetSystem(obj.ProgramCon, ProgramState.Enabled).OnExecute -= HandleProgramEnable;
-            GetSystem(obj.ProgramCon, ProgramState.Minimized).OnExecute -= HandleProgramMinimized;
-            GetSystem(obj.ProgramCon, ProgramState.Closed).OnExecute -= HandleProgramClose;
+            if (obj.ProgramCon.ProgramReadonlyDict.TryGetValue(ProgramState.Enabled, out var enabledSystem))
+                enabledSystem.OnExecute -= HandleProgramEnable;
+            if (obj.ProgramCon.ProgramReadonlyDict.TryGetValue(ProgramState.Minimized, out var minimizedSystem))
+                minimizedSystem.OnExecute -= HandleProgramMinimized;
+            if (obj.ProgramCon.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closedSystem))
+                closedSystem.OnExecute -= HandleProgramClose;
             
-            if (obj.ProgramData.ProgramInfo.OnlyOneProgram)
-                _onlyOneSet.Remove(obj.ProgramData.ProgramInfo);
+            _onlyOneSet.Remove(obj.ProgramData.Entry.GetInstanceLimitKey(obj.ProgramData.ProgramInfo));
             
             _programChain.Remove(obj.ProgramCon);
             _enterList.Remove(obj.ProgramCon);
@@ -176,12 +191,6 @@ namespace Members.KJY.Scripts.Core.Services
 
         #region Helper
 
-        private ProgramSystemBase GetSystem(ProgramController program ,ProgramState state)
-        {
-            program.ProgramReadonlyDict.TryGetValue(state, out var system);
-            return system;
-        }
-        
         private void PrevStateSet(ProgramController prev) // Exit
         {
             ProgramState getState = prev.SystemStateMachine.CurrentProgramState switch

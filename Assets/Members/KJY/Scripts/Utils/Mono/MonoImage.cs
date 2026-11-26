@@ -13,7 +13,7 @@ namespace Members.KJY.Scripts.Utils.Mono
         {
             Image.sprite = sprite;
         }
-
+        
         public void SetColor(Color color)
         {
             Image.color = color;

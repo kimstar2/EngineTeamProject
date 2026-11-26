@@ -32,11 +32,14 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             
             fileGroup.MakeNew(FileData.ProgramName);
             _fileDataList.Add(FileData);
-            
-            foreach (FileEntry fileData in FileData.FileList)
-                MakeFile(fileData);
+
             foreach (ProgramEntry programData in FileData.ProgramList)
-                MakeApp(programData);
+            {
+                if (programData.BaseProgram == ProgramType.File)
+                    MakeFile((FileEntry)programData);
+                else
+                    MakeApp(programData);
+            }
         }
 
         private void OnEnable()
@@ -67,15 +70,17 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             
             file.Opener.OnInFile += HandleInFile;
         }
-
+        
         private void HandleInFile(FileEntry newFile)
         {
             _fileDataList.Add(newFile);
             fileGroup.MakeNew(newFile.ProgramName);
-            foreach (FileEntry fileData in newFile.FileList)
-                MakeFile(fileData);
+            
             foreach (ProgramEntry programData in newFile.ProgramList)
-                MakeApp(programData);
+                if (programData.BaseProgram == ProgramType.File)
+                    MakeFile((FileEntry)programData);
+                else
+                    MakeApp(programData);
         }
 
         private void Remake(int num)
@@ -86,10 +91,13 @@ namespace Members.KJY.Scripts.Program.Func.FuncFileExplorer
             
             fileGroup.ClearCurrent();
             
-            foreach (FileEntry fileData in _fileDataList[^1].FileList)
-                MakeFile(fileData);
             foreach (ProgramEntry programData in _fileDataList[^1].ProgramList)
-                MakeApp(programData);
+            {
+                if (programData.BaseProgram == ProgramType.File)
+                    MakeFile((FileEntry)programData);
+                else
+                    MakeApp(programData);
+            }
         }
         
         private void OnDestroy()

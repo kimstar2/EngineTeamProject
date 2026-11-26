@@ -36,8 +36,8 @@ namespace Members.JJW._01.Code
         public void ProgramInit(ProgramData programData)
         {
             ProgramData =  programData;
-            minSize = ProgramData.ProgramInfo.MinSize;
-            maxSize = ProgramData.ProgramInfo.MaxSize;
+            minSize = programData.Entry.GetMinSize(programData.ProgramInfo);
+            maxSize = programData.Entry.GetMaxSize(programData.ProgramInfo);
         }
 
 

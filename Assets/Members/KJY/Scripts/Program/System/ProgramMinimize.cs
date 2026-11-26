@@ -23,7 +23,8 @@ namespace Members.KJY.Scripts.Program.System
                 {
                     ProgramCon.SetLastPosition(Rect.Rect.anchoredPosition);
                     ProgramCon.SetLastSize(Rect.Rect.rect.size);
-                    SetAnchorAndPivot();
+                    if (ProgramCon.ProgramReadonlyDict.ContainsKey(ProgramState.Opened))
+                        SetAnchorAndPivot();
                 }
                 ProgramCon.ProgramBar.OnExit?.Invoke();
                 base.ExecuteSystem();

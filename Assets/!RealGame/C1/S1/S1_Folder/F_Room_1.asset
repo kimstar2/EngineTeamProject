@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f61bf4919204053ba67b9ded13de142, type: 3}
+  m_Name: F_Room_1
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncFileExplorer.FileSO
+  <BaseProgram>k__BackingField: 0
+  <ProgramName>k__BackingField: Room_1
+  <AwakeOpen>k__BackingField: 0
+  <UseMyPos>k__BackingField: 0
+  <SpawnPos>k__BackingField: {x: 0, y: 0}
+  <RenderOrder>k__BackingField: 1
+  overrideSize: 0
+  startSize: {x: 400, y: 300}
+  minSize: {x: 400, y: 300}
+  maxSize: {x: 800, y: 500}
+  <IsSystemOverride>k__BackingField: 1
+  programSystems: []
+  overrideInstanceLimit: 0
+  onlyOneProgram: 0
+  <ProgramList>k__BackingField: []
+  <InFile>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 47c8faa28754cbb4fb5111a8683a889c, type: 2}
+        m_TargetAssemblyTypeName: Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.AdvanceEventSO,
+          Assembly-CSharp
+        m_MethodName: On
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <IsLocked>k__BackingField: 1
+  <Password>k__BackingField: Room1Key

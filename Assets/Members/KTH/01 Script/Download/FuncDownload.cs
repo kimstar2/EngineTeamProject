@@ -38,25 +38,25 @@ namespace Members.KJY.Scripts.Program.Func
         {
             if (folder == null || _isDownloading) return;
 
-            if (!systemDict.TryGetValue(ProgramState.Closed, out _closeToken)) return;
-
-            _closeToken.OnExecute += HandleClose;
+            if (systemDict.TryGetValue(ProgramState.Closed, out _closeToken))
+                _closeToken.OnExecute += HandleClose;
 
             if (_downloadItemPrefab == null || _downloadContent == null) return;
 
             ClearDownloads();
             _isDownloading = true;
 
-            if (folder.FileList == null || folder.FileList.Count == 0)
+            if (folder.ProgramList == null || folder.ProgramList.Count == 0)
             {
                 _isDownloading = false;
                 StartCoroutine(CloseDownloadWindow());
                 return;
             }
 
-            foreach (FileEntry file in folder.FileList)
+            foreach (var programEntry in folder.ProgramList)
             {
-                if (file == null) continue;
+                if (programEntry.BaseProgram != ProgramType.File) continue;
+                var file = (FileEntry)programEntry;
 
                 DownloadItem item = Instantiate(_downloadItemPrefab, _downloadContent);
                 item.SetData(file);

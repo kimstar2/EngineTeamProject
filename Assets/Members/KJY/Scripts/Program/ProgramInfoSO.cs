@@ -41,7 +41,7 @@ namespace Members.KJY.Scripts.Program
         [field:SerializeField] public bool OnlyOneProgram {get; private set;} = false;
         [field:SerializeField] public Vector2 StartPosition { get; private set; } // 시작 위치
         [field:SerializeField] public Vector2 StartSize { get; private set; } // 시작크기
-        [field:SerializeField] public List<ProgramSystems> ProgramSystems { get; private set; } // 기본 시스템
+        [field:SerializeField] public List<ProgramSystems> ProgramSystems { get; private set; } = new(); // 기본 시스템
 
         [field: Header("Size Setting")]
         [field: HorizontalLine(color: EColor.Gray)]

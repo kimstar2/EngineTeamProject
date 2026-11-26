@@ -1,4 +1,5 @@
 ﻿using _TevLib.ModuleSystem;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
@@ -16,13 +17,13 @@ namespace Members.KJY.Scripts.Program
         public ProgramInfoSO CurrentProgramData {get; private set;}
         
 
-        public void SetData(ProgramInfoSO data)
+        public void SetData(ProgramInfoSO data, ProgramEntry entry)
         {
             CurrentProgramData = data;
             
             iconImage.SetImage(data.ProgramIcon);
             iconImage.SetColor(data.IconColor);
-            nameTMP.SetText(data.ProgramName);
+            nameTMP.SetText(entry.GetProgramName(data));
             nameTMP.SetColor(data.ProgramConBarNameColor);
             programBar.SetImage(data.ProgramConBar);
             programBar.SetColor(data.ProgramConBarColor);

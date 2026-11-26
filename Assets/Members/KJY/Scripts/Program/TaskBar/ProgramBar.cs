@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _TevLib.ModuleSystem;
 using Members.KJY.Scripts.Check;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
@@ -35,12 +36,16 @@ namespace Members.KJY.Scripts.Program.TaskBar
             ProgramBarDataBinder = GetModule<ProgramBarDataBinder>();
         }
         
-        public void Init(ProgramInfoSO programData , ProgramController controller)
+        public void Init(ProgramInfoSO programData , ProgramController controller, ProgramEntry programEntry)
         {
             ProgramController = controller;
-            ProgramBarDataBinder.SetData(programData);
-            ProgramController.SetLastPosition(programData.StartPosition);
-            ProgramController.SetLastSize(programData.StartSize);
+            ProgramBarDataBinder.SetData(programData,programEntry);
+            
+            ProgramController.SetLastPosition(programEntry.UseMyPos
+                ? programEntry.SpawnPos
+                : programData.StartPosition);
+            
+            ProgramController.SetLastSize(programEntry.GetStartSize(programData));
         }
 
         public void ClickToggle()
@@ -56,10 +61,11 @@ namespace Members.KJY.Scripts.Program.TaskBar
                 _ => ProgramState.None
             };
             
+            if (afterState == ProgramState.None || (afterState != ProgramState.Opened && !ProgramController.ProgramReadonlyDict.ContainsKey(afterState))) return;
+
             OnClick?.Invoke(ProgramController,afterState);
             
-            if (afterState != ProgramState.None)
-                ProgramController.ChangeState(SystemInvoker.ProgramBar, afterState);
+            ProgramController.ChangeState(SystemInvoker.ProgramBar, afterState);
         }
     }
 

@@ -18,9 +18,11 @@ namespace Members.KJY.Scripts.Core
         [SerializeField] private TimeService timeService;
         [SerializeField] private AdvOS_MessageRaiser messageRaiser;
         [SerializeField] private MapManager mapManager;
+        [SerializeField] private ScreenManager screenManager;
 
         [Header("Other Setting")]
         [SerializeField] private int startFrameRate = 60;
+        [SerializeField] private float startTimeScale = 1f;
         private void Awake()
         {
             ServiceLocator.RegisterService<IProgramManager>(programManager);
@@ -29,13 +31,17 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.RegisterService<ITickService>(timeService);
             ServiceLocator.RegisterService<IMessageRaiser>(messageRaiser);
             ServiceLocator.RegisterService<IMapManager>(mapManager);
+            ServiceLocator.RegisterService<IScreenManager>(screenManager);
         }
 
         private void Start()
         {
+            timeService.SetTimeScale(startTimeScale);
+            Application.targetFrameRate = startFrameRate;
+            
             applicationManager.Init();
             applicationManager.MakeDefaults();
-            Application.targetFrameRate = startFrameRate;
+            
         }
 
         private void OnDestroy()
@@ -46,6 +52,7 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.UnregisterService<ITickService>();
             ServiceLocator.UnregisterService<IMessageRaiser>();
             ServiceLocator.UnregisterService<IMapManager>();
+            ServiceLocator.UnregisterService<IScreenManager>();
         }
     }
 }

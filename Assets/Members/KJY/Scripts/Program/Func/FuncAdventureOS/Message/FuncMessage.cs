@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using _TevLib.HashDataSystem;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Febucci.UI;
+using Members.KJY.Scripts.Player;
 using Members.KJY.Scripts.Program.System;
 using Members.KJY.Scripts.Utils;
 using Members.KJY.Scripts.Utils.Mono;
@@ -30,7 +32,6 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
         
         private ProgramController _pc;
         private ProgramSystemBase _closeToken;
-        private string _crtMessage;
         private bool _moveNext;
         
         private RectTransform _parentRect;
@@ -100,16 +101,23 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
         {
             foreach (MessageGroup msg in msgEntry.Message)
             {
-                _crtMessage = msg.Message;
-                
                 characterName.SetText(msg.Name);
                 
                 if (msg.AnimHash.HashValue != AnimHashSO.NullHash)
                     charAnim.Play(msg.AnimHash.HashValue);
                 
                 messageTmp.ShowText("* " + msg.Message);
+                if (msg.UseEvent && msgEntry.EventDict.TryGetValue(msg.Event, out List<Action<ProgramController>> actions))
+                    foreach (Action<ProgramController> ac in actions)
+                        ac.Invoke(_pc); 
                 
-                await UniTask.WaitUntil(() => _moveNext);
+                if (msg.UseAdvanceEvent)
+                {
+                    await UniTask.WaitUntil(() => msg.AdvanceEvent.CanMoveNext);
+                    msg.AdvanceEvent.Reset();
+                }
+                else
+                    await UniTask.WaitUntil(() => _moveNext);
                 
                 _moveNext = false;
                 messageTmp.TextAnimator.SetText(string.Empty);
@@ -122,10 +130,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
         {
             if (messageTmp.isShowingText)
             {
-                messageTmp.StopShowingText();
-                messageTmp.TextAnimator.SetText("* " + _crtMessage);
-                HandleResizeTmpMesh();
-                UIUtils.AdjustmentUI(_parentRect, _pc.ProgramRect.Rect);
+                messageTmp.SkipTypewriter();
                 return;
             }
 

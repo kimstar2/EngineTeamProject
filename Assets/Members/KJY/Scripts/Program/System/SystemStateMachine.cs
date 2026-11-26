@@ -13,9 +13,12 @@ namespace Members.KJY.Scripts.Program.System
         private readonly Dictionary<ProgramState, ProgramSystemBase> _states = new();
         public ProgramData ProgramData {get; private set;}
         public SystemInvoker LastInvoker {get; private set;}
-        public void Init(ProgramData programData)
+        private ProgramController _controller;
+
+        public void Init(ProgramData programData, ProgramController controller)
         {
             ProgramData = programData;
+            _controller = controller;
         }
         
         public void AddState(ProgramState programState, ProgramSystemBase programSystemState)
@@ -27,12 +30,15 @@ namespace Members.KJY.Scripts.Program.System
         {
             if (CurrentProgramState == ProgramState.Minimized && state == ProgramState.Enabled) return;
             
-            if (!_states.TryGetValue(state, out var systemState)) return;
-            if (CurrentSystemState is {ProgramCon:{IsClosing:true}}) return;
+            if (_controller == null || _controller.IsClosing) return;
+            if (!_states.TryGetValue(state, out var systemState) && state != ProgramState.Opened) return;
             LastInvoker = invoker;
             CurrentSystemState?.ExitSystem();
             CurrentSystemState = systemState;
-            CurrentSystemState?.ExecuteSystem();
+            if (systemState != null)
+                systemState.ExecuteSystem();
+            else
+                _controller.OpenWithoutAnimation();
             CurrentProgramState = state;
         }
     }

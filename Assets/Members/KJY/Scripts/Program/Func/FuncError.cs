@@ -18,7 +18,7 @@ namespace Members.KJY.Scripts.Program.Func
 
         public void Ok()
         {
-            _closeToken.ExecuteSystem();
+            _closeToken?.ExecuteSystem();
         }
     }
 }

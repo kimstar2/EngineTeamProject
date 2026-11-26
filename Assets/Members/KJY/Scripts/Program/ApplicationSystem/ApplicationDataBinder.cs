@@ -13,9 +13,7 @@ namespace Members.KJY.Scripts.Program.ApplicationSystem
         public void Init(ProgramInfoSO programInfo, ProgramEntry entry)
         {
             programIcon.SetImage(programInfo.ProgramIcon);
-            programName.SetText(string.IsNullOrEmpty(entry.ProgramName) 
-                ? programInfo.ProgramName 
-                : entry.ProgramName);
+            programName.SetText(entry.GetProgramName(programInfo));
         }
     }
 }

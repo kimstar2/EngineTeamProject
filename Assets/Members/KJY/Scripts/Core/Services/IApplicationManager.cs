@@ -8,6 +8,7 @@ namespace Members.KJY.Scripts.Core.Services
     {
         void UnClick();
         void Make(ProgramInfoSO info, ProgramEntry entry);
+        void MakeFile(FileEntry fileEntry);
         public IReadOnlyDictionary<ProgramType, ProgramInfoSO> ProgramDict { get; }
     }
 }

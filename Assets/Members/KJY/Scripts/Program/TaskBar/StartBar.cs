@@ -1,5 +1,6 @@
 ﻿using _TevLib.ModuleSystem;
 using Members.KJY.Scripts.Program.ApplicationSystem;
+using Members.KJY.Scripts.Program.Entry;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Members.KJY.Scripts.Program.TaskBar
     {
         [field:SerializeField] public MonoRect ClosePos {get; private set;}
         [field:SerializeField] public ProgramInfoSO StartInfo {get; private set;}
+        [field:SerializeField] public ProgramEntry StartBarEntry {get; private set;}
         
         [field:Header("Event Setting")]
         [field:HorizontalLine(color:EColor.Gray)]
@@ -27,7 +29,7 @@ namespace Members.KJY.Scripts.Program.TaskBar
             ProgramBarDataBinder = GetModule<ProgramBarDataBinder>();
             ApplicationStart = GetModule<ApplicationStart>();
             
-            ProgramBarDataBinder.SetData(StartInfo);
+            ProgramBarDataBinder.SetData(StartInfo,StartBarEntry);
         }
 
         public void WindowToggle()
@@ -35,7 +37,7 @@ namespace Members.KJY.Scripts.Program.TaskBar
             IsToggled = !IsToggled;
 
             if (IsToggled)
-                ApplicationStart.Open(StartInfo.StartSize);
+                ApplicationStart.Open(StartBarEntry != null ? StartBarEntry.GetStartSize(StartInfo) : StartInfo.StartSize);
             else
                 ApplicationStart.Close();
         }

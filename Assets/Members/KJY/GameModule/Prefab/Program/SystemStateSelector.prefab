@@ -48,5 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5b95b2fe824830a49c0878aa464824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.System.SystemStateSelector
-  _programController: {fileID: 0}
+  programController: {fileID: 0}
   programState: 0
+  buttonRoot: {fileID: 0}

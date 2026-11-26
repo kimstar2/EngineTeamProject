@@ -409,7 +409,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -466,7 +466,9 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: New Text
+  _text: 'Test
+
+'
   useDynamicScaling: 1
   referenceFontSize: 10
   isResettingTimeOnNewText: 1
@@ -477,11 +479,11 @@ MonoBehaviour:
   styleSheet: {fileID: 0}
   databaseActions: {fileID: 11400000, guid: d109c2fd55d72cd4ba0ea424108957d1, type: 2}
   defaultAppearancesTags:
-  - size a=-0.25 d=1
+  - size a=-0.5 d=1
+  - fade a =0.5
   defaultDisappearancesTags:
   - fade
-  defaultBehaviorsTags:
-  - swing a=0.1
+  defaultBehaviorsTags: []
   defaultTagsMode: 0
 --- !u!114 &825912071047291654
 MonoBehaviour:
@@ -497,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Febucci.TextAnimator.Runtime::Febucci.UI.TypewriterByCharacter
   useTypeWriter: 1
   startTypewriterMode: 3
-  hideAppearancesOnSkip: 0
+  hideAppearancesOnSkip: 1
   hideDisappearancesOnSkip: 0
   triggerEventsOnSkip: 0
   resetTypingSpeedAtStartup: 1
@@ -889,6 +891,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6226593318493127853, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3681111573386453935}
+    - targetCorrespondingSourceObject: {fileID: 6226593318493127853, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2679149201772250925}
   m_SourcePrefab: {fileID: 100100000, guid: ffb0d581bb93d4d459a290f1a8b4f84c, type: 3}
 --- !u!224 &461611033335412510 stripped
 RectTransform:
@@ -915,10 +920,63 @@ MonoBehaviour:
   charAnim: {fileID: 6012781291997953421}
   characterName: {fileID: 1441847275184192158}
   messageTmp: {fileID: 825912071047291654}
-  minSize: {x: 200, y: 185}
+  minSize: {x: 200, y: 200}
   minYSize: 95
   reSizeEase: 21
   reSizeDur: 0.25
+--- !u!114 &2679149201772250925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5215696424701098790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd55b428d7844b2b7d070f4da7c46ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.RLPointerEvent
+  useEnter: 0
+  onPointerLeftEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerRightEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  useExit: 0
+  onPointerLeftExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerRightExit:
+    m_PersistentCalls:
+      m_Calls: []
+  useDown: 0
+  onPointerLeftDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerRightDown:
+    m_PersistentCalls:
+      m_Calls: []
+  useUp: 1
+  onPointerLeftUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3681111573386453935}
+        m_TargetAssemblyTypeName: Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.FuncMessage,
+          Assembly-CSharp
+        m_MethodName: MoveNext
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPointerRightUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3249493015044716313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,69 +1084,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 650356400737520662, guid: d5bad9a74ee339c43a185fff08a3114d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2679149201772250925}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5bad9a74ee339c43a185fff08a3114d, type: 3}
---- !u!1 &2602521059341564687 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 650356400737520662, guid: d5bad9a74ee339c43a185fff08a3114d, type: 3}
-  m_PrefabInstance: {fileID: 3249493015044716313}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2679149201772250925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2602521059341564687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dd55b428d7844b2b7d070f4da7c46ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.RLPointerEvent
-  useEnter: 0
-  onPointerLeftEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerRightEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  useExit: 0
-  onPointerLeftExit:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerRightExit:
-    m_PersistentCalls:
-      m_Calls: []
-  useDown: 0
-  onPointerLeftDown:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerRightDown:
-    m_PersistentCalls:
-      m_Calls: []
-  useUp: 1
-  onPointerLeftUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3681111573386453935}
-        m_TargetAssemblyTypeName: Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.FuncMessage,
-          Assembly-CSharp
-        m_MethodName: MoveNext
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onPointerRightUp:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!224 &8444472519477151007 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6352414866961183238, guid: d5bad9a74ee339c43a185fff08a3114d, type: 3}

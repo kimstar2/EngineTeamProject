@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChangeStateTo_Enabled
       objectReference: {fileID: 0}
+    - target: {fileID: 2377404350537898726, guid: 5ec49e601220a1744874263d711af8b8, type: 3}
+      propertyPath: buttonRoot
+      value: 
+      objectReference: {fileID: 6001808213134780666}
     - target: {fileID: 2639287008521826035, guid: 5ec49e601220a1744874263d711af8b8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

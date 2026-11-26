@@ -53,8 +53,8 @@ namespace Assets.Members.KJY.Scripts.Program
                 case ProgramType.Error:
                 {
                     var t = Get<FuncError,ErrorEntry>(func,entry);
-                    if (pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken))
-                        t.func.SetErrorEntry(t.entry, closeToken);
+                    pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken);
+                    t.func.SetErrorEntry(t.entry, closeToken);
                     break;
                 }
                 case ProgramType.WorldMap:
@@ -67,8 +67,8 @@ namespace Assets.Members.KJY.Scripts.Program
                 case ProgramType.Message:
                 {
                     var t = Get<FuncMessage,MessageEntry>(func,entry);
-                    if (pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken))
-                        t.func.SetData(t.entry,pc,closeToken);
+                    pc.ProgramReadonlyDict.TryGetValue(ProgramState.Closed, out var closeToken);
+                    t.func.SetData(t.entry,pc,closeToken);
                     break;
                 }
                 // 필요한 애들은 추가해서 쓰기

@@ -10,8 +10,11 @@ namespace Members.KJY.Scripts.Program.Entry
         public event Action OnClose;
         public event Action OnEnable;
 
-        public void Init(string pw)
+        public void Init(string pw, ProgramRenderOrder renderOrder)
         {
+            RenderOrder = renderOrder;
+            Debug.Log(renderOrder);
+            Debug.Log(RenderOrder);
             Password = pw;
             BaseProgram = ProgramType.FilePassword;
         }

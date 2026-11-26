@@ -66,7 +66,7 @@ namespace Members.KJY.Scripts.Core.Services
             _applicationList.Add(application.Opener);
         }
         
-        private void MakeFile(FileEntry fileEntry)
+        public void MakeFile(FileEntry fileEntry)
         {
             FuncFileExplorer explorer = Instantiate(fileExplorerBase);
             explorer.SetFileData(fileEntry);
@@ -77,10 +77,6 @@ namespace Members.KJY.Scripts.Core.Services
                 
             Make(realInfo , fileEntry);
         }
-
-        
-        
-        
         
         #region Handle
         
