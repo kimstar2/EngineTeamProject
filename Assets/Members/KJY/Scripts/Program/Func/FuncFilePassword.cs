@@ -16,6 +16,7 @@ namespace Members.KJY.Scripts.Program.Func
         [SerializeField] private ErrorSender errorSender;
         [SerializeField] private MonoInputField inputField;
         [SerializeField] private UnityEvent onFailEvent;
+        [SerializeField] private UnityEvent onSuccessEvent;
         private FilePasswordEntry _filePasswordEntry;
         private ProgramSystemBase _closeToken;
         private ProgramSystemBase _enableToken;
@@ -37,11 +38,13 @@ namespace Members.KJY.Scripts.Program.Func
         {
             if (password == _filePasswordEntry.Password)
             {
+                onSuccessEvent?.Invoke();
                 _filePasswordEntry.Open();
                 _closeToken?.ExecuteSystem();
             }
             else
             {
+                onFailEvent?.Invoke();
                 inputField.InputField.text = "";
                 errorSender.Error("비밀번호가 틀렸습니다.",_filePasswordEntry.RenderOrder);
             }

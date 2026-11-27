@@ -98,7 +98,7 @@ MonoBehaviour:
     <Message>k__BackingField: "\uD50C\uB808\uC774\uC5B4\uB2D8\uC758 \uCC3D\uC758\uB825\uACFC
       \uC0C1\uC0C1\uB825\uC73C\uB85C \uB2E4\uC591\uD55C \uD37C\uC990\uACFC \n\uAC8C\uC784
       \uC18D \uC2A4\uD1A0\uB9AC\uB97C \uD480\uC5B4\uB098\uAC00 \uBCF4\uC138\uC694!"
-    <UseEvent>k__BackingField: 1
+    <UseEvent>k__BackingField: 0
     <Event>k__BackingField: {fileID: 11400000, guid: 11f05f0cc754bfd40845d6b6ace168ce, type: 2}
     <UseAdvanceEvent>k__BackingField: 0
     <AdvanceEvent>k__BackingField: {fileID: 11400000, guid: 47c8faa28754cbb4fb5111a8683a889c, type: 2}

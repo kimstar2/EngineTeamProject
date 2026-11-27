@@ -41,7 +41,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
 
         private void HandleEndFade()
         {
-            _messageRaiser.PlayerRaise(startMessage, new Vector2(0f,-250f), overrideSystems);
+            _messageRaiser.PlayerRaise(startMessage, new Vector2(-950f,-320f), overrideSystems);
         }
     }
 }

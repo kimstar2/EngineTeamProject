@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 5792012187869857657}
   - component: {fileID: 6576043836210676398}
   - component: {fileID: 3136337229865471702}
+  - component: {fileID: 3298773221348665424}
   m_Layer: 5
   m_Name: VentureContainer
   m_TagString: Untagged
@@ -338,6 +339,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3298773221348665424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671072227302768384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &7239917793125459572
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1370661682523340017, guid: e8783c6a339584c42902d9d2abdfc3a5, type: 3}
+  m_Sprite: {fileID: -530059403821156366, guid: fe296541efa406548a03d1ef43b98cf0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 589ae785f42847b191d8f57ed9f1e44a, type: 3}
-  m_Name: Tony
+  m_Name: VentureTest
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.MessageListSO
-  renderOrder: 1
+  renderOrder: 0
   <MessageList>k__BackingField:
   - <AnimHash>k__BackingField: {fileID: 11400000, guid: 6da273a9b48c6ae4cac0c0a7df09b7c8, type: 2}
-    <Name>k__BackingField: Tony
-    <Message>k__BackingField: "\uC548\uB155\uD558\uC138\uC694 \uD1A0\uB2C8\uC5D0\uC694!
-      \uBB34\uC5C7\uC744 \uB3C4\uC640\uB4DC\uB9B4\uAE4C\uC694?"
+    <Name>k__BackingField: "\uBCA4\uCCD0"
+    <Message>k__BackingField: "\uB09C \uC774\uC81C \uC790\uB7EC\uAC08\uAC70\uACE0
+      \uB0B4\uC77C \uBD80\uD130 \uC5EC\uAE30 \uD574\uC57C\uB428"
     <UseEvent>k__BackingField: 0
     <Event>k__BackingField: {fileID: 0}
     <UseAdvanceEvent>k__BackingField: 0
