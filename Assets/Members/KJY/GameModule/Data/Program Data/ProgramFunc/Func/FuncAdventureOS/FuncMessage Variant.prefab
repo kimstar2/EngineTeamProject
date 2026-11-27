@@ -924,6 +924,7 @@ MonoBehaviour:
   minYSize: 95
   reSizeEase: 21
   reSizeDur: 0.25
+  minSoundGap: 0.05
 --- !u!114 &2679149201772250925
 MonoBehaviour:
   m_ObjectHideFlags: 0

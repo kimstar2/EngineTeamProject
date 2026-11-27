@@ -21,6 +21,7 @@ namespace Members.KJY.Scripts.Program
     {
         [field:SerializeField] public ProgramState ProgramState { get; private set; }
         [field:SerializeField] public SystemStateSO System { get; private set; }
+        [field:SerializeField] public bool HideButton { get; private set; }
     }
     public class ProgramController : ModuleOwner , IRequiredPooling
     {
@@ -40,11 +41,15 @@ namespace Members.KJY.Scripts.Program
         public IReadOnlyDictionary<ProgramState, ProgramSystemBase> ProgramReadonlyDict => _programDict;
         private readonly Dictionary<ProgramState, ProgramSystemBase> _programDict = new();
         
-        private IProgramInit[] _programInits;
+        public IReadOnlyList<ProgramFunc> FuncList => _funcList;
+        private readonly List<ProgramFunc> _funcList =  new();
         
+        private IProgramInit[] _programInits;
+
         public ProgramDragger ProgramDragger { get; private set; }
         public ProgramControllerBarDataBinder ProgramControllerBarDataBinder { get; private set; }
         public ProgramDataBinder ProgramDataBinder { get; private set; }
+        public ProgramEntry MyEntry { get; private set; }
         public IProgramBar ProgramBar { get; private set; }
         public Sequence ProgramTween { get; set; }
         public bool IsStateChanging => ProgramTween.IsActive();
@@ -93,7 +98,9 @@ namespace Members.KJY.Scripts.Program
             ProgramDataBinder.SetData(programInfo);
             
             IsClosing = false;
+            
             ProgramBar = programBar;
+            MyEntry = entry;
 
             SystemStateMachine.Init(programData, this);
             
@@ -130,6 +137,7 @@ namespace Members.KJY.Scripts.Program
             ProgramFunc f = Instantiate(func, FuncParent); // TODO : 풀링
             ProgramCaster.CastAndSetData(f, entry, this);
             f.Init();
+            _funcList.Add(f);
         }
         
         #endregion

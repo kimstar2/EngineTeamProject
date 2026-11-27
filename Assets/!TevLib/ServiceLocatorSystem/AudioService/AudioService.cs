@@ -1,14 +1,24 @@
+using System;
 using System.Collections.Generic;
 using _TevLib.SoundSystem;
 using _TevLib.SoundSystem.Runtime;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Audio;
+using AudioType = _TevLib.SoundSystem.Runtime.AudioType;
 
 namespace _TevLib.ServiceLocatorSystem.AudioService
 {
     public class AudioService : MonoBehaviour , IAudioService
     {
+        [SerializeField] private AudioMixerGroup sfxFade, bgmFade;
         [SerializeField] private SoundPlayer soundPlayerPrefab;
 
+        
+        private const string FadeParam = "FadeDB";
+            
+        private Tween _sfxFadeTween, _bgmFadeTween;
+        
         private Dictionary<int, SoundPlayer> _playerDict = new();
 
         private SoundPlayer _bgmPlayer;
@@ -26,6 +36,9 @@ namespace _TevLib.ServiceLocatorSystem.AudioService
 
         private void OnDestroy()
         {
+            _bgmFadeTween?.Kill();
+            _sfxFadeTween?.Kill();
+            
             ServiceLocator.RegisterService<IAudioService>(new NullAudioService());
         }
 
@@ -76,6 +89,32 @@ namespace _TevLib.ServiceLocatorSystem.AudioService
         public void StopBgm()
         {
             _bgmPlayer.ForceSoundStop();
+        }
+
+        public void SetFadeDecibel(AudioType type,float db,float duration)
+        {
+            float crt;
+            switch (type)
+            {
+                case AudioType.Sfx:
+                    _sfxFadeTween?.Kill();
+                    sfxFade.audioMixer.GetFloat(FadeParam,out crt);
+                    _sfxFadeTween = DOTween.To(() => crt,x =>
+                    {
+                        crt = x;
+                        sfxFade.audioMixer.SetFloat(FadeParam,crt);
+                    },db,duration);
+                    break;
+                case AudioType.Bgm:
+                    _bgmFadeTween?.Kill();
+                    bgmFade.audioMixer.GetFloat(FadeParam,out crt);
+                    _bgmFadeTween = DOTween.To(() => crt,x =>
+                    {
+                        crt = x;
+                        bgmFade.audioMixer.SetFloat(FadeParam,crt);
+                    },db,duration);
+                    break;
+            }
         }
     }
 }

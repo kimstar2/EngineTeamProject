@@ -22,10 +22,24 @@ MonoBehaviour:
   startSize: {x: 400, y: 300}
   minSize: {x: 400, y: 300}
   maxSize: {x: 800, y: 500}
-  <IsSystemOverride>k__BackingField: 1
-  programSystems: []
+  <IsSystemOverride>k__BackingField: 0
+  programSystems:
+  - <ProgramState>k__BackingField: 0
+    <System>k__BackingField: {fileID: 0}
+    <HideButton>k__BackingField: 0
+  - <ProgramState>k__BackingField: 0
+    <System>k__BackingField: {fileID: 0}
+    <HideButton>k__BackingField: 0
+  - <ProgramState>k__BackingField: 0
+    <System>k__BackingField: {fileID: 0}
+    <HideButton>k__BackingField: 0
+  - <ProgramState>k__BackingField: 0
+    <System>k__BackingField: {fileID: 0}
+    <HideButton>k__BackingField: 0
   overrideInstanceLimit: 0
   onlyOneProgram: 0
+  <UseProgramEvent>k__BackingField: 1
+  <Event>k__BackingField: []
   <ProgramList>k__BackingField: []
   <InFile>k__BackingField:
     m_PersistentCalls:

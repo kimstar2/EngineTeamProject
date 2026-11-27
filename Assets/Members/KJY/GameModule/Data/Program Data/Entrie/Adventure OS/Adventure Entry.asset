@@ -15,4 +15,17 @@ MonoBehaviour:
   <BaseProgram>k__BackingField: 4
   <ProgramName>k__BackingField: Adventure OS
   <AwakeOpen>k__BackingField: 0
+  <UseMyPos>k__BackingField: 0
+  <SpawnPos>k__BackingField: {x: 0, y: 0}
+  <RenderOrder>k__BackingField: 0
+  overrideSize: 0
+  startSize: {x: 400, y: 300}
+  minSize: {x: 400, y: 300}
+  maxSize: {x: 800, y: 500}
+  <IsSystemOverride>k__BackingField: 0
+  programSystems: []
+  overrideInstanceLimit: 0
+  onlyOneProgram: 0
+  <UseProgramEvent>k__BackingField: 0
+  <Event>k__BackingField: []
   <FirstMap>k__BackingField: {fileID: 11400000, guid: 3bdf57933d9819141990247199db2424, type: 2}

@@ -10,5 +10,6 @@ namespace _TevLib.ServiceLocatorSystem.AudioService
         
         void PlayBgm(SoundClipSO bgmSound);
         void StopBgm();
+        public void SetFadeDecibel(AudioType type, float db, float duration);
     }
 }

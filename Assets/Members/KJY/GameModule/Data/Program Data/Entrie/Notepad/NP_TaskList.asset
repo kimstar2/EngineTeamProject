@@ -15,4 +15,22 @@ MonoBehaviour:
   <BaseProgram>k__BackingField: 3
   <ProgramName>k__BackingField: "\uD560\uC77C"
   <AwakeOpen>k__BackingField: 1
-  <NotepadData>k__BackingField: {fileID: 11400000, guid: 362efbfcf44f93b418764e2b7b59aae2, type: 2}
+  <UseMyPos>k__BackingField: 0
+  <SpawnPos>k__BackingField: {x: 0, y: 0}
+  <RenderOrder>k__BackingField: 0
+  overrideSize: 0
+  startSize: {x: 400, y: 300}
+  minSize: {x: 400, y: 300}
+  maxSize: {x: 800, y: 500}
+  <IsSystemOverride>k__BackingField: 0
+  programSystems: []
+  overrideInstanceLimit: 0
+  onlyOneProgram: 0
+  <UseProgramEvent>k__BackingField: 0
+  <Event>k__BackingField: []
+  <TextWrapMode>k__BackingField: 1
+  <DefaultContent>k__BackingField: "<b>=== Adventure OS ===\n<Tutorial></b>\n- W,A,S,D
+    \uB85C \uC774\uB3D9\n- E \uB85C \uC0C1\uD638\uC791\uC6A9\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4.\n-
+    \uC5EC\uB7EC \uB2E8\uC11C\uB97C \uD68D\uB4DD\uD558\uACE0 \uD37C\uC990\uC744 \uD480\uC5B4\uBCF4\uC138\uC694!\n\n<b><color=#003fff><Todo></color></b>\n-
+    Adventure OS \uD074\uB9AC\uC5B4 \uD574\uBCF4\uAE30\n// \uBC14\uD0D5\uD654\uBA74
+    \uC5B4\uB518\uAC00\uC5D0 \uB1A8\uB358 \uAC70 \uAC19\uC740\uB370..."

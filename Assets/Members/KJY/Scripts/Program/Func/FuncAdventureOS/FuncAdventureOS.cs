@@ -1,4 +1,5 @@
-﻿using _TevLib.ServiceLocatorSystem;
+﻿using System.Collections.Generic;
+using _TevLib.ServiceLocatorSystem;
 using Members.JJW._01.Code;
 using Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message;
 using NaughtyAttributes;
@@ -17,6 +18,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         [field:Header("In Game")] 
         [field:SerializeField] public FuncMapWindow FuncMapWindow { get; private set; }
         [SerializeField] private MessageListSO startMessage;
+        [SerializeField] private List<ProgramSystems> overrideSystems;
         private IMessageRaiser _messageRaiser;
 
 
@@ -39,7 +41,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
 
         private void HandleEndFade()
         {
-            _messageRaiser.PlayerRaise(startMessage, new Vector2(0f,-250f));
+            _messageRaiser.PlayerRaise(startMessage, new Vector2(0f,-250f), overrideSystems);
         }
     }
 }

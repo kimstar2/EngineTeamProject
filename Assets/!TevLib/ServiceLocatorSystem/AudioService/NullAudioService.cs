@@ -1,6 +1,7 @@
 using _TevLib.SoundSystem;
 using _TevLib.SoundSystem.Runtime;
 using UnityEngine;
+using AudioType = _TevLib.SoundSystem.Runtime.AudioType;
 
 namespace _TevLib.ServiceLocatorSystem.AudioService
 {
@@ -16,5 +17,6 @@ namespace _TevLib.ServiceLocatorSystem.AudioService
         public void PlayBgm(SoundClipSO bgmSound) { }
 
         public void StopBgm() { }
+        public void SetFadeDecibel(AudioType type, float db, float duration) { }
     }
 }

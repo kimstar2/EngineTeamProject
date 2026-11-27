@@ -7,7 +7,7 @@ namespace Members.KJY.Scripts.Utils
     {
         public static T AllRandom<T>(this T[] array)
         {
-            return array[Random.Range(0, array.Length)];
+            return array.Length == 0 ? default : array[Random.Range(0, array.Length)];
         }
     }
 }

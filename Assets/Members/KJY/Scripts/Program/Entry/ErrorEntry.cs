@@ -6,8 +6,9 @@ namespace Members.KJY.Scripts.Program.Entry
     {
         public string ErrorMessage { get; private set; }
 
-        public void SetErrorMessage(string errorMessage)
+        public void SetErrorMessage(string errorMessage, ProgramRenderOrder renderOrder)
         {
+            RenderOrder = renderOrder;
             BaseProgram = ProgramType.Error;
             ErrorMessage = errorMessage;
         }

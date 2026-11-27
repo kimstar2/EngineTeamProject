@@ -26,11 +26,15 @@ namespace Members.KJY.Scripts.Program.Entry
         [ShowIf(nameof(overrideSize)), SerializeField] private Vector2 minSize = new(400f, 300f);
         [ShowIf(nameof(overrideSize)), SerializeField] private Vector2 maxSize = new(800f, 500f);
 
-        [field:SerializeField] public bool IsSystemOverride { get; private set; }
-        [ShowIf(nameof(IsSystemOverride)), SerializeField] private List<ProgramSystems> programSystems = new();
+        [field:SerializeField] public bool IsSystemOverride { get; protected set; }
+        [ShowIf(nameof(IsSystemOverride)), SerializeField] protected List<ProgramSystems> programSystems = new();
 
         [SerializeField] private bool overrideInstanceLimit;
         [ShowIf(nameof(overrideInstanceLimit)), SerializeField] private bool onlyOneProgram;
+
+        [field: SerializeField] public bool UseProgramEvent { get; protected set; }
+        [field:ShowIf(nameof(UseProgramEvent))]
+        [field:SerializeField] public ProgramEventSO[] Event { get; protected set; }
 
         public string GetProgramName(ProgramInfoSO info) => string.IsNullOrEmpty(ProgramName) ? info.ProgramName : ProgramName;
         public Vector2 GetStartSize(ProgramInfoSO info) => overrideSize ? startSize : info.StartSize;

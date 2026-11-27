@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using _TevLib.CoreLib;
 using _TevLib.CoreLib.EventSystem;
 using Members.KJY.Scripts.Check;
@@ -56,7 +57,11 @@ namespace Members.KJY.Scripts.Core.Services
         private void HandleMessage(OnMessage msgEvt)
         {
             MessageEntry messageEntry = ScriptableObject.CreateInstance<MessageEntry>();
-            messageEntry.SetMessageData(msgEvt.AnimCon,msgEvt.MessageGroup,msgEvt.EventDict);
+            messageEntry.SetAudio(msgEvt.SoundClips);
+            if (msgEvt.Systems.Count > 0)
+                messageEntry.SetMessageData(msgEvt.AnimCon,msgEvt.MessageGroup,msgEvt.EventDict,msgEvt.Systems);
+            else
+                messageEntry.SetMessageData(msgEvt.AnimCon,msgEvt.MessageGroup,msgEvt.EventDict);
             
             messageEntry.SetSpawnPos(msgEvt.Position);
             MakeChain(messageInfo,messageEntry);
@@ -65,7 +70,7 @@ namespace Members.KJY.Scripts.Core.Services
         private void HandleError(OnError errorEvt)
         {
             ErrorEntry error = ScriptableObject.CreateInstance<ErrorEntry>();
-            error.SetErrorMessage(errorEvt.ErrorMessage);
+            error.SetErrorMessage(errorEvt.ErrorMessage,errorEvt.RenderOrder);
             MakeChain(errorMessage,error);
         }
 
@@ -90,15 +95,15 @@ namespace Members.KJY.Scripts.Core.Services
         }
 
 
-        public void MakeChain(ProgramInfoSO programData, ProgramEntry entry) // 프로그램 키는거
+        public ProgramController MakeChain(ProgramInfoSO programData, ProgramEntry entry) // 프로그램 키는거
         {
             var limitKey = entry.GetInstanceLimitKey(programData);
             if (limitKey != null && !_onlyOneSet.Add(limitKey))
             {
                 ErrorEntry error = ScriptableObject.CreateInstance<ErrorEntry>();
-                error.SetErrorMessage($"{entry.GetProgramName(programData)} 창이 이미 열려 있습니다. 기존 창을 이용해 주세요.");
+                error.SetErrorMessage($"{entry.GetProgramName(programData)} 창이 이미 열려 있습니다. 기존 창을 이용해 주세요.",entry.RenderOrder);
                 MakeChain(errorMessage,error);
-                return;
+                return null;
             }
 
 
@@ -127,6 +132,14 @@ namespace Members.KJY.Scripts.Core.Services
             
             program.ChangeState(SystemInvoker.ProgramManager, ProgramState.Opened);
             ChangePCon(program);
+            
+            return program;
+        }
+
+        public bool GetEventProgram(ProgramEventSO eventSo , out ProgramController[] program)
+        { 
+            program = _programChain.Keys.Where(pc => pc.MyEntry.UseProgramEvent && pc.MyEntry.Event?.Contains(eventSo) == true).ToArray();
+            return program.Length > 0;
         }
 
         public void MakeChain(ProgramInfoSO programData)

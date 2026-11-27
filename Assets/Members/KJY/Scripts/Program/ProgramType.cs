@@ -10,6 +10,7 @@
         FilePassword,
         Error,
         Message,
-        WorldMap
+        WorldMap,
+        FileExplorer
     }
 }

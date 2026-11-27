@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using _TevLib.HashDataSystem;
+using _TevLib.ServiceLocatorSystem;
+using _TevLib.ServiceLocatorSystem.AudioService;
+using _TevLib.SoundSystem.Runtime;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Febucci.UI;
@@ -28,7 +31,10 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
         [SerializeField] private float minYSize = 70f;
         [SerializeField] private Ease reSizeEase;
         [SerializeField] private float reSizeDur;
-
+        
+        [Header("Sound Setting")]
+        [HorizontalLine(color:EColor.Gray)]
+        [SerializeField] private float minSoundGap;
         
         private ProgramController _pc;
         private ProgramSystemBase _closeToken;
@@ -38,6 +44,10 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
         private Tween _textTween;
         private TextAnimator_TMP _textAnimTMP; 
         private TMP_Text _tmpText;
+        private IAudioService _audioService;
+        
+        private SoundClipSO[] _soundClips;
+        private float _lastSoundTime;
 
         public override void Init()
         {
@@ -46,18 +56,26 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
             _parentRect = _pc.ProgramRect.Rect.parent as RectTransform;
             _tmpText = _textAnimTMP.TMProComponent;
             
-            messageTmp.onCharacterVisible.AddListener(HandleResizeTmpMesh);
+            messageTmp.onCharacterVisible.AddListener(CharVisible);
             messageTmp.onTextShowed.AddListener(HandleTextShowed);
+            
+            _audioService = ServiceLocator.GetService<IAudioService>();
         }
 
         private void HandleTextShowed()
         {
-            HandleResizeTmpMesh();
+            CharVisible();
             UIUtils.AdjustmentUI(_parentRect, _pc.ProgramRect.Rect);
         }
 
-        private void HandleResizeTmpMesh(char _ = ' ')
+        private void CharVisible(char _ = ' ')
         {
+            if (_soundClips.Length > 0 && Time.time > _lastSoundTime + minSoundGap)
+            {
+                _lastSoundTime = Time.time;
+                _audioService.PlaySfx(_soundClips.AllRandom());
+            }
+            
             int visibleIndex = _textAnimTMP.latestCharacterShown.index;
             var lastCharacter = _tmpText.textInfo.characterInfo[visibleIndex];
             int end = Mathf.Min(lastCharacter.index + lastCharacter.stringLength, _tmpText.text.Length);
@@ -83,7 +101,7 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
 
         private void OnDestroy()
         {
-            messageTmp.onCharacterVisible.RemoveListener(HandleResizeTmpMesh);
+            messageTmp.onCharacterVisible.RemoveListener(CharVisible);
             messageTmp.onTextShowed.RemoveListener(HandleTextShowed);
             _textTween?.Kill();
         }
@@ -94,6 +112,8 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
             _closeToken = closeToken;
             
             charAnim.runtimeAnimatorController = entry.AnimCon;
+            _soundClips = entry.SoundClips;
+            
             MessageAsync(entry).Forget();
         }
 

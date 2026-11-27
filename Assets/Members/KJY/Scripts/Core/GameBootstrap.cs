@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _TevLib.ServiceLocatorSystem;
+using _TevLib.ServiceLocatorSystem.AudioService;
 using _TevLib.ServiceLocatorSystem.TimeService;
 using Members.KJY.Scripts.Core.Services;
 using Members.KJY.Scripts.Program;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace Members.KJY.Scripts.Core
 {
-    [DefaultExecutionOrder(1000)]
+    [DefaultExecutionOrder(-1000)]
     public class GameBootstrap : MonoBehaviour
     {
         [Header("Service Setting")]
@@ -19,6 +20,7 @@ namespace Members.KJY.Scripts.Core
         [SerializeField] private AdvOS_MessageRaiser messageRaiser;
         [SerializeField] private MapManager mapManager;
         [SerializeField] private ScreenManager screenManager;
+        [SerializeField] private ProgramAddedManager programAddedManager;
 
         [Header("Other Setting")]
         [SerializeField] private int startFrameRate = 60;
@@ -32,6 +34,7 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.RegisterService<IMessageRaiser>(messageRaiser);
             ServiceLocator.RegisterService<IMapManager>(mapManager);
             ServiceLocator.RegisterService<IScreenManager>(screenManager);
+            ServiceLocator.RegisterService<IProgramAddedManager>(programAddedManager);
         }
 
         private void Start()
@@ -53,6 +56,7 @@ namespace Members.KJY.Scripts.Core
             ServiceLocator.UnregisterService<IMessageRaiser>();
             ServiceLocator.UnregisterService<IMapManager>();
             ServiceLocator.UnregisterService<IScreenManager>();
+            ServiceLocator.UnregisterService<IProgramAddedManager>();
         }
     }
 }

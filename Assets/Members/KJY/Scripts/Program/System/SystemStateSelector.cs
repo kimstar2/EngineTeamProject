@@ -16,7 +16,10 @@ namespace Members.KJY.Scripts.Program.System
             ProgramData = programData;
 
             if (buttonRoot != null)
-                buttonRoot.SetActive(programController.ProgramReadonlyDict.ContainsKey(programState));
+            {
+                var systems = programData.Entry.GetSystems(programData.ProgramInfo);
+                buttonRoot.SetActive(systems.Exists(system => system.ProgramState == programState && !system.HideButton));
+            }
         }
 
         public void Select()

@@ -5,6 +5,7 @@ namespace Members.KJY.Scripts.Core.Services
 {
     public interface IProgramManager
     {
-        void MakeChain(ProgramInfoSO programData, ProgramEntry entry);
+        ProgramController MakeChain(ProgramInfoSO programData, ProgramEntry entry);
+        public bool GetEventProgram(ProgramEventSO eventSo, out ProgramController[] program);
     }
 }

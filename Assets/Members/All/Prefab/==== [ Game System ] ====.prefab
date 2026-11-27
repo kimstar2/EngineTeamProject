@@ -76,7 +76,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2314337405476367067}
+  - {fileID: 6995311729911199940}
   m_Father: {fileID: 649046493814744859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7370271515712024321
@@ -93,7 +95,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.LifeCycle.OnStart
   <OnEvent>k__BackingField:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3183288537243059739}
+        m_TargetAssemblyTypeName: Members.KJY.Scripts.Utils.AudioFadeSetter, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4987078647389480733}
+        m_TargetAssemblyTypeName: _TevLib.FeedbackSystem.Feedbacks.SoundFeedback,
+          FeedbackSystem_assembly
+        m_MethodName: PlayFeedback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &688641502215310070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 791142964804446350}
+  - component: {fileID: 5375826118841369536}
+  m_Layer: 0
+  m_Name: ProgramAddedManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &791142964804446350
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688641502215310070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5147190813501648195}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5375826118841369536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688641502215310070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f4da633697489ba257423298285748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Core.Services.ProgramAddedManager
+  addedPrefab: {fileID: 806218887733198405, guid: 5e7e9b3e58805584f96d1fe907f3c74d, type: 3}
+  addedParent: {fileID: 0}
+  addedProgram: "\uD504\uB85C\uADF8\uB7A8\uC774 \uCD94\uAC00\uB418\uC5C8\uC2B5\uB2C8\uB2E4!"
 --- !u!1 &873926549965036589
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +450,99 @@ MonoBehaviour:
   onSecond:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &3803794493442008959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2314337405476367067}
+  - component: {fileID: 4987078647389480733}
+  m_Layer: 0
+  m_Name: PlayerSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2314337405476367067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803794493442008959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3048724244977289115}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4987078647389480733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803794493442008959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d466cd423704c828ed4e50dac5bf1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FeedbackSystem_assembly::_TevLib.FeedbackSystem.Feedbacks.SoundFeedback
+  soundClip: {fileID: 11400000, guid: 99eb9979f348a7e4585cad7314e67311, type: 2}
+  channel: 0
+--- !u!1 &4446862495361359678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6995311729911199940}
+  - component: {fileID: 3183288537243059739}
+  m_Layer: 0
+  m_Name: AudioFadeSetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6995311729911199940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446862495361359678}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3048724244977289115}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3183288537243059739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446862495361359678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca26084539ac472da456f9578db3562a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Utils.AudioFadeSetter
+  decibel: 0
+  duration: 3
+  audioType: 1
 --- !u!1 &4501048942383022161
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,8 +597,9 @@ MonoBehaviour:
   messageRaiser: {fileID: 2538261810495334157}
   mapManager: {fileID: 2044393057244712016}
   screenManager: {fileID: 7078336606252123331}
+  programAddedManager: {fileID: 5375826118841369536}
   startFrameRate: 60
-  startTimeScale: 3
+  startTimeScale: 1
 --- !u!1 &4515782689380514901
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +650,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message.AdvOS_MessageRaiser
   eventChannel: {fileID: 11400000, guid: c4432efd6894104428ddf234aa4d80e8, type: 2}
   playerData: {fileID: 9100000, guid: 63ee86efd213bf34285c95f33e79dc6c, type: 2}
+  playerSoundClips:
+  - {fileID: 11400000, guid: 2753dbf8f3ef6a242868b7046a7adfc6, type: 2}
+  - {fileID: 11400000, guid: f547362217926904a8cd0623efe861e9, type: 2}
+  - {fileID: 11400000, guid: 2f9cb3792b1de044c83816d8e6437ca1, type: 2}
+  - {fileID: 11400000, guid: 649fea492acd64042b123a647b360e26, type: 2}
 --- !u!1 &5424063559588928370
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cf40b5d5d14ccbbde5aba663f30854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ServiceLocatorSystem_assembly::_TevLib.ServiceLocatorSystem.AudioService.AudioService
+  sfxFade: {fileID: 3567201066491937263, guid: e8dff40df9db6d3448d42a993d15161d, type: 2}
+  bgmFade: {fileID: -8697529453035623249, guid: e8dff40df9db6d3448d42a993d15161d, type: 2}
   soundPlayerPrefab: {fileID: 8645733389537835408, guid: 9fa6a4f93a0ab3d40b0daae3406696c0, type: 3}
 --- !u!1 &5599695049156747165
 GameObject:
@@ -765,7 +944,7 @@ RectTransform:
   m_GameObject: {fileID: 8050607594813748086}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7768600733951747194}
@@ -774,6 +953,7 @@ RectTransform:
   - {fileID: 665315180799164187}
   - {fileID: 2938701819424086352}
   - {fileID: 6084451828552639853}
+  - {fileID: 791142964804446350}
   m_Father: {fileID: 6113248029962833208}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

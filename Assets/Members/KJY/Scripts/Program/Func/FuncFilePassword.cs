@@ -13,6 +13,7 @@ namespace Members.KJY.Scripts.Program.Func
 {
     public class FuncFilePassword : ProgramFunc
     {
+        [SerializeField] private ErrorSender errorSender;
         [SerializeField] private MonoInputField inputField;
         [SerializeField] private UnityEvent onFailEvent;
         private FilePasswordEntry _filePasswordEntry;
@@ -42,7 +43,7 @@ namespace Members.KJY.Scripts.Program.Func
             else
             {
                 inputField.InputField.text = "";
-                onFailEvent?.Invoke();
+                errorSender.Error("비밀번호가 틀렸습니다.",_filePasswordEntry.RenderOrder);
             }
         }
 

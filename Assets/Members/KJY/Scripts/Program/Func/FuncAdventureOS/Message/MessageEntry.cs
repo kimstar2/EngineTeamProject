@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _TevLib.SoundSystem.Runtime;
 using Cysharp.Threading.Tasks;
 using Members.KJY.Scripts.Player;
 using Members.KJY.Scripts.Program.Entry;
@@ -13,10 +14,27 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS.Message
         public AnimatorController AnimCon { get; private set; }
         public MessageGroup[] Message { get; private set; }
         public Dictionary<MessageEventSO,List<Action<ProgramController>>> EventDict { get; private set; }
-        
-        
+
+        public SoundClipSO[] SoundClips { get; private set; }
+
+        public void SetAudio(SoundClipSO[] soundClips)
+        {
+            SoundClips = soundClips;
+        }
+
+
         public void SetMessageData(AnimatorController pcData, MessageListSO msgList,  Dictionary<MessageEventSO,List<Action<ProgramController>>> eventDict)
         {
+            RenderOrder = msgList.renderOrder;
+            BaseProgram = ProgramType.Message;
+            AnimCon = pcData;
+            Message = msgList.MessageList;
+            EventDict = eventDict;
+        }    
+        public void SetMessageData(AnimatorController pcData, MessageListSO msgList,  Dictionary<MessageEventSO,List<Action<ProgramController>>> eventDict,List<ProgramSystems> systems)
+        {
+            IsSystemOverride = true;
+            programSystems = systems;
             RenderOrder = msgList.renderOrder;
             BaseProgram = ProgramType.Message;
             AnimCon = pcData;

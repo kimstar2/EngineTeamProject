@@ -3,6 +3,7 @@ using DG.Tweening;
 using Members.KJY.Scripts.Utils.Mono;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
 {
@@ -23,6 +24,11 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
         [SerializeField] private float inWaitTime;
         [SerializeField] private float outWaitTime;
         
+        [Header("Event Setting")]
+        [HorizontalLine(color:EColor.Gray)]
+        [SerializeField] private UnityEvent onGame;
+        [SerializeField] private UnityEvent onInMain;
+        
         private Sequence _introSeq;
         
         public void StartIntro()
@@ -31,13 +37,18 @@ namespace Members.KJY.Scripts.Program.Func.FuncAdventureOS
             _introSeq = DOTween.Sequence();
             
             
+            _introSeq.AppendCallback(() => onGame?.Invoke());
             _introSeq.AppendInterval(inWaitTime);
             _introSeq.Append(introIcon.Image.DOFade(1, ioDur).SetEase(ioEase));
             _introSeq.AppendInterval(ioWaitTime);
             _introSeq.Append(introIcon.Image.DOFade(0, ioDur).SetEase(ioEase));
             _introSeq.AppendInterval(outWaitTime);
             _introSeq.Append(introGroup.DOFade(0, outDur)).SetEase(outEase);
-            _introSeq.AppendCallback(() => introGroup.blocksRaycasts = false);
+            _introSeq.AppendCallback(() =>
+            {
+                introGroup.blocksRaycasts = false;
+                onInMain?.Invoke();
+            });
         }
 
         private void OnDestroy()
